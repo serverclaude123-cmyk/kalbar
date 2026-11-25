@@ -33,6 +33,7 @@
 %MW8;P_PH_DIFF;"Alarm selisih pH #1 vs pH #2 (0 = mati; pakai bila kedua sensor di titik yang sama)"
 %MW9;P_TU_SRC;Sumber turbidity: 0 = 4-20 mA (%IW1.3), 1 = Modbus RTU SL1
 %MW10;P_T_STARTUP;Tunda setelah PLC RUN sebelum alarm kualitas aktif
+%MW11;P_TU_M;Batas turbidity menengah (indikasi zona, di bawah = rendah/baik)
 %MW60;SIGNATURE;Tanda data parameter sudah diinisialisasi (12345)
 %MW100;PH1_PV;pH #1 (x0,01)
 %MW101;PH2_PV;pH #2 (x0,01)
@@ -41,6 +42,10 @@
 %MW104;TU_MA_PV;Turbidity dari 4-20 mA (x0,01 NTU)
 %MW105;TU_MB_PV;Turbidity dari Modbus (x0,01 NTU)
 %MW106;PH_DIFF;Selisih absolut pH #1 - pH #2 (x0,01)
+%MW130;PH1_ZONE;Zona pH #1: 0 tidak valid, 1 rendah, 2 menengah, 3 tinggi (tanpa tunda)
+%MW131;PH2_ZONE;Zona pH #2: 0 tidak valid, 1 rendah, 2 menengah, 3 tinggi (tanpa tunda)
+%MW132;CL_ZONE;Zona klorin: 0 tidak valid, 1 rendah, 2 menengah, 3 tinggi (tanpa tunda)
+%MW133;TU_ZONE;Zona turbidity: 0 tidak valid, 1 rendah, 2 menengah, 3 tinggi (tanpa tunda)
 %MW107;TU_STATUS;TUC 5 reading status (reg 30010): 1 baik, 2 over, 3 under, 6 error
 %MW108;TU_ERRW;TUC 5 error bit (reg 30012): 0x01 desiccant, 0x02 loop mA, 0x04 kalibrasi, 0x40 lampu, 0x80 ultrasonik
 %MW109;MB_STEP;Langkah polling Modbus TUC 5 (0 = baca, 1 = tunggu)

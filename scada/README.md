@@ -13,9 +13,11 @@ Project FUXA untuk panel M221 (TM221CE16R + TM3AI4). Semua alamat Modbus diambil
 
 ## Layar
 
-1. **Overview**: kartu pH #1, pH #2, sisa klor, turbidity (nilai besar, valid, alarm rendah/tinggi, sinyal 4-20 mA, batas). Panel aliran sampel BAMa dan status PAUSE tiap D1Cb dengan tombol pause manual. Ringkasan alarm dengan tombol **ACK / Silence**. Lampu heartbeat PLC di header.
+1. **Overview**: kartu pH #1, pH #2, sisa klor, turbidity. Tiap kartu: nilai besar, **bar meter vertikal** dengan pita zona warna dan skala, lampu zona **RENDAH / MENENGAH / TINGGI**, alarm rendah/tinggi, sinyal 4-20 mA, batas PLC.
+   - Zona pH & klor: rendah = kuning, menengah (normal) = hijau, tinggi = merah. Turbidity: rendah (baik) = hijau, menengah = kuning, tinggi = merah.
+   - Skala bar: pH 0–14, klor 0–2 mg/L, turbidity 0–5 NTU. Warna bar dan pita zona memakai batas default; lampu zona memakai word zona PLC `%MW130–133` sehingga selalu mengikuti setpoint aktual. Bila batas diubah permanen, ubah default di `plc/generator/symbols.py` lalu jalankan ulang kedua generator. Panel aliran sampel BAMa dan status PAUSE tiap D1Cb dengan tombol pause manual. Ringkasan alarm dengan tombol **ACK / Silence**. Lampu heartbeat PLC di header.
 2. **Trend**: grafik realtime pH #1/#2 dan klor + turbidity (2 sumbu Y). Nilai pH, klor dan turbidity disimpan DAQ tiap 60 s untuk riwayat.
-3. **Setpoint**: semua parameter `%MW0–%MW10`, input dalam satuan teknik (mis. 6.5 untuk pH, ditulis ke PLC sebagai 650).
+3. **Setpoint**: semua parameter `%MW0–%MW11` (termasuk `P_TU_M` batas turbidity menengah), input dalam satuan teknik (mis. 6.5 untuk pH, ditulis ke PLC sebagai 650).
 4. **I/O & status**: semua DI/DO fisik (lewat cermin %M40–56), bit status internal, diagnosa TUC 5 (mA vs Modbus, status, error bit).
 
 Ada 20 alarm FUXA (satu per bit alarm PLC %M200–219), dikelompokkan *Kualitas air*, *Instrumen*, *Aliran sampel*. Alarm tampil di ikon lonceng di header dan riwayatnya tersimpan.

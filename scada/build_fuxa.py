@@ -67,7 +67,7 @@ for sym, _, unit, dg in PV:
     add_tag(sym, daq=True, divisor=100, digits=dg, unit=unit)
 for sym in ["TU_MA_PV", "TU_MB_PV", "PH_DIFF"]:
     add_tag(sym, divisor=100, digits=2)
-for sym in ["TU_STATUS", "TU_ERRW", "MB_ERR_TU"]:
+for sym in ["TU_STATUS", "TU_ERRW", "MB_ERR_TU", "PH1_ZONE", "PH2_ZONE", "CL_ZONE", "TU_ZONE"]:
     add_tag(sym, divisor=1, digits=0)
 for name, mw, dflt, unit, cmt in PARAMS:
     add_tag(name)
@@ -124,15 +124,47 @@ class View:
                            "property": {"variableId": T(sym), "variableSrc": DEV_NAME, "events": [], "actions": [],
                                         "ranges": [rng]}}
 
-    def lamp(self, cx, cy, sym, on=C_OK, off=C_OFF, r=11, name=None):
+    def lamp(self, cx, cy, sym, on=C_OK, off=C_OFF, r=11, name=None, onval=None):
+        """Semaphore. onval=None: bit 0/1. onval=k: lit when word == k (other values = off)."""
         gid, eid = self._id("GSE"), self._id("GSE")
         self.svg.append(f'<g id="{gid}" type="svg-ext-gauge_semaphore" fill="#000000" font-size="14" stroke="#000000" '
                         f'font-family="sans-serif"><ellipse id="{eid}" cx="{cx}" cy="{cy}" rx="{r}" ry="{r}" '
                         f'fill="{off}" stroke="#4a5a62" stroke-width="1"/></g>')
+        if onval is None:
+            rng = [{"type": "range", "min": 0, "max": 0, "color": off}, {"type": "range", "min": 1, "max": 1, "color": on}]
+        else:   # last matching range wins in FUXA semaphore
+            rng = [{"type": "range", "min": -32768, "max": 32767, "color": off},
+                   {"type": "range", "min": onval, "max": onval, "color": on}]
         self.items[gid] = {"id": gid, "type": "svg-ext-gauge_semaphore", "name": name or sym, "label": "HtmlSemaphore",
                            "property": {"variableId": T(sym), "variableSrc": DEV_NAME, "events": [], "actions": [],
-                                        "ranges": [{"type": "range", "min": 0, "max": 0, "color": off},
-                                                   {"type": "range", "min": 1, "max": 1, "color": on}]}}
+                                        "ranges": rng}}
+
+    def bar(self, x, y, w, h, sym, zones, name=None):
+        """Vertical bar meter (FUXA gauge_progress). zones: [(min, max, color, label)] bottom->top, engineering units.
+        Bar colour follows the zone the value is in; a zone band with scale labels is drawn beside the bar."""
+        gid, aid, bid, hid = self._id("GXP"), self._id("A-GXP"), self._id("B-GXP"), self._id("H-GXP")
+        lo, hi = zones[0][0], zones[-1][1]
+        # zone band + ticks (static)
+        for zmin, zmax, color, label in zones:
+            y_top = y + h - (zmax - lo) / (hi - lo) * h
+            y_bot = y + h - (zmin - lo) / (hi - lo) * h
+            self.svg.append(f'<rect id="{self._id("svg")}" x="{x - 12}" y="{y_top:.1f}" width="8" '
+                            f'height="{y_bot - y_top:.1f}" fill="{color}" stroke-width="0"/>')
+        for v in sorted({z[0] for z in zones} | {zones[-1][1]}):
+            yy = y + h - (v - lo) / (hi - lo) * h
+            self.svg.append(f'<line id="{self._id("svg")}" x1="{x - 16}" y1="{yy:.1f}" x2="{x + w}" y2="{yy:.1f}" '
+                            f'stroke="#8a979e" stroke-width="1" stroke-dasharray="3,2"/>')
+            self.text(x - 18, yy + 4, f"{v:g}", size=10, fill=C_MUTED, anchor="end")
+        self.svg.append(
+            f'<g id="{gid}" type="svg-ext-gauge_progress" font-family="sans-serif" font-size="14" stroke="null">'
+            f'<rect id="{aid}" x="{x}" y="{y}" width="{w}" height="{h}" fill="#e3e8ebff" stroke="#9aa7ad"/>'
+            f'<rect id="{bid}" x="{x}" y="{y + h}" width="{w}" height="0" fill="{zones[0][2]}" stroke="null"/>'
+            f'<foreignObject id="{hid}" x="{x}" y="{y}" width="{w}" height="{h}" font-size="14"/></g>')
+        rng = [{"type": "minmax", "min": zmin, "max": zmax, "color": color, "text": "", "style": [False, False]}
+               for zmin, zmax, color, label in zones]
+        self.items[gid] = {"id": gid, "type": "svg-ext-gauge_progress", "name": name or sym, "label": "HtmlProgress",
+                           "property": {"variableId": T(sym), "variableSrc": DEV_NAME, "events": [], "actions": [],
+                                        "ranges": rng}}
 
     def button(self, x, y, w, h, label, sym, action="onSetValue", param="1", color=C_ACC, name=None, view=None):
         gid, rid, fid, bid = self._id("HXB"), self._id("svg"), self._id("H-HXB"), self._id("B-HXB")
@@ -208,66 +240,84 @@ CH_ALL, CH_PH = "c_kb_kualitas", "c_kb_ph"
 # ------------------------------------------------------------------ Overview
 ov = View(V_OV, "Overview")
 ov.header("PDAM KALBAR  ·  Monitoring Kualitas Air", "M221 · BAMa · D1Cb ×3 · TUC 5")
-cards = [("PH1_PV", "pH #1", "pH", "VALID_PH1", "A_PH1_L", "A_PH1_H", "P_PH_L", "P_PH_H", "A_PH1_SIG"),
-         ("PH2_PV", "pH #2", "pH", "VALID_PH2", "A_PH2_L", "A_PH2_H", "P_PH_L", "P_PH_H", "A_PH2_SIG"),
-         ("CL_PV", "Sisa klor bebas", "mg/L", "VALID_CL", "A_CL_L", "A_CL_H", "P_CL_L", "P_CL_H", "A_CL_SIG"),
-         ("TU_PV", "Turbidity", "NTU", "VALID_TU", None, "A_TU_H", None, "P_TU_H", "A_TU_SIG")]
-cw, gap, x0, y0 = 295, 20, 24, 76
-for i, (pv, title, unit, valid, al, ah, pl, ph, sig) in enumerate(cards):
+PD = {n: dflt for n, mw, dflt, u, c in PARAMS}
+phL, phH = PD["P_PH_L"] / 100, PD["P_PH_H"] / 100
+clL, clH = PD["P_CL_L"] / 100, PD["P_CL_H"] / 100
+tuM, tuH = PD["P_TU_M"] / 100, PD["P_TU_H"] / 100
+# zone colours: pH/klor -> rendah kuning, menengah hijau, tinggi merah; turbidity -> rendah hijau (baik)
+Z_PH = [(0, phL, C_WARN, "Rendah"), (phL, phH, C_OK, "Menengah"), (phH, 14, C_ALM, "Tinggi")]
+Z_CL = [(0, clL, C_WARN, "Rendah"), (clL, clH, C_OK, "Menengah"), (clH, 2, C_ALM, "Tinggi")]
+Z_TU = [(0, tuM, C_OK, "Rendah"), (tuM, tuH, C_WARN, "Menengah"), (tuH, 5, C_ALM, "Tinggi")]
+cards = [("PH1_PV", "pH #1", "pH", "VALID_PH1", "A_PH1_L", "A_PH1_H", "P_PH_L", "P_PH_H", "A_PH1_SIG", "PH1_ZONE", Z_PH),
+         ("PH2_PV", "pH #2", "pH", "VALID_PH2", "A_PH2_L", "A_PH2_H", "P_PH_L", "P_PH_H", "A_PH2_SIG", "PH2_ZONE", Z_PH),
+         ("CL_PV", "Sisa klor bebas", "mg/L", "VALID_CL", "A_CL_L", "A_CL_H", "P_CL_L", "P_CL_H", "A_CL_SIG", "CL_ZONE", Z_CL),
+         ("TU_PV", "Turbidity", "NTU", "VALID_TU", None, "A_TU_H", "P_TU_M", "P_TU_H", "A_TU_SIG", "TU_ZONE", Z_TU)]
+cw, gap, x0, y0, chh = 295, 20, 24, 72, 318
+for i, (pv, title, unit, valid, al, ah, pl, ph, sig, zone, zones) in enumerate(cards):
     x = x0 + i * (cw + gap)
-    ov.rect(x, y0, cw, 250)
-    ov.text(x + 18, y0 + 32, title, size=17, weight="bold")
-    ov.lamp(x + cw - 26, y0 + 26, valid, name=f"{title} valid")
-    ov.text(x + cw - 42, y0 + 31, "valid", size=11, fill=C_MUTED, anchor="end")
-    ov.value(x + cw / 2, y0 + 118, pv, size=52, unit="", name=title)
-    ov.text(x + cw / 2, y0 + 146, unit, size=16, fill=C_MUTED, anchor="middle")
-    yy = y0 + 182
+    ov.rect(x, y0, cw, chh)
+    ov.text(x + 16, y0 + 28, title, size=17, weight="bold")
+    ov.lamp(x + cw - 24, y0 + 22, valid, r=9, name=f"{title} valid")
+    ov.text(x + cw - 38, y0 + 27, "valid", size=11, fill=C_MUTED, anchor="end")
+    # value block (left)
+    ov.value(x + 92, y0 + 96, pv, size=44, unit="", name=title)
+    ov.text(x + 92, y0 + 120, unit, size=15, fill=C_MUTED, anchor="middle")
+    # zone indicators (from PLC zone word, follow live setpoints)
+    for k, (zmin, zmax, color, lbl) in enumerate(reversed(zones)):
+        zy = y0 + 150 + k * 30
+        val = 3 - k
+        ov.rect(x + 16, zy - 12, 150, 24, fill="#f6f8f9", stroke=C_LINE, rx=12)
+        ov.lamp(x + 30, zy, zone, on=color, r=8, onval=val, name=f"{title} zona {lbl}")
+        ov.text(x + 44, zy + 5, lbl.upper(), size=12, weight="bold")
+    # bar meter (right)
+    ov.bar(x + cw - 66, y0 + 46, 34, 196, pv, zones, name=f"{title} bar")
+    # alarms + limits
+    yy = y0 + 266
     if al:
-        ov.lamp(x + 28, yy, al, on=C_ALM, name=f"{title} rendah"); ov.text(x + 46, yy + 5, "Rendah", size=13)
-    ov.lamp(x + 130, yy, ah, on=C_ALM, name=f"{title} tinggi"); ov.text(x + 148, yy + 5, "Tinggi", size=13)
-    ov.lamp(x + 28, yy + 34, sig, on=C_WARN, name=f"{title} sinyal"); ov.text(x + 46, yy + 39, "Sinyal 4-20 mA", size=13)
-    ov.text(x + 18, y0 + 240, "Batas:", size=12, fill=C_MUTED)
-    if pl:
-        ov.value(x + 100, y0 + 240, pl, size=12, anchor="end", fill=C_MUTED, unit="")
-        ov.text(x + 106, y0 + 240, "–", size=12, fill=C_MUTED)
-    ov.value(x + 160, y0 + 240, ph, size=12, anchor="end", fill=C_MUTED, unit="")
-    ov.text(x + 166, y0 + 240, unit, size=12, fill=C_MUTED)
+        ov.lamp(x + 24, yy, al, on=C_ALM, r=7, name=f"{title} alarm rendah"); ov.text(x + 36, yy + 4, "Alm rendah", size=11)
+    ov.lamp(x + 112, yy, ah, on=C_ALM, r=7, name=f"{title} alarm tinggi"); ov.text(x + 124, yy + 4, "Alm tinggi", size=11)
+    ov.lamp(x + 200, yy, sig, on=C_WARN, r=7, name=f"{title} sinyal"); ov.text(x + 212, yy + 4, "Sinyal", size=11)
+    ov.text(x + 16, y0 + 300, "Batas PLC:", size=11, fill=C_MUTED)
+    ov.value(x + 118, y0 + 300, pl, size=11, anchor="end", fill=C_MUTED, unit="")
+    ov.text(x + 122, y0 + 300, "–", size=11, fill=C_MUTED)
+    ov.value(x + 164, y0 + 300, ph, size=11, anchor="end", fill=C_MUTED, unit="")
+    ov.text(x + 168, y0 + 300, unit, size=11, fill=C_MUTED)
 
 # flow & dosing
-y1 = 350
-ov.rect(24, y1, 610, 270)
-ov.text(42, y1 + 32, "Aliran sampel BAMa & dosing", size=17, weight="bold")
-ov.lamp(56, y1 + 70, "X_FS_SAMPLE", name="Reed switch"); ov.text(76, y1 + 75, "Reed switch aliran (%I0.0)", size=14)
-ov.lamp(56, y1 + 104, "FLOW_STAB", name="Aliran stabil"); ov.text(76, y1 + 109, "Aliran stabil / pengukuran pH & klor valid", size=14)
-ov.lamp(56, y1 + 138, "A_NOFLOW", on=C_ALM, name="Alarm aliran"); ov.text(76, y1 + 143, "Alarm aliran sampel hilang", size=14)
-ov.text(42, y1 + 182, "Controller", size=12, fill=C_MUTED); ov.text(250, y1 + 182, "PAUSE", size=12, fill=C_MUTED)
-ov.text(330, y1 + 182, "Pause manual (kalibrasi)", size=12, fill=C_MUTED)
+y1 = 404
+ov.rect(24, y1, 610, 246)
+ov.text(42, y1 + 30, "Aliran sampel BAMa & dosing", size=17, weight="bold")
+ov.lamp(56, y1 + 60, "X_FS_SAMPLE", name="Reed switch"); ov.text(76, y1 + 65, "Reed switch aliran (%I0.0)", size=14)
+ov.lamp(56, y1 + 90, "FLOW_STAB", name="Aliran stabil"); ov.text(76, y1 + 95, "Aliran stabil / pengukuran pH & klor valid", size=14)
+ov.lamp(56, y1 + 120, "A_NOFLOW", on=C_ALM, name="Alarm aliran"); ov.text(76, y1 + 125, "Alarm aliran sampel hilang", size=14)
+ov.text(42, y1 + 158, "Controller", size=12, fill=C_MUTED); ov.text(250, y1 + 158, "PAUSE", size=12, fill=C_MUTED)
+ov.text(330, y1 + 158, "Pause manual (kalibrasi)", size=12, fill=C_MUTED)
 for j, (lbl, q, mp) in enumerate([("D1Cb pH #1", "X_Q_PAUSE_PH1", "MAN_PAUSE_PH1"),
                                   ("D1Cb pH #2", "X_Q_PAUSE_PH2", "MAN_PAUSE_PH2"),
                                   ("D1Cb klorin", "X_Q_PAUSE_CL", "MAN_PAUSE_CL")]):
-    yy = y1 + 206 + j * 22
+    yy = y1 + 180 + j * 22
     ov.text(42, yy + 5, lbl, size=14)
     ov.lamp(268, yy, q, on=C_WARN, r=8, name=f"{lbl} pause")
     ov.lamp(340, yy, mp, on=C_WARN, r=8, name=f"{lbl} manual")
     ov.button(360, yy - 10, 120, 20, "Toggle pause", mp, action="onToggleValue", color="#7a8790", name=f"{lbl} toggle")
 
 # alarm summary
-ov.rect(654, y1, 602, 270)
-ov.text(672, y1 + 32, "Ringkasan alarm", size=17, weight="bold")
-ov.lamp(686, y1 + 70, "ANY_ALARM", on=C_ALM, r=14, name="Ada alarm"); ov.text(710, y1 + 75, "Ada alarm aktif", size=15)
-ov.lamp(686, y1 + 108, "BUZZ_LATCH", on=C_WARN, r=14, name="Belum ACK"); ov.text(710, y1 + 113, "Alarm baru belum di-ACK (buzzer)", size=15)
-ov.lamp(686, y1 + 146, "QUALITY_OK", on=C_OK, r=14, name="Kualitas OK"); ov.text(710, y1 + 151, "Kualitas air normal", size=15)
-ov.button(1050, y1 + 56, 180, 44, "ACK / Silence", "HMI_ACK", color=C_ALM, name="ACK")
+ov.rect(654, y1, 602, 246)
+ov.text(672, y1 + 30, "Ringkasan alarm", size=17, weight="bold")
+ov.lamp(686, y1 + 62, "ANY_ALARM", on=C_ALM, r=13, name="Ada alarm"); ov.text(708, y1 + 67, "Ada alarm aktif", size=15)
+ov.lamp(686, y1 + 96, "BUZZ_LATCH", on=C_WARN, r=13, name="Belum ACK"); ov.text(708, y1 + 101, "Alarm baru belum di-ACK (buzzer)", size=15)
+ov.lamp(686, y1 + 130, "QUALITY_OK", on=C_OK, r=13, name="Kualitas OK"); ov.text(708, y1 + 135, "Kualitas air normal", size=15)
+ov.button(1050, y1 + 48, 180, 44, "ACK / Silence", "HMI_ACK", color=C_ALM, name="ACK")
 alm_short = [("A_PH1_DEV", "D1Cb pH #1"), ("A_PH2_DEV", "D1Cb pH #2"), ("A_CL_DEV", "D1Cb klorin"),
              ("A_TU_A1", "TUC 5 alarm 1"), ("A_TU_A2", "TUC 5 fault"), ("A_PH_DIFF", "Selisih pH")]
 for k, (a, lbl) in enumerate(alm_short):
-    cx = 686 + (k % 3) * 190; cy = y1 + 196 + (k // 3) * 32
+    cx = 686 + (k % 3) * 190; cy = y1 + 178 + (k // 3) * 30
     ov.lamp(cx, cy, a, on=C_ALM, r=9, name=lbl); ov.text(cx + 16, cy + 5, lbl, size=13)
 
-ov.text(24, 652, "Detail dan riwayat alarm: ikon lonceng di header. Nilai dibaca tiap 1 s dari PLC lewat Modbus TCP.",
+ov.text(24, 672, "Bar: warna & skala zona mengikuti batas default. Lampu RENDAH/MENENGAH/TINGGI dan alarm mengikuti setpoint PLC aktual.",
         size=12, fill=C_MUTED)
 for k, (vid, lbl) in enumerate([(V_TR, "Trend"), (V_SP, "Setpoint"), (V_IO, "I/O & status")]):
-    ov.button(24 + k * 150, 670, 136, 40, lbl, None, action="onpage", view=vid, color=C_ACC, name="Ke " + lbl)
+    ov.button(24 + k * 150, 686, 136, 40, lbl, None, action="onpage", view=vid, color=C_ACC, name="Ke " + lbl)
 
 # ------------------------------------------------------------------ Trend
 tr = View(V_TR, "Trend")
@@ -280,16 +330,16 @@ tr.button(24, 706, 136, 40, "Overview", None, action="onpage", view=V_OV, name="
 
 # ------------------------------------------------------------------ Setpoint
 sp = View(V_SP, "Setpoint")
-sp.header("Setpoint & parameter", "Ditulis langsung ke %MW0-%MW10 (retentive)")
-sp.rect(24, 76, 1232, 610)
+sp.header("Setpoint & parameter", "Ditulis langsung ke %MW0-%MW11 (retentive)")
+sp.rect(24, 76, 1232, 622)
 sp.text(42, 108, "Parameter", size=13, fill=C_MUTED, weight="bold")
 sp.text(420, 108, "Nilai", size=13, fill=C_MUTED, weight="bold")
 sp.text(560, 108, "Satuan", size=13, fill=C_MUTED, weight="bold")
 sp.text(680, 108, "Keterangan", size=13, fill=C_MUTED, weight="bold")
 LIM = {"P_TU_SRC": (0, 1), "P_PH_L": (0, 14), "P_PH_H": (0, 14), "P_PH_DIFF": (0, 14), "P_CL_L": (0, 5),
-       "P_CL_H": (0, 5), "P_TU_H": (0, 10)}
+       "P_CL_H": (0, 5), "P_TU_H": (0, 10), "P_TU_M": (0, 10)}
 for k, (name, mw, dflt, unit, cmt) in enumerate(PARAMS):
-    y = 130 + k * 48
+    y = 126 + k * 46
     div, dg, un = SCALE[name]
     sp.text(42, y + 20, name, size=14, weight="bold")
     sp.text(42, y + 36, f"%MW{mw} · default {dflt / div:g}", size=11, fill=C_MUTED)
@@ -298,7 +348,7 @@ for k, (name, mw, dflt, unit, cmt) in enumerate(PARAMS):
     sp.text(560, y + 24, un or "–", size=14)
     short = cmt if len(cmt) <= 78 else cmt[:76] + "…"
     sp.text(680, y + 24, short, size=12, fill=C_MUTED)
-sp.button(24, 700, 136, 40, "Overview", None, action="onpage", view=V_OV, name="Ke Overview")
+sp.button(24, 708, 136, 40, "Overview", None, action="onpage", view=V_OV, name="Ke Overview")
 
 # ------------------------------------------------------------------ I/O & status
 io = View(V_IO, "I/O & status")

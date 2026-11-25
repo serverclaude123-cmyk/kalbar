@@ -204,6 +204,78 @@
      "init": "",
      "description": "%MW110 - Counter error komunikasi TUC 5"
     },
+    "t_8467d9733b9c": {
+     "id": "t_8467d9733b9c",
+     "name": "PH1_ZONE",
+     "label": "PH1_ZONE",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "131",
+     "divisor": 1,
+     "format": 0,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW130 - Zona pH #1: 0 tidak valid, 1 rendah, 2 menengah, 3 tinggi (tanpa tunda)"
+    },
+    "t_3596c50c1c86": {
+     "id": "t_3596c50c1c86",
+     "name": "PH2_ZONE",
+     "label": "PH2_ZONE",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "132",
+     "divisor": 1,
+     "format": 0,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW131 - Zona pH #2: 0 tidak valid, 1 rendah, 2 menengah, 3 tinggi (tanpa tunda)"
+    },
+    "t_b4b52a22c03d": {
+     "id": "t_b4b52a22c03d",
+     "name": "CL_ZONE",
+     "label": "CL_ZONE",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "133",
+     "divisor": 1,
+     "format": 0,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW132 - Zona klorin: 0 tidak valid, 1 rendah, 2 menengah, 3 tinggi (tanpa tunda)"
+    },
+    "t_bc53847a5566": {
+     "id": "t_bc53847a5566",
+     "name": "TU_ZONE",
+     "label": "TU_ZONE",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "134",
+     "divisor": 1,
+     "format": 0,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW133 - Zona turbidity: 0 tidak valid, 1 rendah, 2 menengah, 3 tinggi (tanpa tunda)"
+    },
     "t_6fbd1e8ba98f": {
      "id": "t_6fbd1e8ba98f",
      "name": "P_T_FLOW_ON",
@@ -401,6 +473,24 @@
      },
      "init": "",
      "description": "%MW10 - Tunda setelah PLC RUN sebelum alarm kualitas aktif"
+    },
+    "t_3f8ca184d3b5": {
+     "id": "t_3f8ca184d3b5",
+     "name": "P_TU_M",
+     "label": "P_TU_M",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "12",
+     "divisor": 100,
+     "format": 2,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW11 - Batas turbidity menengah (indikasi zona, di bawah = rendah/baik)"
     },
     "t_1c97dfd7d6cf": {
      "id": "t_1c97dfd7d6cf",
@@ -1395,10 +1485,135 @@
        ]
       }
      },
-     "GSE_6567d9221f2f": {
-      "id": "GSE_6567d9221f2f",
+     "GSE_34d4cc67d403": {
+      "id": "GSE_34d4cc67d403",
       "type": "svg-ext-gauge_semaphore",
-      "name": "pH #1 rendah",
+      "name": "pH #1 zona Tinggi",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_8467d9733b9c",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": -32768,
+         "max": 32767,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 3,
+         "max": 3,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "GSE_26d2b3e58feb": {
+      "id": "GSE_26d2b3e58feb",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "pH #1 zona Menengah",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_8467d9733b9c",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": -32768,
+         "max": 32767,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 2,
+         "max": 2,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_fb31bb593ec8": {
+      "id": "GSE_fb31bb593ec8",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "pH #1 zona Rendah",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_8467d9733b9c",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": -32768,
+         "max": 32767,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "GXP_c71ac9e3ca06": {
+      "id": "GXP_c71ac9e3ca06",
+      "type": "svg-ext-gauge_progress",
+      "name": "pH #1 bar",
+      "label": "HtmlProgress",
+      "property": {
+       "variableId": "t_e8ba5a8ab324",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "minmax",
+         "min": 0,
+         "max": 6.5,
+         "color": "#f0a500",
+         "text": "",
+         "style": [
+          false,
+          false
+         ]
+        },
+        {
+         "type": "minmax",
+         "min": 6.5,
+         "max": 8.5,
+         "color": "#2e9e4f",
+         "text": "",
+         "style": [
+          false,
+          false
+         ]
+        },
+        {
+         "type": "minmax",
+         "min": 8.5,
+         "max": 14,
+         "color": "#d93a2b",
+         "text": "",
+         "style": [
+          false,
+          false
+         ]
+        }
+       ]
+      }
+     },
+     "GSE_3a630b726d4c": {
+      "id": "GSE_3a630b726d4c",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "pH #1 alarm rendah",
       "label": "HtmlSemaphore",
       "property": {
        "variableId": "t_15000d7dcfff",
@@ -1421,10 +1636,10 @@
        ]
       }
      },
-     "GSE_8f31640aa081": {
-      "id": "GSE_8f31640aa081",
+     "GSE_d1812a769cfa": {
+      "id": "GSE_d1812a769cfa",
       "type": "svg-ext-gauge_semaphore",
-      "name": "pH #1 tinggi",
+      "name": "pH #1 alarm tinggi",
       "label": "HtmlSemaphore",
       "property": {
        "variableId": "t_012e4031681d",
@@ -1447,8 +1662,8 @@
        ]
       }
      },
-     "GSE_8e1fcccf079a": {
-      "id": "GSE_8e1fcccf079a",
+     "GSE_2275c6ce7e20": {
+      "id": "GSE_2275c6ce7e20",
       "type": "svg-ext-gauge_semaphore",
       "name": "pH #1 sinyal",
       "label": "HtmlSemaphore",
@@ -1473,8 +1688,8 @@
        ]
       }
      },
-     "VAL_d190190a5c8a": {
-      "id": "VAL_d190190a5c8a",
+     "VAL_4e7bb5cc3655": {
+      "id": "VAL_4e7bb5cc3655",
       "type": "svg-ext-value",
       "name": "P_PH_L",
       "label": "Value",
@@ -1495,8 +1710,8 @@
        ]
       }
      },
-     "VAL_24ca3bb4d3fb": {
-      "id": "VAL_24ca3bb4d3fb",
+     "VAL_fb914a255b08": {
+      "id": "VAL_fb914a255b08",
       "type": "svg-ext-value",
       "name": "P_PH_H",
       "label": "Value",
@@ -1517,8 +1732,8 @@
        ]
       }
      },
-     "GSE_41074fed93ff": {
-      "id": "GSE_41074fed93ff",
+     "GSE_2c697ad0779d": {
+      "id": "GSE_2c697ad0779d",
       "type": "svg-ext-gauge_semaphore",
       "name": "pH #2 valid",
       "label": "HtmlSemaphore",
@@ -1543,8 +1758,8 @@
        ]
       }
      },
-     "VAL_9b2eb84931d3": {
-      "id": "VAL_9b2eb84931d3",
+     "VAL_cac886d446f5": {
+      "id": "VAL_cac886d446f5",
       "type": "svg-ext-value",
       "name": "pH #2",
       "label": "Value",
@@ -1565,10 +1780,135 @@
        ]
       }
      },
-     "GSE_fa8390dca2e8": {
-      "id": "GSE_fa8390dca2e8",
+     "GSE_52a8432d1549": {
+      "id": "GSE_52a8432d1549",
       "type": "svg-ext-gauge_semaphore",
-      "name": "pH #2 rendah",
+      "name": "pH #2 zona Tinggi",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_3596c50c1c86",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": -32768,
+         "max": 32767,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 3,
+         "max": 3,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "GSE_c0702f463bc2": {
+      "id": "GSE_c0702f463bc2",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "pH #2 zona Menengah",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_3596c50c1c86",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": -32768,
+         "max": 32767,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 2,
+         "max": 2,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_1c89185d47a9": {
+      "id": "GSE_1c89185d47a9",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "pH #2 zona Rendah",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_3596c50c1c86",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": -32768,
+         "max": 32767,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "GXP_8f701679bb59": {
+      "id": "GXP_8f701679bb59",
+      "type": "svg-ext-gauge_progress",
+      "name": "pH #2 bar",
+      "label": "HtmlProgress",
+      "property": {
+       "variableId": "t_e10ddbe6f7b1",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "minmax",
+         "min": 0,
+         "max": 6.5,
+         "color": "#f0a500",
+         "text": "",
+         "style": [
+          false,
+          false
+         ]
+        },
+        {
+         "type": "minmax",
+         "min": 6.5,
+         "max": 8.5,
+         "color": "#2e9e4f",
+         "text": "",
+         "style": [
+          false,
+          false
+         ]
+        },
+        {
+         "type": "minmax",
+         "min": 8.5,
+         "max": 14,
+         "color": "#d93a2b",
+         "text": "",
+         "style": [
+          false,
+          false
+         ]
+        }
+       ]
+      }
+     },
+     "GSE_680e66ca8ddc": {
+      "id": "GSE_680e66ca8ddc",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "pH #2 alarm rendah",
       "label": "HtmlSemaphore",
       "property": {
        "variableId": "t_2e0293ae55d0",
@@ -1591,10 +1931,10 @@
        ]
       }
      },
-     "GSE_3a630b726d4c": {
-      "id": "GSE_3a630b726d4c",
+     "GSE_b1400cc3aaea": {
+      "id": "GSE_b1400cc3aaea",
       "type": "svg-ext-gauge_semaphore",
-      "name": "pH #2 tinggi",
+      "name": "pH #2 alarm tinggi",
       "label": "HtmlSemaphore",
       "property": {
        "variableId": "t_c85a27256347",
@@ -1617,8 +1957,8 @@
        ]
       }
      },
-     "GSE_d1812a769cfa": {
-      "id": "GSE_d1812a769cfa",
+     "GSE_71aaeea44163": {
+      "id": "GSE_71aaeea44163",
       "type": "svg-ext-gauge_semaphore",
       "name": "pH #2 sinyal",
       "label": "HtmlSemaphore",
@@ -1643,8 +1983,8 @@
        ]
       }
      },
-     "VAL_7669d413254c": {
-      "id": "VAL_7669d413254c",
+     "VAL_69b5f6e7e4fd": {
+      "id": "VAL_69b5f6e7e4fd",
       "type": "svg-ext-value",
       "name": "P_PH_L",
       "label": "Value",
@@ -1665,8 +2005,8 @@
        ]
       }
      },
-     "VAL_4e7bb5cc3655": {
-      "id": "VAL_4e7bb5cc3655",
+     "VAL_84e007b9d4fc": {
+      "id": "VAL_84e007b9d4fc",
       "type": "svg-ext-value",
       "name": "P_PH_H",
       "label": "Value",
@@ -1687,8 +2027,8 @@
        ]
       }
      },
-     "GSE_317c9b279393": {
-      "id": "GSE_317c9b279393",
+     "GSE_fce5936488ea": {
+      "id": "GSE_fce5936488ea",
       "type": "svg-ext-gauge_semaphore",
       "name": "Sisa klor bebas valid",
       "label": "HtmlSemaphore",
@@ -1713,8 +2053,8 @@
        ]
       }
      },
-     "VAL_2c697ad0779d": {
-      "id": "VAL_2c697ad0779d",
+     "VAL_18bad09e7b46": {
+      "id": "VAL_18bad09e7b46",
       "type": "svg-ext-value",
       "name": "Sisa klor bebas",
       "label": "Value",
@@ -1735,10 +2075,135 @@
        ]
       }
      },
-     "GSE_cac886d446f5": {
-      "id": "GSE_cac886d446f5",
+     "GSE_11a1f26a5539": {
+      "id": "GSE_11a1f26a5539",
       "type": "svg-ext-gauge_semaphore",
-      "name": "Sisa klor bebas rendah",
+      "name": "Sisa klor bebas zona Tinggi",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_b4b52a22c03d",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": -32768,
+         "max": 32767,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 3,
+         "max": 3,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "GSE_8b015981bd18": {
+      "id": "GSE_8b015981bd18",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Sisa klor bebas zona Menengah",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_b4b52a22c03d",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": -32768,
+         "max": 32767,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 2,
+         "max": 2,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_1b7d50fc0a22": {
+      "id": "GSE_1b7d50fc0a22",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Sisa klor bebas zona Rendah",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_b4b52a22c03d",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": -32768,
+         "max": 32767,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "GXP_8ffa9bd7d83a": {
+      "id": "GXP_8ffa9bd7d83a",
+      "type": "svg-ext-gauge_progress",
+      "name": "Sisa klor bebas bar",
+      "label": "HtmlProgress",
+      "property": {
+       "variableId": "t_bc06bc5f8902",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "minmax",
+         "min": 0,
+         "max": 0.2,
+         "color": "#f0a500",
+         "text": "",
+         "style": [
+          false,
+          false
+         ]
+        },
+        {
+         "type": "minmax",
+         "min": 0.2,
+         "max": 1.0,
+         "color": "#2e9e4f",
+         "text": "",
+         "style": [
+          false,
+          false
+         ]
+        },
+        {
+         "type": "minmax",
+         "min": 1.0,
+         "max": 2,
+         "color": "#d93a2b",
+         "text": "",
+         "style": [
+          false,
+          false
+         ]
+        }
+       ]
+      }
+     },
+     "GSE_b5477a9809ae": {
+      "id": "GSE_b5477a9809ae",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Sisa klor bebas alarm rendah",
       "label": "HtmlSemaphore",
       "property": {
        "variableId": "t_3b491bc26f4b",
@@ -1761,10 +2226,10 @@
        ]
       }
      },
-     "GSE_532a71e2dced": {
-      "id": "GSE_532a71e2dced",
+     "GSE_004f198b4ff8": {
+      "id": "GSE_004f198b4ff8",
       "type": "svg-ext-gauge_semaphore",
-      "name": "Sisa klor bebas tinggi",
+      "name": "Sisa klor bebas alarm tinggi",
       "label": "HtmlSemaphore",
       "property": {
        "variableId": "t_2409ea10bc70",
@@ -1787,8 +2252,8 @@
        ]
       }
      },
-     "GSE_1d741b3f1c4d": {
-      "id": "GSE_1d741b3f1c4d",
+     "GSE_007a4297a2bf": {
+      "id": "GSE_007a4297a2bf",
       "type": "svg-ext-gauge_semaphore",
       "name": "Sisa klor bebas sinyal",
       "label": "HtmlSemaphore",
@@ -1813,8 +2278,8 @@
        ]
       }
      },
-     "VAL_135bf94f8bbd": {
-      "id": "VAL_135bf94f8bbd",
+     "VAL_f4f90da79c58": {
+      "id": "VAL_f4f90da79c58",
       "type": "svg-ext-value",
       "name": "P_CL_L",
       "label": "Value",
@@ -1835,8 +2300,8 @@
        ]
       }
      },
-     "VAL_6e74ea72ac37": {
-      "id": "VAL_6e74ea72ac37",
+     "VAL_c03a6209f6a2": {
+      "id": "VAL_c03a6209f6a2",
       "type": "svg-ext-value",
       "name": "P_CL_H",
       "label": "Value",
@@ -1857,8 +2322,8 @@
        ]
       }
      },
-     "GSE_1aa0384e25b0": {
-      "id": "GSE_1aa0384e25b0",
+     "GSE_861baba6cf22": {
+      "id": "GSE_861baba6cf22",
       "type": "svg-ext-gauge_semaphore",
       "name": "Turbidity valid",
       "label": "HtmlSemaphore",
@@ -1883,8 +2348,8 @@
        ]
       }
      },
-     "VAL_6ec054e0253d": {
-      "id": "VAL_6ec054e0253d",
+     "VAL_6115ed79b1ec": {
+      "id": "VAL_6115ed79b1ec",
       "type": "svg-ext-value",
       "name": "Turbidity",
       "label": "Value",
@@ -1905,10 +2370,135 @@
        ]
       }
      },
-     "GSE_35ed185722a3": {
-      "id": "GSE_35ed185722a3",
+     "GSE_728111f7b73a": {
+      "id": "GSE_728111f7b73a",
       "type": "svg-ext-gauge_semaphore",
-      "name": "Turbidity tinggi",
+      "name": "Turbidity zona Tinggi",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_bc53847a5566",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": -32768,
+         "max": 32767,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 3,
+         "max": 3,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "GSE_87f7e404b120": {
+      "id": "GSE_87f7e404b120",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Turbidity zona Menengah",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_bc53847a5566",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": -32768,
+         "max": 32767,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 2,
+         "max": 2,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "GSE_225cfb65d1b6": {
+      "id": "GSE_225cfb65d1b6",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Turbidity zona Rendah",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_bc53847a5566",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": -32768,
+         "max": 32767,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GXP_393d6ef47def": {
+      "id": "GXP_393d6ef47def",
+      "type": "svg-ext-gauge_progress",
+      "name": "Turbidity bar",
+      "label": "HtmlProgress",
+      "property": {
+       "variableId": "t_084acf090ab0",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "minmax",
+         "min": 0,
+         "max": 1.0,
+         "color": "#2e9e4f",
+         "text": "",
+         "style": [
+          false,
+          false
+         ]
+        },
+        {
+         "type": "minmax",
+         "min": 1.0,
+         "max": 3.0,
+         "color": "#f0a500",
+         "text": "",
+         "style": [
+          false,
+          false
+         ]
+        },
+        {
+         "type": "minmax",
+         "min": 3.0,
+         "max": 5,
+         "color": "#d93a2b",
+         "text": "",
+         "style": [
+          false,
+          false
+         ]
+        }
+       ]
+      }
+     },
+     "GSE_69cfba2a4553": {
+      "id": "GSE_69cfba2a4553",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Turbidity alarm tinggi",
       "label": "HtmlSemaphore",
       "property": {
        "variableId": "t_2193ac318f4a",
@@ -1931,8 +2521,8 @@
        ]
       }
      },
-     "GSE_d0f2d8afd860": {
-      "id": "GSE_d0f2d8afd860",
+     "GSE_35d163440ec9": {
+      "id": "GSE_35d163440ec9",
       "type": "svg-ext-gauge_semaphore",
       "name": "Turbidity sinyal",
       "label": "HtmlSemaphore",
@@ -1957,8 +2547,30 @@
        ]
       }
      },
-     "VAL_df0136de6b8c": {
-      "id": "VAL_df0136de6b8c",
+     "VAL_00559ae2a043": {
+      "id": "VAL_00559ae2a043",
+      "type": "svg-ext-value",
+      "name": "P_TU_M",
+      "label": "Value",
+      "property": {
+       "variableId": "t_3f8ca184d3b5",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "output",
+         "min": 0,
+         "max": 0,
+         "text": "",
+         "textId": null,
+         "fractionDigits": 2
+        }
+       ]
+      }
+     },
+     "VAL_ba3024cab48f": {
+      "id": "VAL_ba3024cab48f",
       "type": "svg-ext-value",
       "name": "P_TU_H",
       "label": "Value",
@@ -1979,8 +2591,8 @@
        ]
       }
      },
-     "GSE_71aaeea44163": {
-      "id": "GSE_71aaeea44163",
+     "GSE_377fba00b4d2": {
+      "id": "GSE_377fba00b4d2",
       "type": "svg-ext-gauge_semaphore",
       "name": "Reed switch",
       "label": "HtmlSemaphore",
@@ -2005,8 +2617,8 @@
        ]
       }
      },
-     "GSE_03cc99c14e57": {
-      "id": "GSE_03cc99c14e57",
+     "GSE_b313f309d561": {
+      "id": "GSE_b313f309d561",
       "type": "svg-ext-gauge_semaphore",
       "name": "Aliran stabil",
       "label": "HtmlSemaphore",
@@ -2031,8 +2643,8 @@
        ]
       }
      },
-     "GSE_6d4705c39a9c": {
-      "id": "GSE_6d4705c39a9c",
+     "GSE_43618d8c4d47": {
+      "id": "GSE_43618d8c4d47",
       "type": "svg-ext-gauge_semaphore",
       "name": "Alarm aliran",
       "label": "HtmlSemaphore",
@@ -2057,8 +2669,8 @@
        ]
       }
      },
-     "GSE_5c57ea5b019c": {
-      "id": "GSE_5c57ea5b019c",
+     "GSE_c6f0bca719ae": {
+      "id": "GSE_c6f0bca719ae",
       "type": "svg-ext-gauge_semaphore",
       "name": "D1Cb pH #1 pause",
       "label": "HtmlSemaphore",
@@ -2083,8 +2695,8 @@
        ]
       }
      },
-     "GSE_18bad09e7b46": {
-      "id": "GSE_18bad09e7b46",
+     "GSE_293c593e707f": {
+      "id": "GSE_293c593e707f",
       "type": "svg-ext-gauge_semaphore",
       "name": "D1Cb pH #1 manual",
       "label": "HtmlSemaphore",
@@ -2109,8 +2721,8 @@
        ]
       }
      },
-     "HXB_50c02afbc213": {
-      "id": "HXB_50c02afbc213",
+     "HXB_db1f81a6b556": {
+      "id": "HXB_db1f81a6b556",
       "type": "svg-ext-html_button",
       "name": "D1Cb pH #1 toggle",
       "label": "HtmlButton",
@@ -2129,8 +2741,8 @@
        "variableSrc": "PLC_M221"
       }
      },
-     "GSE_87c3c3305b1d": {
-      "id": "GSE_87c3c3305b1d",
+     "GSE_e5c3dc5f5029": {
+      "id": "GSE_e5c3dc5f5029",
       "type": "svg-ext-gauge_semaphore",
       "name": "D1Cb pH #2 pause",
       "label": "HtmlSemaphore",
@@ -2155,8 +2767,8 @@
        ]
       }
      },
-     "GSE_a9d1f5f69779": {
-      "id": "GSE_a9d1f5f69779",
+     "GSE_f7a6de400ef5": {
+      "id": "GSE_f7a6de400ef5",
       "type": "svg-ext-gauge_semaphore",
       "name": "D1Cb pH #2 manual",
       "label": "HtmlSemaphore",
@@ -2181,8 +2793,8 @@
        ]
       }
      },
-     "HXB_72bed9e68d40": {
-      "id": "HXB_72bed9e68d40",
+     "HXB_2852fc8f1409": {
+      "id": "HXB_2852fc8f1409",
       "type": "svg-ext-html_button",
       "name": "D1Cb pH #2 toggle",
       "label": "HtmlButton",
@@ -2201,8 +2813,8 @@
        "variableSrc": "PLC_M221"
       }
      },
-     "GSE_6cef2fb59a1f": {
-      "id": "GSE_6cef2fb59a1f",
+     "GSE_c058afd61d00": {
+      "id": "GSE_c058afd61d00",
       "type": "svg-ext-gauge_semaphore",
       "name": "D1Cb klorin pause",
       "label": "HtmlSemaphore",
@@ -2227,8 +2839,8 @@
        ]
       }
      },
-     "GSE_c54556396141": {
-      "id": "GSE_c54556396141",
+     "GSE_8affa803952f": {
+      "id": "GSE_8affa803952f",
       "type": "svg-ext-gauge_semaphore",
       "name": "D1Cb klorin manual",
       "label": "HtmlSemaphore",
@@ -2253,8 +2865,8 @@
        ]
       }
      },
-     "HXB_d89d391a9726": {
-      "id": "HXB_d89d391a9726",
+     "HXB_da0755e7824e": {
+      "id": "HXB_da0755e7824e",
       "type": "svg-ext-html_button",
       "name": "D1Cb klorin toggle",
       "label": "HtmlButton",
@@ -2273,8 +2885,8 @@
        "variableSrc": "PLC_M221"
       }
      },
-     "GSE_deb9df04ac3d": {
-      "id": "GSE_deb9df04ac3d",
+     "GSE_a1fce492d4dc": {
+      "id": "GSE_a1fce492d4dc",
       "type": "svg-ext-gauge_semaphore",
       "name": "Ada alarm",
       "label": "HtmlSemaphore",
@@ -2299,8 +2911,8 @@
        ]
       }
      },
-     "GSE_32b5f06d2f9c": {
-      "id": "GSE_32b5f06d2f9c",
+     "GSE_e1961a96517e": {
+      "id": "GSE_e1961a96517e",
       "type": "svg-ext-gauge_semaphore",
       "name": "Belum ACK",
       "label": "HtmlSemaphore",
@@ -2325,8 +2937,8 @@
        ]
       }
      },
-     "GSE_14fb8b51033e": {
-      "id": "GSE_14fb8b51033e",
+     "GSE_d0fc810b42da": {
+      "id": "GSE_d0fc810b42da",
       "type": "svg-ext-gauge_semaphore",
       "name": "Kualitas OK",
       "label": "HtmlSemaphore",
@@ -2351,8 +2963,8 @@
        ]
       }
      },
-     "HXB_f9ab68d95f71": {
-      "id": "HXB_f9ab68d95f71",
+     "HXB_1ead2ccf2006": {
+      "id": "HXB_1ead2ccf2006",
       "type": "svg-ext-html_button",
       "name": "ACK",
       "label": "HtmlButton",
@@ -2371,8 +2983,8 @@
        "variableSrc": "PLC_M221"
       }
      },
-     "GSE_96ad5927e1eb": {
-      "id": "GSE_96ad5927e1eb",
+     "GSE_1cb0f6b96e9f": {
+      "id": "GSE_1cb0f6b96e9f",
       "type": "svg-ext-gauge_semaphore",
       "name": "D1Cb pH #1",
       "label": "HtmlSemaphore",
@@ -2397,8 +3009,8 @@
        ]
       }
      },
-     "GSE_f38e9659d085": {
-      "id": "GSE_f38e9659d085",
+     "GSE_c05357058af4": {
+      "id": "GSE_c05357058af4",
       "type": "svg-ext-gauge_semaphore",
       "name": "D1Cb pH #2",
       "label": "HtmlSemaphore",
@@ -2423,8 +3035,8 @@
        ]
       }
      },
-     "GSE_6a55bbffb24f": {
-      "id": "GSE_6a55bbffb24f",
+     "GSE_3111b591a554": {
+      "id": "GSE_3111b591a554",
       "type": "svg-ext-gauge_semaphore",
       "name": "D1Cb klorin",
       "label": "HtmlSemaphore",
@@ -2449,8 +3061,8 @@
        ]
       }
      },
-     "GSE_861baba6cf22": {
-      "id": "GSE_861baba6cf22",
+     "GSE_827e2676e11f": {
+      "id": "GSE_827e2676e11f",
       "type": "svg-ext-gauge_semaphore",
       "name": "TUC 5 alarm 1",
       "label": "HtmlSemaphore",
@@ -2475,8 +3087,8 @@
        ]
       }
      },
-     "GSE_6115ed79b1ec": {
-      "id": "GSE_6115ed79b1ec",
+     "GSE_aa9c1fc506c6": {
+      "id": "GSE_aa9c1fc506c6",
       "type": "svg-ext-gauge_semaphore",
       "name": "TUC 5 fault",
       "label": "HtmlSemaphore",
@@ -2501,8 +3113,8 @@
        ]
       }
      },
-     "GSE_5ea1e87cc6ab": {
-      "id": "GSE_5ea1e87cc6ab",
+     "GSE_78af519c864b": {
+      "id": "GSE_78af519c864b",
       "type": "svg-ext-gauge_semaphore",
       "name": "Selisih pH",
       "label": "HtmlSemaphore",
@@ -2527,8 +3139,8 @@
        ]
       }
      },
-     "HXB_432c6ebf401a": {
-      "id": "HXB_432c6ebf401a",
+     "HXB_ea81a49544fc": {
+      "id": "HXB_ea81a49544fc",
       "type": "svg-ext-html_button",
       "name": "Ke Trend",
       "label": "HtmlButton",
@@ -2545,8 +3157,8 @@
        "text": "Trend"
       }
      },
-     "HXB_5359abbcb41d": {
-      "id": "HXB_5359abbcb41d",
+     "HXB_42a53ba5e05d": {
+      "id": "HXB_42a53ba5e05d",
       "type": "svg-ext-html_button",
       "name": "Ke Setpoint",
       "label": "HtmlButton",
@@ -2563,8 +3175,8 @@
        "text": "Setpoint"
       }
      },
-     "HXB_393d6ef47def": {
-      "id": "HXB_393d6ef47def",
+     "HXB_ca2d645b0197": {
+      "id": "HXB_ca2d645b0197",
       "type": "svg-ext-html_button",
       "name": "Ke I/O & status",
       "label": "HtmlButton",
@@ -2583,7 +3195,7 @@
      }
     },
     "variables": {},
-    "svgcontent": "<svg width=\"1280\" height=\"760\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g><title>Layer 1</title><rect id=\"svg_bg_v_kb_overview\" x=\"0\" y=\"0\" width=\"1280\" height=\"760\" fill=\"#eef2f4\" stroke-width=\"0\"/><rect id=\"svg_0e93ba1c49a1\" x=\"0\" y=\"0\" width=\"1280\" height=\"56\" rx=\"0\" fill=\"#123a4f\" stroke=\"#123a4f\" stroke-width=\"1\"/>\n<text id=\"svg_ecab1dd126ed\" x=\"24\" y=\"36\" font-family=\"sans-serif\" font-size=\"22\" font-weight=\"bold\" fill=\"#ffffff\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">PDAM KALBAR  ·  Monitoring Kualitas Air</text>\n<text id=\"svg_d99efc699eaa\" x=\"1256\" y=\"34\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#cfe3ec\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">M221 · BAMa · D1Cb ×3 · TUC 5</text>\n<g id=\"GSE_b30aee6eb92c\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_b8cec7fd63fd\" cx=\"860\" cy=\"28\" rx=\"8\" ry=\"8\" fill=\"#2b5466\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_0c5b715a7874\" x=\"876\" y=\"33\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#cfe3ec\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">PLC</text>\n<rect id=\"svg_2e954c21f9d6\" x=\"24\" y=\"76\" width=\"295\" height=\"250\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_2e05926219aa\" x=\"42\" y=\"108\" font-family=\"sans-serif\" font-size=\"17\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">pH #1</text>\n<g id=\"GSE_07066484d59d\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_06169351f5c7\" cx=\"293\" cy=\"102\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_e3f6521a89f9\" x=\"277\" y=\"107\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">valid</text>\n<g id=\"VAL_6cfd76565147\" type=\"svg-ext-value\" fill=\"#1b2a33\" stroke=\"#1b2a33\" font-size=\"52\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"middle\"><text id=\"VAL_714555aa69b6\" x=\"171.5\" y=\"194\" fill=\"#1b2a33\" stroke=\"#1b2a33\" stroke-width=\"0\" font-size=\"52\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_e0e790bc75ea\" x=\"171.5\" y=\"222\" font-family=\"sans-serif\" font-size=\"16\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"middle\" xml:space=\"preserve\">pH</text>\n<g id=\"GSE_6567d9221f2f\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_34d4cc67d403\" cx=\"52\" cy=\"258\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_3f5d448adb66\" x=\"70\" y=\"263\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Rendah</text>\n<g id=\"GSE_8f31640aa081\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_32ccc92132a2\" cx=\"154\" cy=\"258\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_26d2b3e58feb\" x=\"172\" y=\"263\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tinggi</text>\n<g id=\"GSE_8e1fcccf079a\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_c6a282ba2c47\" cx=\"52\" cy=\"292\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_c6563e4b4efe\" x=\"70\" y=\"297\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sinyal 4-20 mA</text>\n<text id=\"svg_fb31bb593ec8\" x=\"42\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas:</text>\n<g id=\"VAL_d190190a5c8a\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"12\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_6d0cd06f962f\" x=\"124\" y=\"316\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_c71ac9e3ca06\" x=\"130\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<g id=\"VAL_24ca3bb4d3fb\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"12\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_b5f28306defe\" x=\"184\" y=\"316\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_2794eac8948a\" x=\"190\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">pH</text>\n<rect id=\"svg_3467cb5d31ea\" x=\"339\" y=\"76\" width=\"295\" height=\"250\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_681a73734126\" x=\"357\" y=\"108\" font-family=\"sans-serif\" font-size=\"17\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">pH #2</text>\n<g id=\"GSE_41074fed93ff\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_21cb203f81ba\" cx=\"608\" cy=\"102\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_da6d6c7539b5\" x=\"592\" y=\"107\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">valid</text>\n<g id=\"VAL_9b2eb84931d3\" type=\"svg-ext-value\" fill=\"#1b2a33\" stroke=\"#1b2a33\" font-size=\"52\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"middle\"><text id=\"VAL_073e0d81d1bf\" x=\"486.5\" y=\"194\" fill=\"#1b2a33\" stroke=\"#1b2a33\" stroke-width=\"0\" font-size=\"52\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_1e4b25913c45\" x=\"486.5\" y=\"222\" font-family=\"sans-serif\" font-size=\"16\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"middle\" xml:space=\"preserve\">pH</text>\n<g id=\"GSE_fa8390dca2e8\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_a6e3f923de7c\" cx=\"367\" cy=\"258\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_4c1cf5faf512\" x=\"385\" y=\"263\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Rendah</text>\n<g id=\"GSE_3a630b726d4c\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_1857e54a296a\" cx=\"469\" cy=\"258\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_b9c73a16dde5\" x=\"487\" y=\"263\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tinggi</text>\n<g id=\"GSE_d1812a769cfa\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_2af4bbeaec47\" cx=\"367\" cy=\"292\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_3be22da3eb42\" x=\"385\" y=\"297\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sinyal 4-20 mA</text>\n<text id=\"svg_2275c6ce7e20\" x=\"357\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas:</text>\n<g id=\"VAL_7669d413254c\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"12\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_2c32785963b3\" x=\"439\" y=\"316\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_b9f15e6c9e2c\" x=\"445\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<g id=\"VAL_4e7bb5cc3655\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"12\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_259d299cd285\" x=\"499\" y=\"316\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_0f77f6e2ec12\" x=\"505\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">pH</text>\n<rect id=\"svg_fb914a255b08\" x=\"654\" y=\"76\" width=\"295\" height=\"250\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_51c33d9b9578\" x=\"672\" y=\"108\" font-family=\"sans-serif\" font-size=\"17\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sisa klor bebas</text>\n<g id=\"GSE_317c9b279393\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_9497ee3be0fa\" cx=\"923\" cy=\"102\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_4e08ef3efd44\" x=\"907\" y=\"107\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">valid</text>\n<g id=\"VAL_2c697ad0779d\" type=\"svg-ext-value\" fill=\"#1b2a33\" stroke=\"#1b2a33\" font-size=\"52\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"middle\"><text id=\"VAL_104aee0a6476\" x=\"801.5\" y=\"194\" fill=\"#1b2a33\" stroke=\"#1b2a33\" stroke-width=\"0\" font-size=\"52\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_4772b41e160d\" x=\"801.5\" y=\"222\" font-family=\"sans-serif\" font-size=\"16\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"middle\" xml:space=\"preserve\">mg/L</text>\n<g id=\"GSE_cac886d446f5\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_97b2c653aff0\" cx=\"682\" cy=\"258\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_6094b13ef842\" x=\"700\" y=\"263\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Rendah</text>\n<g id=\"GSE_532a71e2dced\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_52a8432d1549\" cx=\"784\" cy=\"258\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_a81c18ea3256\" x=\"802\" y=\"263\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tinggi</text>\n<g id=\"GSE_1d741b3f1c4d\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_9dabbedd2a4f\" cx=\"682\" cy=\"292\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_c0702f463bc2\" x=\"700\" y=\"297\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sinyal 4-20 mA</text>\n<text id=\"svg_8dddf5aa30df\" x=\"672\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas:</text>\n<g id=\"VAL_135bf94f8bbd\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"12\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_1b66ec7e8370\" x=\"754\" y=\"316\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_1c89185d47a9\" x=\"760\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<g id=\"VAL_6e74ea72ac37\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"12\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_63935664302b\" x=\"814\" y=\"316\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_8f701679bb59\" x=\"820\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">mg/L</text>\n<rect id=\"svg_6a7e6874598d\" x=\"969\" y=\"76\" width=\"295\" height=\"250\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_5527eddb53b7\" x=\"987\" y=\"108\" font-family=\"sans-serif\" font-size=\"17\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Turbidity</text>\n<g id=\"GSE_1aa0384e25b0\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_1d2b6367bbd3\" cx=\"1238\" cy=\"102\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_c0f340d25d35\" x=\"1222\" y=\"107\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">valid</text>\n<g id=\"VAL_6ec054e0253d\" type=\"svg-ext-value\" fill=\"#1b2a33\" stroke=\"#1b2a33\" font-size=\"52\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"middle\"><text id=\"VAL_3d4c118ad2d6\" x=\"1116.5\" y=\"194\" fill=\"#1b2a33\" stroke=\"#1b2a33\" stroke-width=\"0\" font-size=\"52\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_1f7c0609c7fb\" x=\"1116.5\" y=\"222\" font-family=\"sans-serif\" font-size=\"16\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"middle\" xml:space=\"preserve\">NTU</text>\n<g id=\"GSE_35ed185722a3\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_9f3ef8ae9ccc\" cx=\"1099\" cy=\"258\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_b3215c61dd6c\" x=\"1117\" y=\"263\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tinggi</text>\n<g id=\"GSE_d0f2d8afd860\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_50972649dfb1\" cx=\"997\" cy=\"292\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_91c244455a66\" x=\"1015\" y=\"297\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sinyal 4-20 mA</text>\n<text id=\"svg_680e66ca8ddc\" x=\"987\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas:</text>\n<g id=\"VAL_df0136de6b8c\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"12\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_e28401bac8ef\" x=\"1129\" y=\"316\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_b1400cc3aaea\" x=\"1135\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">NTU</text>\n<rect id=\"svg_4a7f8bad85b0\" x=\"24\" y=\"350\" width=\"610\" height=\"270\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_7f1a4197fa41\" x=\"42\" y=\"382\" font-family=\"sans-serif\" font-size=\"17\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Aliran sampel BAMa &amp; dosing</text>\n<g id=\"GSE_71aaeea44163\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_38d0356d3b7d\" cx=\"56\" cy=\"420\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_3869427f6b83\" x=\"76\" y=\"425\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Reed switch aliran (%I0.0)</text>\n<g id=\"GSE_03cc99c14e57\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_69b5f6e7e4fd\" cx=\"56\" cy=\"454\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_4fb2d0768599\" x=\"76\" y=\"459\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Aliran stabil / pengukuran pH &amp; klor valid</text>\n<g id=\"GSE_6d4705c39a9c\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_84e007b9d4fc\" cx=\"56\" cy=\"488\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_dd7432242677\" x=\"76\" y=\"493\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Alarm aliran sampel hilang</text>\n<text id=\"svg_004045350577\" x=\"42\" y=\"532\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Controller</text>\n<text id=\"svg_89eb093099b0\" x=\"250\" y=\"532\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">PAUSE</text>\n<text id=\"svg_c3586dcecd7e\" x=\"330\" y=\"532\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Pause manual (kalibrasi)</text>\n<text id=\"svg_fce5936488ea\" x=\"42\" y=\"561\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb pH #1</text>\n<g id=\"GSE_5c57ea5b019c\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_9372c33f1125\" cx=\"268\" cy=\"556\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<g id=\"GSE_18bad09e7b46\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_c966691e6863\" cx=\"340\" cy=\"556\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<g id=\"HXB_50c02afbc213\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_610c05db3d55\" stroke-width=\"0\" x=\"360\" y=\"546\" width=\"120\" height=\"20\" fill=\"#7a8790ff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_11a1f26a5539\" x=\"360\" y=\"546\" height=\"20\" width=\"120\"><BUTTON id=\"B-HXB_7f482051279a\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(122, 135, 144); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Toggle pause</BUTTON></foreignObject></g>\n<text id=\"svg_e455322a6c77\" x=\"42\" y=\"583\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb pH #2</text>\n<g id=\"GSE_87c3c3305b1d\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_8b015981bd18\" cx=\"268\" cy=\"578\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<g id=\"GSE_a9d1f5f69779\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_03bca2da5008\" cx=\"340\" cy=\"578\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<g id=\"HXB_72bed9e68d40\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_1b7d50fc0a22\" stroke-width=\"0\" x=\"360\" y=\"568\" width=\"120\" height=\"20\" fill=\"#7a8790ff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_790ea2d2eb72\" x=\"360\" y=\"568\" height=\"20\" width=\"120\"><BUTTON id=\"B-HXB_cfb9b43d3525\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(122, 135, 144); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Toggle pause</BUTTON></foreignObject></g>\n<text id=\"svg_8ffa9bd7d83a\" x=\"42\" y=\"605\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb klorin</text>\n<g id=\"GSE_6cef2fb59a1f\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_bf11a0af7b15\" cx=\"268\" cy=\"600\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<g id=\"GSE_c54556396141\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_91d185707ca8\" cx=\"340\" cy=\"600\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<g id=\"HXB_d89d391a9726\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_9403be81b139\" stroke-width=\"0\" x=\"360\" y=\"590\" width=\"120\" height=\"20\" fill=\"#7a8790ff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_52a5bc2d4193\" x=\"360\" y=\"590\" height=\"20\" width=\"120\"><BUTTON id=\"B-HXB_85ae3a490821\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(122, 135, 144); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Toggle pause</BUTTON></foreignObject></g>\n<rect id=\"svg_1209b9516ca9\" x=\"654\" y=\"350\" width=\"602\" height=\"270\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_a623cf2bf63a\" x=\"672\" y=\"382\" font-family=\"sans-serif\" font-size=\"17\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Ringkasan alarm</text>\n<g id=\"GSE_deb9df04ac3d\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_1a02ddaafcc4\" cx=\"686\" cy=\"420\" rx=\"14\" ry=\"14\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_dc12be16e53a\" x=\"710\" y=\"425\" font-family=\"sans-serif\" font-size=\"15\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Ada alarm aktif</text>\n<g id=\"GSE_32b5f06d2f9c\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_b5477a9809ae\" cx=\"686\" cy=\"458\" rx=\"14\" ry=\"14\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_0677892ade47\" x=\"710\" y=\"463\" font-family=\"sans-serif\" font-size=\"15\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Alarm baru belum di-ACK (buzzer)</text>\n<g id=\"GSE_14fb8b51033e\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_004f198b4ff8\" cx=\"686\" cy=\"496\" rx=\"14\" ry=\"14\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_c7058440e0ef\" x=\"710\" y=\"501\" font-family=\"sans-serif\" font-size=\"15\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Kualitas air normal</text>\n<g id=\"HXB_f9ab68d95f71\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_007a4297a2bf\" stroke-width=\"0\" x=\"1050\" y=\"406\" width=\"180\" height=\"44\" fill=\"#d93a2bff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_8d7c13b02ec3\" x=\"1050\" y=\"406\" height=\"44\" width=\"180\"><BUTTON id=\"B-HXB_07ca3acbf306\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(217, 58, 43); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">ACK / Silence</BUTTON></foreignObject></g>\n<g id=\"GSE_96ad5927e1eb\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_f4f90da79c58\" cx=\"686\" cy=\"546\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_b737c070d422\" x=\"702\" y=\"551\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb pH #1</text>\n<g id=\"GSE_f38e9659d085\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_c03a6209f6a2\" cx=\"876\" cy=\"546\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_08b824ed2b0c\" x=\"892\" y=\"551\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb pH #2</text>\n<g id=\"GSE_6a55bbffb24f\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_3ef89d0f6493\" cx=\"1066\" cy=\"546\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_a9d446e9753b\" x=\"1082\" y=\"551\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb klorin</text>\n<g id=\"GSE_861baba6cf22\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_d2c51d1fa6ce\" cx=\"686\" cy=\"578\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_f746cb4104bb\" x=\"702\" y=\"583\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">TUC 5 alarm 1</text>\n<g id=\"GSE_6115ed79b1ec\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_ae61e0213c2a\" cx=\"876\" cy=\"578\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_aea8c5c96f0f\" x=\"892\" y=\"583\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">TUC 5 fault</text>\n<g id=\"GSE_5ea1e87cc6ab\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_728111f7b73a\" cx=\"1066\" cy=\"578\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_19b101a98281\" x=\"1082\" y=\"583\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Selisih pH</text>\n<text id=\"svg_159f77847f60\" x=\"24\" y=\"652\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Detail dan riwayat alarm: ikon lonceng di header. Nilai dibaca tiap 1 s dari PLC lewat Modbus TCP.</text>\n<g id=\"HXB_432c6ebf401a\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_87f7e404b120\" stroke-width=\"0\" x=\"24\" y=\"670\" width=\"136\" height=\"40\" fill=\"#1d6f9aff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_d21032d53472\" x=\"24\" y=\"670\" height=\"40\" width=\"136\"><BUTTON id=\"B-HXB_fe45ba4330b2\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(29, 111, 154); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Trend</BUTTON></foreignObject></g>\n<g id=\"HXB_5359abbcb41d\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_225cfb65d1b6\" stroke-width=\"0\" x=\"174\" y=\"670\" width=\"136\" height=\"40\" fill=\"#1d6f9aff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_89739ea14a14\" x=\"174\" y=\"670\" height=\"40\" width=\"136\"><BUTTON id=\"B-HXB_2eedfce842d5\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(29, 111, 154); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Setpoint</BUTTON></foreignObject></g>\n<g id=\"HXB_393d6ef47def\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_617fd59e50f7\" stroke-width=\"0\" x=\"324\" y=\"670\" width=\"136\" height=\"40\" fill=\"#1d6f9aff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_6d186efd0fd2\" x=\"324\" y=\"670\" height=\"40\" width=\"136\"><BUTTON id=\"B-HXB_1a10d715c193\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(29, 111, 154); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">I/O &amp; status</BUTTON></foreignObject></g></g></svg>",
+    "svgcontent": "<svg width=\"1280\" height=\"760\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g><title>Layer 1</title><rect id=\"svg_bg_v_kb_overview\" x=\"0\" y=\"0\" width=\"1280\" height=\"760\" fill=\"#eef2f4\" stroke-width=\"0\"/><rect id=\"svg_0e93ba1c49a1\" x=\"0\" y=\"0\" width=\"1280\" height=\"56\" rx=\"0\" fill=\"#123a4f\" stroke=\"#123a4f\" stroke-width=\"1\"/>\n<text id=\"svg_ecab1dd126ed\" x=\"24\" y=\"36\" font-family=\"sans-serif\" font-size=\"22\" font-weight=\"bold\" fill=\"#ffffff\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">PDAM KALBAR  ·  Monitoring Kualitas Air</text>\n<text id=\"svg_d99efc699eaa\" x=\"1256\" y=\"34\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#cfe3ec\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">M221 · BAMa · D1Cb ×3 · TUC 5</text>\n<g id=\"GSE_b30aee6eb92c\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_b8cec7fd63fd\" cx=\"860\" cy=\"28\" rx=\"8\" ry=\"8\" fill=\"#2b5466\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_0c5b715a7874\" x=\"876\" y=\"33\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#cfe3ec\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">PLC</text>\n<rect id=\"svg_2e954c21f9d6\" x=\"24\" y=\"72\" width=\"295\" height=\"318\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_2e05926219aa\" x=\"40\" y=\"100\" font-family=\"sans-serif\" font-size=\"17\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">pH #1</text>\n<g id=\"GSE_07066484d59d\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_06169351f5c7\" cx=\"295\" cy=\"94\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_e3f6521a89f9\" x=\"281\" y=\"99\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">valid</text>\n<g id=\"VAL_6cfd76565147\" type=\"svg-ext-value\" fill=\"#1b2a33\" stroke=\"#1b2a33\" font-size=\"44\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"middle\"><text id=\"VAL_714555aa69b6\" x=\"116\" y=\"168\" fill=\"#1b2a33\" stroke=\"#1b2a33\" stroke-width=\"0\" font-size=\"44\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_e0e790bc75ea\" x=\"116\" y=\"192\" font-family=\"sans-serif\" font-size=\"15\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"middle\" xml:space=\"preserve\">pH</text>\n<rect id=\"svg_6567d9221f2f\" x=\"40\" y=\"210\" width=\"150\" height=\"24\" rx=\"12\" fill=\"#f6f8f9\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<g id=\"GSE_34d4cc67d403\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_3f5d448adb66\" cx=\"54\" cy=\"222\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_8f31640aa081\" x=\"68\" y=\"227\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">TINGGI</text>\n<rect id=\"svg_32ccc92132a2\" x=\"40\" y=\"240\" width=\"150\" height=\"24\" rx=\"12\" fill=\"#f6f8f9\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<g id=\"GSE_26d2b3e58feb\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_8e1fcccf079a\" cx=\"54\" cy=\"252\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_c6a282ba2c47\" x=\"68\" y=\"257\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">MENENGAH</text>\n<rect id=\"svg_c6563e4b4efe\" x=\"40\" y=\"270\" width=\"150\" height=\"24\" rx=\"12\" fill=\"#f6f8f9\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<g id=\"GSE_fb31bb593ec8\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_d190190a5c8a\" cx=\"54\" cy=\"282\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_6d0cd06f962f\" x=\"68\" y=\"287\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">RENDAH</text>\n<rect id=\"svg_3467cb5d31ea\" x=\"241\" y=\"223.0\" width=\"8\" height=\"91.0\" fill=\"#f0a500\" stroke-width=\"0\"/>\n<rect id=\"svg_681a73734126\" x=\"241\" y=\"195.0\" width=\"8\" height=\"28.0\" fill=\"#2e9e4f\" stroke-width=\"0\"/>\n<rect id=\"svg_41074fed93ff\" x=\"241\" y=\"118.0\" width=\"8\" height=\"77.0\" fill=\"#d93a2b\" stroke-width=\"0\"/>\n<line id=\"svg_21cb203f81ba\" x1=\"237\" y1=\"314.0\" x2=\"287\" y2=\"314.0\" stroke=\"#8a979e\" stroke-width=\"1\" stroke-dasharray=\"3,2\"/>\n<text id=\"svg_da6d6c7539b5\" x=\"235\" y=\"318.0\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">0</text>\n<line id=\"svg_9b2eb84931d3\" x1=\"237\" y1=\"223.0\" x2=\"287\" y2=\"223.0\" stroke=\"#8a979e\" stroke-width=\"1\" stroke-dasharray=\"3,2\"/>\n<text id=\"svg_073e0d81d1bf\" x=\"235\" y=\"227.0\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">6.5</text>\n<line id=\"svg_1e4b25913c45\" x1=\"237\" y1=\"195.0\" x2=\"287\" y2=\"195.0\" stroke=\"#8a979e\" stroke-width=\"1\" stroke-dasharray=\"3,2\"/>\n<text id=\"svg_fa8390dca2e8\" x=\"235\" y=\"199.0\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">8.5</text>\n<line id=\"svg_a6e3f923de7c\" x1=\"237\" y1=\"118.0\" x2=\"287\" y2=\"118.0\" stroke=\"#8a979e\" stroke-width=\"1\" stroke-dasharray=\"3,2\"/>\n<text id=\"svg_4c1cf5faf512\" x=\"235\" y=\"122.0\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">14</text>\n<g id=\"GXP_c71ac9e3ca06\" type=\"svg-ext-gauge_progress\" font-family=\"sans-serif\" font-size=\"14\" stroke=\"null\"><rect id=\"A-GXP_24ca3bb4d3fb\" x=\"253\" y=\"118\" width=\"34\" height=\"196\" fill=\"#e3e8ebff\" stroke=\"#9aa7ad\"/><rect id=\"B-GXP_b5f28306defe\" x=\"253\" y=\"314\" width=\"34\" height=\"0\" fill=\"#f0a500\" stroke=\"null\"/><foreignObject id=\"H-GXP_2794eac8948a\" x=\"253\" y=\"118\" width=\"34\" height=\"196\" font-size=\"14\"/></g>\n<g id=\"GSE_3a630b726d4c\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_1857e54a296a\" cx=\"48\" cy=\"338\" rx=\"7\" ry=\"7\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_b9c73a16dde5\" x=\"60\" y=\"342\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Alm rendah</text>\n<g id=\"GSE_d1812a769cfa\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_2af4bbeaec47\" cx=\"136\" cy=\"338\" rx=\"7\" ry=\"7\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_3be22da3eb42\" x=\"148\" y=\"342\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Alm tinggi</text>\n<g id=\"GSE_2275c6ce7e20\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_7669d413254c\" cx=\"224\" cy=\"338\" rx=\"7\" ry=\"7\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_2c32785963b3\" x=\"236\" y=\"342\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sinyal</text>\n<text id=\"svg_b9f15e6c9e2c\" x=\"40\" y=\"372\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas PLC:</text>\n<g id=\"VAL_4e7bb5cc3655\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"11\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_259d299cd285\" x=\"142\" y=\"372\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"11\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_0f77f6e2ec12\" x=\"146\" y=\"372\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<g id=\"VAL_fb914a255b08\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"11\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_51c33d9b9578\" x=\"188\" y=\"372\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"11\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_317c9b279393\" x=\"192\" y=\"372\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">pH</text>\n<rect id=\"svg_9497ee3be0fa\" x=\"339\" y=\"72\" width=\"295\" height=\"318\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_4e08ef3efd44\" x=\"355\" y=\"100\" font-family=\"sans-serif\" font-size=\"17\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">pH #2</text>\n<g id=\"GSE_2c697ad0779d\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_104aee0a6476\" cx=\"610\" cy=\"94\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_4772b41e160d\" x=\"596\" y=\"99\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">valid</text>\n<g id=\"VAL_cac886d446f5\" type=\"svg-ext-value\" fill=\"#1b2a33\" stroke=\"#1b2a33\" font-size=\"44\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"middle\"><text id=\"VAL_97b2c653aff0\" x=\"431\" y=\"168\" fill=\"#1b2a33\" stroke=\"#1b2a33\" stroke-width=\"0\" font-size=\"44\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_6094b13ef842\" x=\"431\" y=\"192\" font-family=\"sans-serif\" font-size=\"15\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"middle\" xml:space=\"preserve\">pH</text>\n<rect id=\"svg_532a71e2dced\" x=\"355\" y=\"210\" width=\"150\" height=\"24\" rx=\"12\" fill=\"#f6f8f9\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<g id=\"GSE_52a8432d1549\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_a81c18ea3256\" cx=\"369\" cy=\"222\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_1d741b3f1c4d\" x=\"383\" y=\"227\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">TINGGI</text>\n<rect id=\"svg_9dabbedd2a4f\" x=\"355\" y=\"240\" width=\"150\" height=\"24\" rx=\"12\" fill=\"#f6f8f9\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<g id=\"GSE_c0702f463bc2\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_8dddf5aa30df\" cx=\"369\" cy=\"252\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_135bf94f8bbd\" x=\"383\" y=\"257\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">MENENGAH</text>\n<rect id=\"svg_1b66ec7e8370\" x=\"355\" y=\"270\" width=\"150\" height=\"24\" rx=\"12\" fill=\"#f6f8f9\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<g id=\"GSE_1c89185d47a9\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_6e74ea72ac37\" cx=\"369\" cy=\"282\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_63935664302b\" x=\"383\" y=\"287\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">RENDAH</text>\n<rect id=\"svg_1d2b6367bbd3\" x=\"556\" y=\"223.0\" width=\"8\" height=\"91.0\" fill=\"#f0a500\" stroke-width=\"0\"/>\n<rect id=\"svg_c0f340d25d35\" x=\"556\" y=\"195.0\" width=\"8\" height=\"28.0\" fill=\"#2e9e4f\" stroke-width=\"0\"/>\n<rect id=\"svg_6ec054e0253d\" x=\"556\" y=\"118.0\" width=\"8\" height=\"77.0\" fill=\"#d93a2b\" stroke-width=\"0\"/>\n<line id=\"svg_3d4c118ad2d6\" x1=\"552\" y1=\"314.0\" x2=\"602\" y2=\"314.0\" stroke=\"#8a979e\" stroke-width=\"1\" stroke-dasharray=\"3,2\"/>\n<text id=\"svg_1f7c0609c7fb\" x=\"550\" y=\"318.0\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">0</text>\n<line id=\"svg_35ed185722a3\" x1=\"552\" y1=\"223.0\" x2=\"602\" y2=\"223.0\" stroke=\"#8a979e\" stroke-width=\"1\" stroke-dasharray=\"3,2\"/>\n<text id=\"svg_9f3ef8ae9ccc\" x=\"550\" y=\"227.0\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">6.5</text>\n<line id=\"svg_b3215c61dd6c\" x1=\"552\" y1=\"195.0\" x2=\"602\" y2=\"195.0\" stroke=\"#8a979e\" stroke-width=\"1\" stroke-dasharray=\"3,2\"/>\n<text id=\"svg_d0f2d8afd860\" x=\"550\" y=\"199.0\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">8.5</text>\n<line id=\"svg_50972649dfb1\" x1=\"552\" y1=\"118.0\" x2=\"602\" y2=\"118.0\" stroke=\"#8a979e\" stroke-width=\"1\" stroke-dasharray=\"3,2\"/>\n<text id=\"svg_91c244455a66\" x=\"550\" y=\"122.0\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">14</text>\n<g id=\"GXP_8f701679bb59\" type=\"svg-ext-gauge_progress\" font-family=\"sans-serif\" font-size=\"14\" stroke=\"null\"><rect id=\"A-GXP_6a7e6874598d\" x=\"568\" y=\"118\" width=\"34\" height=\"196\" fill=\"#e3e8ebff\" stroke=\"#9aa7ad\"/><rect id=\"B-GXP_5527eddb53b7\" x=\"568\" y=\"314\" width=\"34\" height=\"0\" fill=\"#f0a500\" stroke=\"null\"/><foreignObject id=\"H-GXP_1aa0384e25b0\" x=\"568\" y=\"118\" width=\"34\" height=\"196\" font-size=\"14\"/></g>\n<g id=\"GSE_680e66ca8ddc\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_df0136de6b8c\" cx=\"363\" cy=\"338\" rx=\"7\" ry=\"7\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_e28401bac8ef\" x=\"375\" y=\"342\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Alm rendah</text>\n<g id=\"GSE_b1400cc3aaea\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_4a7f8bad85b0\" cx=\"451\" cy=\"338\" rx=\"7\" ry=\"7\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_7f1a4197fa41\" x=\"463\" y=\"342\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Alm tinggi</text>\n<g id=\"GSE_71aaeea44163\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_38d0356d3b7d\" cx=\"539\" cy=\"338\" rx=\"7\" ry=\"7\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_3869427f6b83\" x=\"551\" y=\"342\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sinyal</text>\n<text id=\"svg_03cc99c14e57\" x=\"355\" y=\"372\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas PLC:</text>\n<g id=\"VAL_69b5f6e7e4fd\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"11\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_4fb2d0768599\" x=\"457\" y=\"372\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"11\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_6d4705c39a9c\" x=\"461\" y=\"372\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<g id=\"VAL_84e007b9d4fc\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"11\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_dd7432242677\" x=\"503\" y=\"372\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"11\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_004045350577\" x=\"507\" y=\"372\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">pH</text>\n<rect id=\"svg_89eb093099b0\" x=\"654\" y=\"72\" width=\"295\" height=\"318\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_c3586dcecd7e\" x=\"670\" y=\"100\" font-family=\"sans-serif\" font-size=\"17\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sisa klor bebas</text>\n<g id=\"GSE_fce5936488ea\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_5c57ea5b019c\" cx=\"925\" cy=\"94\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_9372c33f1125\" x=\"911\" y=\"99\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">valid</text>\n<g id=\"VAL_18bad09e7b46\" type=\"svg-ext-value\" fill=\"#1b2a33\" stroke=\"#1b2a33\" font-size=\"44\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"middle\"><text id=\"VAL_c966691e6863\" x=\"746\" y=\"168\" fill=\"#1b2a33\" stroke=\"#1b2a33\" stroke-width=\"0\" font-size=\"44\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_50c02afbc213\" x=\"746\" y=\"192\" font-family=\"sans-serif\" font-size=\"15\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"middle\" xml:space=\"preserve\">mg/L</text>\n<rect id=\"svg_610c05db3d55\" x=\"670\" y=\"210\" width=\"150\" height=\"24\" rx=\"12\" fill=\"#f6f8f9\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<g id=\"GSE_11a1f26a5539\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_7f482051279a\" cx=\"684\" cy=\"222\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_e455322a6c77\" x=\"698\" y=\"227\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">TINGGI</text>\n<rect id=\"svg_87c3c3305b1d\" x=\"670\" y=\"240\" width=\"150\" height=\"24\" rx=\"12\" fill=\"#f6f8f9\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<g id=\"GSE_8b015981bd18\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_a9d1f5f69779\" cx=\"684\" cy=\"252\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_03bca2da5008\" x=\"698\" y=\"257\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">MENENGAH</text>\n<rect id=\"svg_72bed9e68d40\" x=\"670\" y=\"270\" width=\"150\" height=\"24\" rx=\"12\" fill=\"#f6f8f9\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<g id=\"GSE_1b7d50fc0a22\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_790ea2d2eb72\" cx=\"684\" cy=\"282\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_cfb9b43d3525\" x=\"698\" y=\"287\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">RENDAH</text>\n<rect id=\"svg_91d185707ca8\" x=\"871\" y=\"294.4\" width=\"8\" height=\"19.6\" fill=\"#f0a500\" stroke-width=\"0\"/>\n<rect id=\"svg_d89d391a9726\" x=\"871\" y=\"216.0\" width=\"8\" height=\"78.4\" fill=\"#2e9e4f\" stroke-width=\"0\"/>\n<rect id=\"svg_9403be81b139\" x=\"871\" y=\"118.0\" width=\"8\" height=\"98.0\" fill=\"#d93a2b\" stroke-width=\"0\"/>\n<line id=\"svg_52a5bc2d4193\" x1=\"867\" y1=\"314.0\" x2=\"917\" y2=\"314.0\" stroke=\"#8a979e\" stroke-width=\"1\" stroke-dasharray=\"3,2\"/>\n<text id=\"svg_85ae3a490821\" x=\"865\" y=\"318.0\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">0</text>\n<line id=\"svg_1209b9516ca9\" x1=\"867\" y1=\"294.4\" x2=\"917\" y2=\"294.4\" stroke=\"#8a979e\" stroke-width=\"1\" stroke-dasharray=\"3,2\"/>\n<text id=\"svg_a623cf2bf63a\" x=\"865\" y=\"298.4\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">0.2</text>\n<line id=\"svg_deb9df04ac3d\" x1=\"867\" y1=\"216.0\" x2=\"917\" y2=\"216.0\" stroke=\"#8a979e\" stroke-width=\"1\" stroke-dasharray=\"3,2\"/>\n<text id=\"svg_1a02ddaafcc4\" x=\"865\" y=\"220.0\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">1</text>\n<line id=\"svg_dc12be16e53a\" x1=\"867\" y1=\"118.0\" x2=\"917\" y2=\"118.0\" stroke=\"#8a979e\" stroke-width=\"1\" stroke-dasharray=\"3,2\"/>\n<text id=\"svg_32b5f06d2f9c\" x=\"865\" y=\"122.0\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">2</text>\n<g id=\"GXP_8ffa9bd7d83a\" type=\"svg-ext-gauge_progress\" font-family=\"sans-serif\" font-size=\"14\" stroke=\"null\"><rect id=\"A-GXP_6cef2fb59a1f\" x=\"883\" y=\"118\" width=\"34\" height=\"196\" fill=\"#e3e8ebff\" stroke=\"#9aa7ad\"/><rect id=\"B-GXP_bf11a0af7b15\" x=\"883\" y=\"314\" width=\"34\" height=\"0\" fill=\"#f0a500\" stroke=\"null\"/><foreignObject id=\"H-GXP_c54556396141\" x=\"883\" y=\"118\" width=\"34\" height=\"196\" font-size=\"14\"/></g>\n<g id=\"GSE_b5477a9809ae\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_0677892ade47\" cx=\"678\" cy=\"338\" rx=\"7\" ry=\"7\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_14fb8b51033e\" x=\"690\" y=\"342\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Alm rendah</text>\n<g id=\"GSE_004f198b4ff8\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_c7058440e0ef\" cx=\"766\" cy=\"338\" rx=\"7\" ry=\"7\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_f9ab68d95f71\" x=\"778\" y=\"342\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Alm tinggi</text>\n<g id=\"GSE_007a4297a2bf\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_8d7c13b02ec3\" cx=\"854\" cy=\"338\" rx=\"7\" ry=\"7\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_07ca3acbf306\" x=\"866\" y=\"342\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sinyal</text>\n<text id=\"svg_96ad5927e1eb\" x=\"670\" y=\"372\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas PLC:</text>\n<g id=\"VAL_f4f90da79c58\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"11\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_b737c070d422\" x=\"772\" y=\"372\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"11\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_f38e9659d085\" x=\"776\" y=\"372\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<g id=\"VAL_c03a6209f6a2\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"11\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_08b824ed2b0c\" x=\"818\" y=\"372\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"11\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_6a55bbffb24f\" x=\"822\" y=\"372\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">mg/L</text>\n<rect id=\"svg_3ef89d0f6493\" x=\"969\" y=\"72\" width=\"295\" height=\"318\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_a9d446e9753b\" x=\"985\" y=\"100\" font-family=\"sans-serif\" font-size=\"17\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Turbidity</text>\n<g id=\"GSE_861baba6cf22\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_d2c51d1fa6ce\" cx=\"1240\" cy=\"94\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_f746cb4104bb\" x=\"1226\" y=\"99\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">valid</text>\n<g id=\"VAL_6115ed79b1ec\" type=\"svg-ext-value\" fill=\"#1b2a33\" stroke=\"#1b2a33\" font-size=\"44\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"middle\"><text id=\"VAL_ae61e0213c2a\" x=\"1061\" y=\"168\" fill=\"#1b2a33\" stroke=\"#1b2a33\" stroke-width=\"0\" font-size=\"44\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_aea8c5c96f0f\" x=\"1061\" y=\"192\" font-family=\"sans-serif\" font-size=\"15\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"middle\" xml:space=\"preserve\">NTU</text>\n<rect id=\"svg_5ea1e87cc6ab\" x=\"985\" y=\"210\" width=\"150\" height=\"24\" rx=\"12\" fill=\"#f6f8f9\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<g id=\"GSE_728111f7b73a\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_19b101a98281\" cx=\"999\" cy=\"222\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_159f77847f60\" x=\"1013\" y=\"227\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">TINGGI</text>\n<rect id=\"svg_432c6ebf401a\" x=\"985\" y=\"240\" width=\"150\" height=\"24\" rx=\"12\" fill=\"#f6f8f9\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<g id=\"GSE_87f7e404b120\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_d21032d53472\" cx=\"999\" cy=\"252\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_fe45ba4330b2\" x=\"1013\" y=\"257\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">MENENGAH</text>\n<rect id=\"svg_5359abbcb41d\" x=\"985\" y=\"270\" width=\"150\" height=\"24\" rx=\"12\" fill=\"#f6f8f9\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<g id=\"GSE_225cfb65d1b6\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_89739ea14a14\" cx=\"999\" cy=\"282\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_2eedfce842d5\" x=\"1013\" y=\"287\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">RENDAH</text>\n<rect id=\"svg_d36906f175f4\" x=\"1186\" y=\"274.8\" width=\"8\" height=\"39.2\" fill=\"#2e9e4f\" stroke-width=\"0\"/>\n<rect id=\"svg_67021133849f\" x=\"1186\" y=\"196.4\" width=\"8\" height=\"78.4\" fill=\"#f0a500\" stroke-width=\"0\"/>\n<rect id=\"svg_8e07a04421f9\" x=\"1186\" y=\"118.0\" width=\"8\" height=\"78.4\" fill=\"#d93a2b\" stroke-width=\"0\"/>\n<line id=\"svg_1a254455c48d\" x1=\"1182\" y1=\"314.0\" x2=\"1232\" y2=\"314.0\" stroke=\"#8a979e\" stroke-width=\"1\" stroke-dasharray=\"3,2\"/>\n<text id=\"svg_88d08de65a2a\" x=\"1180\" y=\"318.0\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">0</text>\n<line id=\"svg_ab3caf2a0633\" x1=\"1182\" y1=\"274.8\" x2=\"1232\" y2=\"274.8\" stroke=\"#8a979e\" stroke-width=\"1\" stroke-dasharray=\"3,2\"/>\n<text id=\"svg_531187d4ef6e\" x=\"1180\" y=\"278.8\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">1</text>\n<line id=\"svg_f4fbeef3bead\" x1=\"1182\" y1=\"196.4\" x2=\"1232\" y2=\"196.4\" stroke=\"#8a979e\" stroke-width=\"1\" stroke-dasharray=\"3,2\"/>\n<text id=\"svg_3d994a49ec52\" x=\"1180\" y=\"200.4\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">3</text>\n<line id=\"svg_be7038269876\" x1=\"1182\" y1=\"118.0\" x2=\"1232\" y2=\"118.0\" stroke=\"#8a979e\" stroke-width=\"1\" stroke-dasharray=\"3,2\"/>\n<text id=\"svg_b0e614fafe94\" x=\"1180\" y=\"122.0\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">5</text>\n<g id=\"GXP_393d6ef47def\" type=\"svg-ext-gauge_progress\" font-family=\"sans-serif\" font-size=\"14\" stroke=\"null\"><rect id=\"A-GXP_617fd59e50f7\" x=\"1198\" y=\"118\" width=\"34\" height=\"196\" fill=\"#e3e8ebff\" stroke=\"#9aa7ad\"/><rect id=\"B-GXP_6d186efd0fd2\" x=\"1198\" y=\"314\" width=\"34\" height=\"0\" fill=\"#2e9e4f\" stroke=\"null\"/><foreignObject id=\"H-GXP_1a10d715c193\" x=\"1198\" y=\"118\" width=\"34\" height=\"196\" font-size=\"14\"/></g>\n<g id=\"GSE_69cfba2a4553\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_617f1f4aadf8\" cx=\"1081\" cy=\"338\" rx=\"7\" ry=\"7\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_d7a75f5c18d0\" x=\"1093\" y=\"342\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Alm tinggi</text>\n<g id=\"GSE_35d163440ec9\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_0916005d01c6\" cx=\"1169\" cy=\"338\" rx=\"7\" ry=\"7\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_ad3f362c1c2b\" x=\"1181\" y=\"342\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sinyal</text>\n<text id=\"svg_5cd5708cef1a\" x=\"985\" y=\"372\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas PLC:</text>\n<g id=\"VAL_00559ae2a043\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"11\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_48da5a28dcd1\" x=\"1087\" y=\"372\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"11\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_80e5ce9a8e54\" x=\"1091\" y=\"372\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<g id=\"VAL_ba3024cab48f\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"11\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_45c10a5fae07\" x=\"1133\" y=\"372\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"11\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_6aaff5d0cb17\" x=\"1137\" y=\"372\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">NTU</text>\n<rect id=\"svg_4b55a441515f\" x=\"24\" y=\"404\" width=\"610\" height=\"246\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_e13ba3f985ff\" x=\"42\" y=\"434\" font-family=\"sans-serif\" font-size=\"17\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Aliran sampel BAMa &amp; dosing</text>\n<g id=\"GSE_377fba00b4d2\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_53cb4c6ecf87\" cx=\"56\" cy=\"464\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_6402db8748a3\" x=\"76\" y=\"469\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Reed switch aliran (%I0.0)</text>\n<g id=\"GSE_b313f309d561\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_43603435d9b7\" cx=\"56\" cy=\"494\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_7bc177fe7c91\" x=\"76\" y=\"499\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Aliran stabil / pengukuran pH &amp; klor valid</text>\n<g id=\"GSE_43618d8c4d47\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_0c94d2090d39\" cx=\"56\" cy=\"524\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_0fbdb9cc32fe\" x=\"76\" y=\"529\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Alarm aliran sampel hilang</text>\n<text id=\"svg_4e4a6800e5bf\" x=\"42\" y=\"562\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Controller</text>\n<text id=\"svg_ea1aa70fc0f2\" x=\"250\" y=\"562\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">PAUSE</text>\n<text id=\"svg_522dff966887\" x=\"330\" y=\"562\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Pause manual (kalibrasi)</text>\n<text id=\"svg_d54992615dc4\" x=\"42\" y=\"589\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb pH #1</text>\n<g id=\"GSE_c6f0bca719ae\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_3900b8134f01\" cx=\"268\" cy=\"584\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<g id=\"GSE_293c593e707f\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_a46835d1001c\" cx=\"340\" cy=\"584\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<g id=\"HXB_db1f81a6b556\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_a80d1cb853b4\" stroke-width=\"0\" x=\"360\" y=\"574\" width=\"120\" height=\"20\" fill=\"#7a8790ff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_6c0e4c722940\" x=\"360\" y=\"574\" height=\"20\" width=\"120\"><BUTTON id=\"B-HXB_360128f5fb2e\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(122, 135, 144); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Toggle pause</BUTTON></foreignObject></g>\n<text id=\"svg_b2d1920d3e83\" x=\"42\" y=\"611\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb pH #2</text>\n<g id=\"GSE_e5c3dc5f5029\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_118d0f045f5e\" cx=\"268\" cy=\"606\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<g id=\"GSE_f7a6de400ef5\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_43c4e13928bf\" cx=\"340\" cy=\"606\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<g id=\"HXB_2852fc8f1409\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_740d2085ab64\" stroke-width=\"0\" x=\"360\" y=\"596\" width=\"120\" height=\"20\" fill=\"#7a8790ff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_e8965cbfd350\" x=\"360\" y=\"596\" height=\"20\" width=\"120\"><BUTTON id=\"B-HXB_531d47d2f4cb\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(122, 135, 144); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Toggle pause</BUTTON></foreignObject></g>\n<text id=\"svg_2af39fa5cfe5\" x=\"42\" y=\"633\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb klorin</text>\n<g id=\"GSE_c058afd61d00\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_e30a28fd1acb\" cx=\"268\" cy=\"628\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<g id=\"GSE_8affa803952f\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_d63436ba8c01\" cx=\"340\" cy=\"628\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<g id=\"HXB_da0755e7824e\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_dc017b7191ce\" stroke-width=\"0\" x=\"360\" y=\"618\" width=\"120\" height=\"20\" fill=\"#7a8790ff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_d391426ee168\" x=\"360\" y=\"618\" height=\"20\" width=\"120\"><BUTTON id=\"B-HXB_b53e9891e8e5\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(122, 135, 144); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Toggle pause</BUTTON></foreignObject></g>\n<rect id=\"svg_1cdfdbe9146f\" x=\"654\" y=\"404\" width=\"602\" height=\"246\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_eb32e6edcbe5\" x=\"672\" y=\"434\" font-family=\"sans-serif\" font-size=\"17\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Ringkasan alarm</text>\n<g id=\"GSE_a1fce492d4dc\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_3b26ee3a10be\" cx=\"686\" cy=\"466\" rx=\"13\" ry=\"13\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_5ae3a80777bd\" x=\"708\" y=\"471\" font-family=\"sans-serif\" font-size=\"15\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Ada alarm aktif</text>\n<g id=\"GSE_e1961a96517e\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_6d45227bf650\" cx=\"686\" cy=\"500\" rx=\"13\" ry=\"13\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_933e4cb8dc72\" x=\"708\" y=\"505\" font-family=\"sans-serif\" font-size=\"15\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Alarm baru belum di-ACK (buzzer)</text>\n<g id=\"GSE_d0fc810b42da\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_317a3a23fafa\" cx=\"686\" cy=\"534\" rx=\"13\" ry=\"13\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_c8463b3a4694\" x=\"708\" y=\"539\" font-family=\"sans-serif\" font-size=\"15\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Kualitas air normal</text>\n<g id=\"HXB_1ead2ccf2006\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_a181e9735999\" stroke-width=\"0\" x=\"1050\" y=\"452\" width=\"180\" height=\"44\" fill=\"#d93a2bff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_744fab2f6c0a\" x=\"1050\" y=\"452\" height=\"44\" width=\"180\"><BUTTON id=\"B-HXB_a5256cd6815e\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(217, 58, 43); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">ACK / Silence</BUTTON></foreignObject></g>\n<g id=\"GSE_1cb0f6b96e9f\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_74f1edf743e4\" cx=\"686\" cy=\"582\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_d07e42aa14b5\" x=\"702\" y=\"587\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb pH #1</text>\n<g id=\"GSE_c05357058af4\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_d847830ba166\" cx=\"876\" cy=\"582\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_a281fc59680b\" x=\"892\" y=\"587\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb pH #2</text>\n<g id=\"GSE_3111b591a554\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_0fd58d155aac\" cx=\"1066\" cy=\"582\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_4e74e6686202\" x=\"1082\" y=\"587\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb klorin</text>\n<g id=\"GSE_827e2676e11f\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_00342e59c212\" cx=\"686\" cy=\"612\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_242bbf8917e6\" x=\"702\" y=\"617\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">TUC 5 alarm 1</text>\n<g id=\"GSE_aa9c1fc506c6\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_f62b547eceae\" cx=\"876\" cy=\"612\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_7198a89fc168\" x=\"892\" y=\"617\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">TUC 5 fault</text>\n<g id=\"GSE_78af519c864b\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_98179044660f\" cx=\"1066\" cy=\"612\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_50e18a45402d\" x=\"1082\" y=\"617\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Selisih pH</text>\n<text id=\"svg_760fac04c989\" x=\"24\" y=\"672\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Bar: warna &amp; skala zona mengikuti batas default. Lampu RENDAH/MENENGAH/TINGGI dan alarm mengikuti setpoint PLC aktual.</text>\n<g id=\"HXB_ea81a49544fc\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_8bd39c18f0cf\" stroke-width=\"0\" x=\"24\" y=\"686\" width=\"136\" height=\"40\" fill=\"#1d6f9aff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_cc011bb4d000\" x=\"24\" y=\"686\" height=\"40\" width=\"136\"><BUTTON id=\"B-HXB_7a049ad9eff2\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(29, 111, 154); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Trend</BUTTON></foreignObject></g>\n<g id=\"HXB_42a53ba5e05d\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_195ce0cbb3bc\" stroke-width=\"0\" x=\"174\" y=\"686\" width=\"136\" height=\"40\" fill=\"#1d6f9aff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_7a51367c2ebb\" x=\"174\" y=\"686\" height=\"40\" width=\"136\"><BUTTON id=\"B-HXB_d60a8fd26ad0\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(29, 111, 154); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Setpoint</BUTTON></foreignObject></g>\n<g id=\"HXB_ca2d645b0197\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_ff73617291cf\" stroke-width=\"0\" x=\"324\" y=\"686\" width=\"136\" height=\"40\" fill=\"#1d6f9aff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_2d5c0866d68e\" x=\"324\" y=\"686\" height=\"40\" width=\"136\"><BUTTON id=\"B-HXB_0838d9a6b263\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(29, 111, 154); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">I/O &amp; status</BUTTON></foreignObject></g></g></svg>",
     "property": {
      "events": []
     }
@@ -2987,8 +3599,30 @@
        }
       }
      },
-     "HXB_01992ce0ca18": {
-      "id": "HXB_01992ce0ca18",
+     "HXI_8269dc1a5066": {
+      "id": "HXI_8269dc1a5066",
+      "type": "svg-ext-html_input",
+      "name": "P_TU_M",
+      "label": "HtmlInput",
+      "property": {
+       "variableId": "t_3f8ca184d3b5",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "options": {
+        "updated": true,
+        "numeric": true,
+        "type": "number",
+        "updatedEsc": false,
+        "selectOnClick": true,
+        "actionOnEsc": "update",
+        "min": 0,
+        "max": 10
+       }
+      }
+     },
+     "HXB_374d5e727751": {
+      "id": "HXB_374d5e727751",
       "type": "svg-ext-html_button",
       "name": "Ke Overview",
       "label": "HtmlButton",
@@ -3007,7 +3641,7 @@
      }
     },
     "variables": {},
-    "svgcontent": "<svg width=\"1280\" height=\"760\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g><title>Layer 1</title><rect id=\"svg_bg_v_kb_setpoint\" x=\"0\" y=\"0\" width=\"1280\" height=\"760\" fill=\"#eef2f4\" stroke-width=\"0\"/><rect id=\"svg_97722fbef58a\" x=\"0\" y=\"0\" width=\"1280\" height=\"56\" rx=\"0\" fill=\"#123a4f\" stroke=\"#123a4f\" stroke-width=\"1\"/>\n<text id=\"svg_80e467942b68\" x=\"24\" y=\"36\" font-family=\"sans-serif\" font-size=\"22\" font-weight=\"bold\" fill=\"#ffffff\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Setpoint &amp; parameter</text>\n<text id=\"svg_25bb87b65031\" x=\"1256\" y=\"34\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#cfe3ec\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">Ditulis langsung ke %MW0-%MW10 (retentive)</text>\n<g id=\"GSE_07d9c2648197\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_b181c606145a\" cx=\"860\" cy=\"28\" rx=\"8\" ry=\"8\" fill=\"#2b5466\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_accdcd56522d\" x=\"876\" y=\"33\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#cfe3ec\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">PLC</text>\n<rect id=\"svg_cbd7ad789950\" x=\"24\" y=\"76\" width=\"1232\" height=\"610\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_a1e8b378a010\" x=\"42\" y=\"108\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Parameter</text>\n<text id=\"svg_a05fc11ebff1\" x=\"420\" y=\"108\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Nilai</text>\n<text id=\"svg_3b862350f8dd\" x=\"560\" y=\"108\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Satuan</text>\n<text id=\"svg_9fd076ec422d\" x=\"680\" y=\"108\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Keterangan</text>\n<text id=\"svg_635f1e072601\" x=\"42\" y=\"150\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_T_FLOW_ON</text>\n<text id=\"svg_2d6c0d422c0d\" x=\"42\" y=\"166\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW0 · default 60</text>\n<g id=\"HXI_4f63049cc99d\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_f8c41c88afde\" x=\"420\" y=\"134\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_0434ac31398a\" x=\"420\" y=\"134\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_8febdde34a60\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_bdf066137c60\" x=\"560\" y=\"154\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">s</text>\n<text id=\"svg_d5e5d856198a\" x=\"680\" y=\"154\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Aliran sampel harus stabil selama ini sebelum pengukuran pH/Cl dianggap vali…</text>\n<text id=\"svg_7909d303dc52\" x=\"42\" y=\"198\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_T_FLOW_OFF</text>\n<text id=\"svg_601bda819bc6\" x=\"42\" y=\"214\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW1 · default 10</text>\n<g id=\"HXI_e37f46251766\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_b6d5fa48c1cc\" x=\"420\" y=\"182\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_119aa6cc30b5\" x=\"420\" y=\"182\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_0a37d9945ade\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_158f1da6395e\" x=\"560\" y=\"202\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">s</text>\n<text id=\"svg_5d4df6de5ef2\" x=\"680\" y=\"202\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tunda alarm aliran sampel hilang</text>\n<text id=\"svg_56e20281f0ed\" x=\"42\" y=\"246\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_T_ALM</text>\n<text id=\"svg_8c68989c9d3a\" x=\"42\" y=\"262\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW2 · default 60</text>\n<g id=\"HXI_00c2caef9142\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_2364434ce988\" x=\"420\" y=\"230\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_a1d1c30f151a\" x=\"420\" y=\"230\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_e9004d8886c2\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_f8f134002e43\" x=\"560\" y=\"250\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">s</text>\n<text id=\"svg_c4fa08e4de49\" x=\"680\" y=\"250\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tunda alarm kualitas air (hindari alarm sesaat)</text>\n<text id=\"svg_11dc5e05fe1f\" x=\"42\" y=\"294\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_PH_L</text>\n<text id=\"svg_74a5f9a33daa\" x=\"42\" y=\"310\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW3 · default 6.5</text>\n<g id=\"HXI_c538093c06e6\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_9979445eed9d\" x=\"420\" y=\"278\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_ba1a271e8614\" x=\"420\" y=\"278\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_437e61d687e2\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_1b6a07aeefa7\" x=\"560\" y=\"298\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<text id=\"svg_9f4742ab6f10\" x=\"680\" y=\"298\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas pH rendah (Permenkes 2/2023: 6,5)</text>\n<text id=\"svg_f69a4b6e0f6f\" x=\"42\" y=\"342\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_PH_H</text>\n<text id=\"svg_a18d8b61626e\" x=\"42\" y=\"358\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW4 · default 8.5</text>\n<g id=\"HXI_a5e2e3050afd\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_600a44d898a1\" x=\"420\" y=\"326\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_fd04bb5d944e\" x=\"420\" y=\"326\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_9f99b808b71b\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_4227c5306131\" x=\"560\" y=\"346\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<text id=\"svg_177d28e4fb14\" x=\"680\" y=\"346\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas pH tinggi (Permenkes 2/2023: 8,5)</text>\n<text id=\"svg_c93d1b6d6e47\" x=\"42\" y=\"390\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_CL_L</text>\n<text id=\"svg_a590839089c7\" x=\"42\" y=\"406\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW5 · default 0.2</text>\n<g id=\"HXI_095ee81871eb\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_90749fb4a364\" x=\"420\" y=\"374\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_e4a342c2ac21\" x=\"420\" y=\"374\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_cb901c3ed719\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_8a12372d1e18\" x=\"560\" y=\"394\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">mg/L</text>\n<text id=\"svg_380ac8c57f46\" x=\"680\" y=\"394\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas sisa klor rendah</text>\n<text id=\"svg_3697806137d5\" x=\"42\" y=\"438\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_CL_H</text>\n<text id=\"svg_95ed3481a075\" x=\"42\" y=\"454\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW6 · default 1</text>\n<g id=\"HXI_4e10ccd6b37e\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_251ea8d511bb\" x=\"420\" y=\"422\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_2a6d39863a83\" x=\"420\" y=\"422\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_6be5a8e0a457\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_df4ac1be500c\" x=\"560\" y=\"442\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">mg/L</text>\n<text id=\"svg_a7b5b6a69bfc\" x=\"680\" y=\"442\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas sisa klor tinggi</text>\n<text id=\"svg_e1b1d531b551\" x=\"42\" y=\"486\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_TU_H</text>\n<text id=\"svg_c34955fdca4a\" x=\"42\" y=\"502\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW7 · default 3</text>\n<g id=\"HXI_c6e95b110522\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_d5b56d019df6\" x=\"420\" y=\"470\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_6b79dc449045\" x=\"420\" y=\"470\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_ceb2d05da402\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_306f449366c4\" x=\"560\" y=\"490\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">NTU</text>\n<text id=\"svg_7fff290f558e\" x=\"680\" y=\"490\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas turbidity tinggi (Permenkes 2/2023: &lt; 3 NTU)</text>\n<text id=\"svg_4d5048335a44\" x=\"42\" y=\"534\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_PH_DIFF</text>\n<text id=\"svg_b04790ac2978\" x=\"42\" y=\"550\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW8 · default 0</text>\n<g id=\"HXI_27c99afa8ef3\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_8685fc7aba77\" x=\"420\" y=\"518\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_1265cb529f1f\" x=\"420\" y=\"518\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_ff203b97ee87\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_fc53cb7cf3c7\" x=\"560\" y=\"538\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<text id=\"svg_03429a71d798\" x=\"680\" y=\"538\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Alarm selisih pH #1 vs pH #2 (0 = mati; pakai bila kedua sensor di titik yan…</text>\n<text id=\"svg_678c2ebf6f8e\" x=\"42\" y=\"582\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_TU_SRC</text>\n<text id=\"svg_0f2b29439ac6\" x=\"42\" y=\"598\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW9 · default 0</text>\n<g id=\"HXI_fd6997162788\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_3bc2a8e61d6d\" x=\"420\" y=\"566\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_2d0da968500f\" x=\"420\" y=\"566\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_7d2e15d68970\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_e85addd56089\" x=\"560\" y=\"586\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<text id=\"svg_2e9480173c7c\" x=\"680\" y=\"586\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sumber turbidity: 0 = 4-20 mA (%IW1.3), 1 = Modbus RTU SL1</text>\n<text id=\"svg_5a033e7769c9\" x=\"42\" y=\"630\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_T_STARTUP</text>\n<text id=\"svg_84888f9e8dbc\" x=\"42\" y=\"646\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW10 · default 30</text>\n<g id=\"HXI_a37cc61ea214\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_4ee7c16acf38\" x=\"420\" y=\"614\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_196121289af0\" x=\"420\" y=\"614\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_9dea0178b083\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_f9f93e2e4f59\" x=\"560\" y=\"634\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">s</text>\n<text id=\"svg_7bb4ba3de5f7\" x=\"680\" y=\"634\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tunda setelah PLC RUN sebelum alarm kualitas aktif</text>\n<g id=\"HXB_01992ce0ca18\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_447845644837\" stroke-width=\"0\" x=\"24\" y=\"700\" width=\"136\" height=\"40\" fill=\"#1d6f9aff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_8269dc1a5066\" x=\"24\" y=\"700\" height=\"40\" width=\"136\"><BUTTON id=\"B-HXB_dc9d2b3a5c03\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(29, 111, 154); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Overview</BUTTON></foreignObject></g></g></svg>",
+    "svgcontent": "<svg width=\"1280\" height=\"760\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g><title>Layer 1</title><rect id=\"svg_bg_v_kb_setpoint\" x=\"0\" y=\"0\" width=\"1280\" height=\"760\" fill=\"#eef2f4\" stroke-width=\"0\"/><rect id=\"svg_97722fbef58a\" x=\"0\" y=\"0\" width=\"1280\" height=\"56\" rx=\"0\" fill=\"#123a4f\" stroke=\"#123a4f\" stroke-width=\"1\"/>\n<text id=\"svg_80e467942b68\" x=\"24\" y=\"36\" font-family=\"sans-serif\" font-size=\"22\" font-weight=\"bold\" fill=\"#ffffff\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Setpoint &amp; parameter</text>\n<text id=\"svg_25bb87b65031\" x=\"1256\" y=\"34\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#cfe3ec\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">Ditulis langsung ke %MW0-%MW11 (retentive)</text>\n<g id=\"GSE_07d9c2648197\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_b181c606145a\" cx=\"860\" cy=\"28\" rx=\"8\" ry=\"8\" fill=\"#2b5466\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_accdcd56522d\" x=\"876\" y=\"33\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#cfe3ec\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">PLC</text>\n<rect id=\"svg_cbd7ad789950\" x=\"24\" y=\"76\" width=\"1232\" height=\"622\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_a1e8b378a010\" x=\"42\" y=\"108\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Parameter</text>\n<text id=\"svg_a05fc11ebff1\" x=\"420\" y=\"108\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Nilai</text>\n<text id=\"svg_3b862350f8dd\" x=\"560\" y=\"108\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Satuan</text>\n<text id=\"svg_9fd076ec422d\" x=\"680\" y=\"108\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Keterangan</text>\n<text id=\"svg_635f1e072601\" x=\"42\" y=\"146\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_T_FLOW_ON</text>\n<text id=\"svg_2d6c0d422c0d\" x=\"42\" y=\"162\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW0 · default 60</text>\n<g id=\"HXI_4f63049cc99d\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_f8c41c88afde\" x=\"420\" y=\"130\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_0434ac31398a\" x=\"420\" y=\"130\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_8febdde34a60\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_bdf066137c60\" x=\"560\" y=\"150\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">s</text>\n<text id=\"svg_d5e5d856198a\" x=\"680\" y=\"150\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Aliran sampel harus stabil selama ini sebelum pengukuran pH/Cl dianggap vali…</text>\n<text id=\"svg_7909d303dc52\" x=\"42\" y=\"192\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_T_FLOW_OFF</text>\n<text id=\"svg_601bda819bc6\" x=\"42\" y=\"208\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW1 · default 10</text>\n<g id=\"HXI_e37f46251766\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_b6d5fa48c1cc\" x=\"420\" y=\"176\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_119aa6cc30b5\" x=\"420\" y=\"176\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_0a37d9945ade\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_158f1da6395e\" x=\"560\" y=\"196\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">s</text>\n<text id=\"svg_5d4df6de5ef2\" x=\"680\" y=\"196\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tunda alarm aliran sampel hilang</text>\n<text id=\"svg_56e20281f0ed\" x=\"42\" y=\"238\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_T_ALM</text>\n<text id=\"svg_8c68989c9d3a\" x=\"42\" y=\"254\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW2 · default 60</text>\n<g id=\"HXI_00c2caef9142\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_2364434ce988\" x=\"420\" y=\"222\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_a1d1c30f151a\" x=\"420\" y=\"222\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_e9004d8886c2\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_f8f134002e43\" x=\"560\" y=\"242\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">s</text>\n<text id=\"svg_c4fa08e4de49\" x=\"680\" y=\"242\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tunda alarm kualitas air (hindari alarm sesaat)</text>\n<text id=\"svg_11dc5e05fe1f\" x=\"42\" y=\"284\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_PH_L</text>\n<text id=\"svg_74a5f9a33daa\" x=\"42\" y=\"300\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW3 · default 6.5</text>\n<g id=\"HXI_c538093c06e6\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_9979445eed9d\" x=\"420\" y=\"268\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_ba1a271e8614\" x=\"420\" y=\"268\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_437e61d687e2\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_1b6a07aeefa7\" x=\"560\" y=\"288\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<text id=\"svg_9f4742ab6f10\" x=\"680\" y=\"288\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas pH rendah (Permenkes 2/2023: 6,5)</text>\n<text id=\"svg_f69a4b6e0f6f\" x=\"42\" y=\"330\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_PH_H</text>\n<text id=\"svg_a18d8b61626e\" x=\"42\" y=\"346\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW4 · default 8.5</text>\n<g id=\"HXI_a5e2e3050afd\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_600a44d898a1\" x=\"420\" y=\"314\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_fd04bb5d944e\" x=\"420\" y=\"314\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_9f99b808b71b\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_4227c5306131\" x=\"560\" y=\"334\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<text id=\"svg_177d28e4fb14\" x=\"680\" y=\"334\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas pH tinggi (Permenkes 2/2023: 8,5)</text>\n<text id=\"svg_c93d1b6d6e47\" x=\"42\" y=\"376\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_CL_L</text>\n<text id=\"svg_a590839089c7\" x=\"42\" y=\"392\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW5 · default 0.2</text>\n<g id=\"HXI_095ee81871eb\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_90749fb4a364\" x=\"420\" y=\"360\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_e4a342c2ac21\" x=\"420\" y=\"360\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_cb901c3ed719\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_8a12372d1e18\" x=\"560\" y=\"380\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">mg/L</text>\n<text id=\"svg_380ac8c57f46\" x=\"680\" y=\"380\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas sisa klor rendah</text>\n<text id=\"svg_3697806137d5\" x=\"42\" y=\"422\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_CL_H</text>\n<text id=\"svg_95ed3481a075\" x=\"42\" y=\"438\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW6 · default 1</text>\n<g id=\"HXI_4e10ccd6b37e\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_251ea8d511bb\" x=\"420\" y=\"406\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_2a6d39863a83\" x=\"420\" y=\"406\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_6be5a8e0a457\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_df4ac1be500c\" x=\"560\" y=\"426\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">mg/L</text>\n<text id=\"svg_a7b5b6a69bfc\" x=\"680\" y=\"426\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas sisa klor tinggi</text>\n<text id=\"svg_e1b1d531b551\" x=\"42\" y=\"468\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_TU_H</text>\n<text id=\"svg_c34955fdca4a\" x=\"42\" y=\"484\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW7 · default 3</text>\n<g id=\"HXI_c6e95b110522\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_d5b56d019df6\" x=\"420\" y=\"452\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_6b79dc449045\" x=\"420\" y=\"452\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_ceb2d05da402\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_306f449366c4\" x=\"560\" y=\"472\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">NTU</text>\n<text id=\"svg_7fff290f558e\" x=\"680\" y=\"472\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas turbidity tinggi (Permenkes 2/2023: &lt; 3 NTU)</text>\n<text id=\"svg_4d5048335a44\" x=\"42\" y=\"514\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_PH_DIFF</text>\n<text id=\"svg_b04790ac2978\" x=\"42\" y=\"530\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW8 · default 0</text>\n<g id=\"HXI_27c99afa8ef3\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_8685fc7aba77\" x=\"420\" y=\"498\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_1265cb529f1f\" x=\"420\" y=\"498\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_ff203b97ee87\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_fc53cb7cf3c7\" x=\"560\" y=\"518\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<text id=\"svg_03429a71d798\" x=\"680\" y=\"518\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Alarm selisih pH #1 vs pH #2 (0 = mati; pakai bila kedua sensor di titik yan…</text>\n<text id=\"svg_678c2ebf6f8e\" x=\"42\" y=\"560\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_TU_SRC</text>\n<text id=\"svg_0f2b29439ac6\" x=\"42\" y=\"576\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW9 · default 0</text>\n<g id=\"HXI_fd6997162788\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_3bc2a8e61d6d\" x=\"420\" y=\"544\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_2d0da968500f\" x=\"420\" y=\"544\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_7d2e15d68970\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_e85addd56089\" x=\"560\" y=\"564\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<text id=\"svg_2e9480173c7c\" x=\"680\" y=\"564\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sumber turbidity: 0 = 4-20 mA (%IW1.3), 1 = Modbus RTU SL1</text>\n<text id=\"svg_5a033e7769c9\" x=\"42\" y=\"606\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_T_STARTUP</text>\n<text id=\"svg_84888f9e8dbc\" x=\"42\" y=\"622\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW10 · default 30</text>\n<g id=\"HXI_a37cc61ea214\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_4ee7c16acf38\" x=\"420\" y=\"590\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_196121289af0\" x=\"420\" y=\"590\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_9dea0178b083\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_f9f93e2e4f59\" x=\"560\" y=\"610\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">s</text>\n<text id=\"svg_7bb4ba3de5f7\" x=\"680\" y=\"610\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tunda setelah PLC RUN sebelum alarm kualitas aktif</text>\n<text id=\"svg_01992ce0ca18\" x=\"42\" y=\"652\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_TU_M</text>\n<text id=\"svg_447845644837\" x=\"42\" y=\"668\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW11 · default 1</text>\n<g id=\"HXI_8269dc1a5066\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_dc9d2b3a5c03\" x=\"420\" y=\"636\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_aafe6b568fd8\" x=\"420\" y=\"636\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_dc48ef4ecc5e\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_f91145e921ab\" x=\"560\" y=\"656\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">NTU</text>\n<text id=\"svg_9a72433c6619\" x=\"680\" y=\"656\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas turbidity menengah (indikasi zona, di bawah = rendah/baik)</text>\n<g id=\"HXB_374d5e727751\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_41e6ed3e3537\" stroke-width=\"0\" x=\"24\" y=\"708\" width=\"136\" height=\"40\" fill=\"#1d6f9aff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_17432a80abca\" x=\"24\" y=\"708\" height=\"40\" width=\"136\"><BUTTON id=\"B-HXB_f918fc120923\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(29, 111, 154); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Overview</BUTTON></foreignObject></g></g></svg>",
     "property": {
      "events": []
     }

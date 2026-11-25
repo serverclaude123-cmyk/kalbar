@@ -10,6 +10,7 @@ P_TU_H;%MW7;4x;7;Baca/Tulis;x0,01 NTU;300;Batas turbidity tinggi (Permenkes 2/20
 P_PH_DIFF;%MW8;4x;8;Baca/Tulis;x0,01;0;"Alarm selisih pH #1 vs pH #2 (0 = mati; pakai bila kedua sensor di titik yang sama)"
 P_TU_SRC;%MW9;4x;9;Baca/Tulis;;0;Sumber turbidity: 0 = 4-20 mA (%IW1.3), 1 = Modbus RTU SL1
 P_T_STARTUP;%MW10;4x;10;Baca/Tulis;s;30;Tunda setelah PLC RUN sebelum alarm kualitas aktif
+P_TU_M;%MW11;4x;11;Baca/Tulis;x0,01 NTU;100;Batas turbidity menengah (indikasi zona, di bawah = rendah/baik)
 PH1_PV;%MW100;4x;100;Baca;x0,01;;pH #1 (x0,01)
 PH2_PV;%MW101;4x;101;Baca;x0,01;;pH #2 (x0,01)
 CL_PV;%MW102;4x;102;Baca;x0,01 mg/L;;Sisa klor bebas (x0,01 mg/L)
@@ -17,6 +18,10 @@ TU_PV;%MW103;4x;103;Baca;x0,01 NTU;;Turbidity terpakai (x0,01 NTU) - sesuai P_TU
 TU_MA_PV;%MW104;4x;104;Baca;x0,01 NTU;;Turbidity dari 4-20 mA (x0,01 NTU)
 TU_MB_PV;%MW105;4x;105;Baca;x0,01 NTU;;Turbidity dari Modbus (x0,01 NTU)
 PH_DIFF;%MW106;4x;106;Baca;;;Selisih absolut pH #1 - pH #2 (x0,01)
+PH1_ZONE;%MW130;4x;130;Baca;;;Zona pH #1: 0 tidak valid, 1 rendah, 2 menengah, 3 tinggi (tanpa tunda)
+PH2_ZONE;%MW131;4x;131;Baca;;;Zona pH #2: 0 tidak valid, 1 rendah, 2 menengah, 3 tinggi (tanpa tunda)
+CL_ZONE;%MW132;4x;132;Baca;;;Zona klorin: 0 tidak valid, 1 rendah, 2 menengah, 3 tinggi (tanpa tunda)
+TU_ZONE;%MW133;4x;133;Baca;;;Zona turbidity: 0 tidak valid, 1 rendah, 2 menengah, 3 tinggi (tanpa tunda)
 TU_STATUS;%MW107;4x;107;Baca;;;TUC 5 reading status (reg 30010): 1 baik, 2 over, 3 under, 6 error
 TU_ERRW;%MW108;4x;108;Baca;;;TUC 5 error bit (reg 30012): 0x01 desiccant, 0x02 loop mA, 0x04 kalibrasi, 0x40 lampu, 0x80 ultrasonik
 MB_ERR_TU;%MW110;4x;110;Baca;;;Counter error komunikasi TUC 5

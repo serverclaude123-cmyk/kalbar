@@ -55,6 +55,7 @@ P = [
  ("P_PH_DIFF",    8, 0,    "x0,01",   "Alarm selisih pH #1 vs pH #2 (0 = mati; pakai bila kedua sensor di titik yang sama)"),
  ("P_TU_SRC",     9, 0,    "",        "Sumber turbidity: 0 = 4-20 mA (%IW1.3), 1 = Modbus RTU SL1"),
  ("P_T_STARTUP", 10, 30,   "s",       "Tunda setelah PLC RUN sebelum alarm kualitas aktif"),
+ ("P_TU_M",      11, 100,  "x0,01 NTU","Batas turbidity menengah (indikasi zona, di bawah = rendah/baik)"),
 ]
 for name, mw, dflt, unit, cmt in P:
     d(name, f"%MW{mw}", cmt, "RW", dflt, unit)
@@ -68,6 +69,8 @@ d("TU_PV",    "%MW103", "Turbidity terpakai (x0,01 NTU) - sesuai P_TU_SRC", "R",
 d("TU_MA_PV", "%MW104", "Turbidity dari 4-20 mA (x0,01 NTU)", "R", unit="x0,01 NTU")
 d("TU_MB_PV", "%MW105", "Turbidity dari Modbus (x0,01 NTU)", "R", unit="x0,01 NTU")
 d("PH_DIFF",  "%MW106", "Selisih absolut pH #1 - pH #2 (x0,01)", "R")
+for _i, (_n, _t) in enumerate([("PH1", "pH #1"), ("PH2", "pH #2"), ("CL", "klorin"), ("TU", "turbidity")]):
+    d(f"{_n}_ZONE", f"%MW{130+_i}", f"Zona {_t}: 0 tidak valid, 1 rendah, 2 menengah, 3 tinggi (tanpa tunda)", "R")
 d("TU_STATUS","%MW107", "TUC 5 reading status (reg 30010): 1 baik, 2 over, 3 under, 6 error", "R")
 d("TU_ERRW",  "%MW108", "TUC 5 error bit (reg 30012): 0x01 desiccant, 0x02 loop mA, 0x04 kalibrasi, 0x40 lampu, 0x80 ultrasonik", "R")
 d("MB_STEP",  "%MW109", "Langkah polling Modbus TUC 5 (0 = baca, 1 = tunggu)")

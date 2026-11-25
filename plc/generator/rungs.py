@@ -82,6 +82,17 @@ R("  tunda alarm turbidity", C("TU_OOR"), [ST("A_TU_H")], timer="TM_TU")
 R("Selisih pH di atas batas", Ser(Cmp("{P_PH_DIFF} > 0"), C("VALID_PH1"), C("VALID_PH2"), Cmp("{PH_DIFF} > {P_PH_DIFF}")),
   [ST("PHD_OOR")], "Aktifkan (P_PH_DIFF > 0) hanya bila kedua elektroda mengukur air yang sama.")
 R("  tunda alarm selisih pH", C("PHD_OOR"), [ST("A_PH_DIFF")], timer="TM_PHD")
+for tag, pv, ai, st, valid, oor, tm, al, ah, asig, pl, ph, mp, q in MEAS:
+    z = pv.replace("_PV", "_ZONE")
+    R(f"Zona {tag}: reset", None, [OP(f"{{{z}}} := 0")],
+      "Zona untuk indikasi bar SCADA (langsung, tanpa tunda): 1 rendah, 2 menengah/normal, 3 tinggi." if tag == "pH #1" else "")
+    R(f"  zona {tag} menengah", C(valid), [OP(f"{{{z}}} := 2")])
+    R(f"  zona {tag} rendah", Ser(C(valid), Cmp(f"{{{pv}}} < {{{pl}}}")), [OP(f"{{{z}}} := 1")])
+    R(f"  zona {tag} tinggi", Ser(C(valid), Cmp(f"{{{pv}}} > {{{ph}}}")), [OP(f"{{{z}}} := 3")])
+R("Zona turbidity: reset", None, [OP("{TU_ZONE} := 0")])
+R("  zona turbidity rendah (baik)", C("VALID_TU"), [OP("{TU_ZONE} := 1")])
+R("  zona turbidity menengah", Ser(C("VALID_TU"), Cmp("{TU_PV} > {P_TU_M}")), [OP("{TU_ZONE} := 2")])
+R("  zona turbidity tinggi", Ser(C("VALID_TU"), Cmp("{TU_PV} > {P_TU_H}")), [OP("{TU_ZONE} := 3")])
 R("Kualitas air normal",
   Ser(C("VALID_PH1"), C("VALID_PH2"), C("VALID_CL"), C("VALID_TU"),
       N("PH1_OOR"), N("PH2_OOR"), N("CL_OOR"), N("TU_OOR")),

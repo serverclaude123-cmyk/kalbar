@@ -9,6 +9,10 @@ PH_DIFF;%MW106;Holding register;107;Int16;100;Selisih absolut pH #1 - pH #2 (x0,
 TU_STATUS;%MW107;Holding register;108;Int16;1;TUC 5 reading status (reg 30010): 1 baik, 2 over, 3 under, 6 error
 TU_ERRW;%MW108;Holding register;109;Int16;1;TUC 5 error bit (reg 30012): 0x01 desiccant, 0x02 loop mA, 0x04 kalibrasi, 0x40 lampu, 0x80 ultrasonik
 MB_ERR_TU;%MW110;Holding register;111;Int16;1;Counter error komunikasi TUC 5
+PH1_ZONE;%MW130;Holding register;131;Int16;1;Zona pH #1: 0 tidak valid, 1 rendah, 2 menengah, 3 tinggi (tanpa tunda)
+PH2_ZONE;%MW131;Holding register;132;Int16;1;Zona pH #2: 0 tidak valid, 1 rendah, 2 menengah, 3 tinggi (tanpa tunda)
+CL_ZONE;%MW132;Holding register;133;Int16;1;Zona klorin: 0 tidak valid, 1 rendah, 2 menengah, 3 tinggi (tanpa tunda)
+TU_ZONE;%MW133;Holding register;134;Int16;1;Zona turbidity: 0 tidak valid, 1 rendah, 2 menengah, 3 tinggi (tanpa tunda)
 P_T_FLOW_ON;%MW0;Holding register;1;Int16;1;Aliran sampel harus stabil selama ini sebelum pengukuran pH/Cl dianggap valid dan pause dilepas
 P_T_FLOW_OFF;%MW1;Holding register;2;Int16;1;Tunda alarm aliran sampel hilang
 P_T_ALM;%MW2;Holding register;3;Int16;1;Tunda alarm kualitas air (hindari alarm sesaat)
@@ -20,6 +24,7 @@ P_TU_H;%MW7;Holding register;8;Int16;100;Batas turbidity tinggi (Permenkes 2/202
 P_PH_DIFF;%MW8;Holding register;9;Int16;100;Alarm selisih pH #1 vs pH #2 (0 = mati; pakai bila kedua sensor di titik yang sama)
 P_TU_SRC;%MW9;Holding register;10;Int16;1;Sumber turbidity: 0 = 4-20 mA (%IW1.3), 1 = Modbus RTU SL1
 P_T_STARTUP;%MW10;Holding register;11;Int16;1;Tunda setelah PLC RUN sebelum alarm kualitas aktif
+P_TU_M;%MW11;Holding register;12;Int16;100;Batas turbidity menengah (indikasi zona, di bawah = rendah/baik)
 STARTUP_DONE;%M1;Coil;2;Bool;1;Tunda start-up selesai
 FLOW_STAB;%M2;Coil;3;Bool;1;Aliran sampel stabil > P_T_FLOW_ON
 VALID_PH1;%M3;Coil;4;Bool;1;Nilai pH #1 valid (aliran stabil, sinyal OK, tidak pause manual)

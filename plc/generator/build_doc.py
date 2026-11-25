@@ -16,7 +16,7 @@ ARCH = f"""
  <div class="card"><h4>HMI / SCADA</h4><ul>
   <li>Modbus TCP port 502. Bit <code>%Mn</code> = <code>0x n</code>, word <code>%MWn</code> = <code>4x n</code> (zero-based).</li>
   <li>Bila driver memakai alamat 1-based, tambahkan +1.</li>
-  <li>Nilai proses <code>%MW100–110</code>, alarm <code>%M200–219</code>, setpoint <code>%MW0–10</code>.</li>
+  <li>Nilai proses <code>%MW100–110</code>, alarm <code>%M200–219</code>, setpoint <code>%MW0–11</code>.</li>
  </ul></div>
  <div class="card"><h4>Wiring penting</h4><ul>
   <li>Semua mA output instrumen <b>aktif</b>: kanal TM3AI4 tanpa suplai loop 24 V.</li>
