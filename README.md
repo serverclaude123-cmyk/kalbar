@@ -128,7 +128,7 @@ Holding 40031–40043 duplicate 30001–30013 (FC 03).
 
 ## PLC program (Schneider M221)
 
-Folder [`plc/`](plc/) – draft program for **TM221CE24R + TM3AI4** (70 rungs, Indonesian comments):
+Folder [`plc/`](plc/) – draft program for **TM221CE16R (relay version) + TM3AI4** (70 rungs, Indonesian comments). I/O: 7 of 9 DI, all 7 relay DO used (green lamp blinks = dosing paused):
 
 | File | Content |
 |---|---|

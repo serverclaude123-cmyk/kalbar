@@ -49,7 +49,7 @@ for tag, pv, ai, st, valid, oor, tm, al, ah, asig, pl, ph, mp, q in MEAS:
       "Status kanal TM3 bukan 0 = under/over range atau kabel putus (D1Cb fault = 3,6 mA)." if tag == "pH #1" else "")
 R("Gangguan sinyal turbidity", Ser(Cmp("{P_TU_SRC} = 0"), N("MAINT_TU"), Cmp("{ST_TU} <> 0")), [ST("A_TU_SIG")],
   "Set ERLV TUC 5 = 2 mA: fault alat muncul sebagai under-range.")
-R("Cermin status I/O fisik untuk HMI", None, [OP("{IO_DI0} := %I0.0:14"), OP("{IO_DO0} := %Q0.0:10")])
+R("Cermin status I/O fisik untuk HMI", None, [OP("{IO_DI0} := %I0.0:9"), OP("{IO_DO0} := %Q0.0:7")])
 
 # =====================================================================
 sec("POU2", "Aliran sampel & PAUSE dosing",
@@ -126,8 +126,9 @@ R("Ada alarm aktif", Par(*[Cmp(f"{{ALMW{k}}} <> 0") for k in range(2)]), [ST("AN
 R("ACK: matikan buzzer", C("RESET_CMD"), [RST("BUZZ_LATCH")])
 R("Buzzer", C("BUZZ_LATCH"), [ST("Q_BUZZER")])
 R("Lampu alarm (kedip bila belum ACK)", Par(Ser(C("BUZZ_LATCH"), C("S_1S")), Ser(C("ANY_ALARM"), N("BUZZ_LATCH"))), [ST("Q_HL_ALM")])
-R("Lampu hijau kualitas normal", Ser(C("QUALITY_OK"), N("ANY_ALARM")), [ST("Q_HL_OK")])
-R("Lampu kuning aliran/pause", Par(N("FLOW_STAB"), C("MAN_PAUSE_PH1"), C("MAN_PAUSE_PH2"), C("MAN_PAUSE_CL")), [ST("Q_HL_NOFLOW")])
+R("Ada dosing di-PAUSE", Par(N("FLOW_STAB"), C("MAN_PAUSE_PH1"), C("MAN_PAUSE_PH2"), C("MAN_PAUSE_CL")), [ST("PAUSE_ANY")])
+R("Lampu hijau (tetap = normal, kedip = pause)", Par(Ser(C("PAUSE_ANY"), C("S_1S")), Ser(N("PAUSE_ANY"), C("QUALITY_OK"), N("ANY_ALARM"))), [ST("Q_HL_OK")],
+  "CE16R hanya 7 relay, jadi lampu kuning digabung: lampu hijau berkedip saat dosing di-PAUSE.")
 R("Alarm umum ke remote (fail-safe)", N("ANY_ALARM"), [ST("Q_ALM_REMOTE")],
   "Relai ON = sehat. PLC mati / kabel putus terbaca sebagai alarm di SCADA.")
 

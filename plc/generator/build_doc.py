@@ -4,9 +4,9 @@
 ARCH = f"""
 <div class="grid2">
  <div class="card"><h4>PLC &amp; modul</h4><ul>
-  <li><b>TM221CE24R</b>: 14 DI, 10 DO relay, Ethernet (Modbus TCP server ke HMI/SCADA), SL1 RS-485 (Modbus RTU master, opsional untuk TUC 5).</li>
+  <li><b>TM221CE16R</b>: 9 DI (7 terpakai), 7 DO relay (7 terpakai, tidak ada cadangan), Ethernet (Modbus TCP server ke HMI/SCADA), SL1 RS-485 (Modbus RTU master, opsional untuk TUC 5).</li>
   <li><b>TM3AI4</b> (modul 1): 4 kanal 4–20 mA → <code>%IW1.0–1.3</code>, status <code>%IWS1.x</code>.</li>
-  <li>Analog onboard CE24R hanya 0–10 V, jadi tidak dipakai untuk sinyal 4–20 mA.</li>
+  <li>Analog onboard CE16R hanya 0–10 V, jadi tidak dipakai untuk sinyal 4–20 mA.</li>
  </ul></div>
  <div class="card"><h4>Instrumen</h4><ul>
   <li><b>BAMa</b> bypass fitting, 2 slot PG13.5 untuk elektroda pH, reed switch aliran sampel (maks. 42 V / 0,25 A).</li>
@@ -27,8 +27,8 @@ ARCH = f"""
 </div>"""
 
 FLAGS = """
-<div class="flag crit"><b>Konfirmasi sebelum dipakai.</b> Model PLC (TM221CE24R + TM3AI4) dan fungsi kedua pH controller (dua titik berbeda atau redundan) adalah asumsi. Ident code kedua D1Cb pH belum dicek: harus versi mV (P 5) dengan mA output (kode 1).</div>
-<div class="flag"><b>Perlu diverifikasi di Machine Expert Basic:</b> sintaks status kanal TM3 <code>%IWS1.x</code>, bit string <code>%I0.0:14</code>, pin <code>.D</code>/<code>.E</code> READ_VAR, operasi float <code>%MF300</code> dan <code>REAL_TO_INT</code>. Peta register TUC 5 berasal dari manual HF Micro TOL 19777 (2004), jadi cocokkan dengan uji baca.</div>
+<div class="flag crit"><b>Konfirmasi sebelum dipakai.</b> Model PLC harus versi <b>R (relay)</b>: TM221CE16R. Versi CE16T/CE16U (transistor) tidak bisa langsung ke input pause D1Cb. Fungsi kedua pH controller (dua titik berbeda atau redundan) adalah asumsi. Ident code kedua D1Cb pH belum dicek: harus versi mV (P 5) dengan mA output (kode 1).</div>
+<div class="flag"><b>Perlu diverifikasi di Machine Expert Basic:</b> sintaks status kanal TM3 <code>%IWS1.x</code>, bit string <code>%I0.0:9</code>, pin <code>.D</code>/<code>.E</code> READ_VAR, operasi float <code>%MF300</code> dan <code>REAL_TO_INT</code>. Peta register TUC 5 berasal dari manual HF Micro TOL 19777 (2004), jadi cocokkan dengan uji baca.</div>
 """
 
 ASSUME = tbl(["Topik", "Asumsi di program"], [
@@ -53,7 +53,7 @@ html_doc = f"""<title>Ladder M221 KALBAR</title>
   <p>Monitoring kualitas air: pH ×2, sisa klor, turbidity. Pause dosing saat aliran sampel hilang, alarm mutu, dan data ke HMI/SCADA lewat Modbus TCP.</p>
  </div>
  <div class="tb-meta">
-  <span>PLC</span><b>TM221CE24R + TM3AI4</b>
+  <span>PLC</span><b>TM221CE16R + TM3AI4</b>
   <span>Instrumen</span><b>BAMa, D1Cb ×3, TUC 5</b>
   <span>Jumlah rung</span><b>{TOTAL_RUNGS}</b>
   <span>Tanggal</span><b>25/11/2026</b>
@@ -132,6 +132,7 @@ html_doc = f"""<title>Ladder M221 KALBAR</title>
   <li>D1Cb menu 10.6: mA output 4–20 mA = pH 0–14 / klorin 0–5 mg/L, sama dengan skala TM3AI4.</li>
   <li>D1Cb: input pause aktif saat kontak tertutup. Uji dengan relai %Q0.0–0.2.</li>
   <li>TUC 5 menu 6.5.1: 4 mA = 0, 20 mA = 10 NTU. Menu 6.5.2: ERLV = 2 mA.</li>
+  <li>Lampu hijau berkedip saat valve sampel ditutup atau pause manual aktif.</li>
   <li>Cek kontak reed BAMa: kontak yang tertutup saat aliran ada masuk ke %I0.0.</li>
  </ul></div>
  <div class="card"><h4>Uji fungsi</h4><ul>
@@ -139,7 +140,7 @@ html_doc = f"""<title>Ladder M221 KALBAR</title>
   <li>Lepas kabel mA tiap kanal: alarm sinyal muncul dan nilai tidak lagi valid.</li>
   <li>Simulasikan nilai di luar batas (kalibrator mA): alarm setelah P_T_ALM.</li>
   <li>Bila Modbus dipakai: bandingkan %MW105 dengan display TUC 5, baca reg 30008 (model).</li>
-  <li>Matikan PLC: relai remote %Q0.7 jatuh dan SCADA menerima alarm.</li>
+  <li>Matikan PLC: relai remote %Q0.6 jatuh dan SCADA menerima alarm.</li>
  </ul></div>
 </div>
 </section>

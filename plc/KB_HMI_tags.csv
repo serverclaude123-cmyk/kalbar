@@ -20,8 +20,8 @@ PH_DIFF;%MW106;4x;106;Baca;;;Selisih absolut pH #1 - pH #2 (x0,01)
 TU_STATUS;%MW107;4x;107;Baca;;;TUC 5 reading status (reg 30010): 1 baik, 2 over, 3 under, 6 error
 TU_ERRW;%MW108;4x;108;Baca;;;TUC 5 error bit (reg 30012): 0x01 desiccant, 0x02 loop mA, 0x04 kalibrasi, 0x40 lampu, 0x80 ultrasonik
 MB_ERR_TU;%MW110;4x;110;Baca;;;Counter error komunikasi TUC 5
-IO_DI0;%MW120;4x;120;Baca;;;Cermin %I0.0-%I0.13 untuk HMI (bit n = %I0.n)
-IO_DO0;%MW121;4x;121;Baca;;;Cermin %Q0.0-%Q0.9 untuk HMI (bit n = %Q0.n)
+IO_DI0;%MW120;4x;120;Baca;;;Cermin %I0.0-%I0.8 untuk HMI (bit n = %I0.n)
+IO_DO0;%MW121;4x;121;Baca;;;Cermin %Q0.0-%Q0.6 untuk HMI (bit n = %Q0.n)
 ALMW0;%MW200;4x;200;Baca;;;Word alarm 0 (= %M200..%M215)
 ALMW1;%MW201;4x;201;Baca;;;Word alarm 1 (= %M216..%M231)
 STARTUP_DONE;%M1;0x;1;Baca;;;Tunda start-up selesai
@@ -34,6 +34,7 @@ HEARTBEAT;%M9;0x;9;Baca;;;Heartbeat 1 s untuk HMI/SCADA
 ANY_ALARM;%M10;0x;10;Baca;;;Ada alarm aktif
 BUZZ_LATCH;%M11;0x;11;Baca;;;Alarm baru belum di-ACK
 QUALITY_OK;%M12;0x;12;Baca;;;Semua nilai valid dan di dalam batas
+PAUSE_ANY;%M19;0x;19;Baca;;;Ada dosing yang di-PAUSE (aliran hilang / manual)
 A_NOFLOW;%M200;0x;200;Alarm (baca);;;Aliran sampel BAMa tidak ada - dosing pH/klorin di-PAUSE
 A_PH1_DEV;%M201;0x;201;Alarm (baca);;;D1Cb pH #1 alarm (relai XR3)
 A_PH2_DEV;%M202;0x;202;Alarm (baca);;;D1Cb pH #2 alarm (relai XR3)

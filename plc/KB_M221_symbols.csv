@@ -11,9 +11,8 @@
 %Q0.2;Q_PAUSE_CL;PAUSE dosing D1Cb klorin -> X6 pin 3/4 (tutup = pause)
 %Q0.3;Q_HL_ALM;Lampu ALARM merah (kedip = belum di-ACK)
 %Q0.4;Q_BUZZER;Buzzer alarm
-%Q0.5;Q_HL_OK;Lampu hijau: aliran OK dan kualitas air normal
-%Q0.6;Q_HL_NOFLOW;Lampu kuning: aliran sampel tidak ada / dosing pause
-%Q0.7;Q_ALM_REMOTE;Alarm umum ke SCADA/remote (ON = SEHAT, fail-safe)
+%Q0.5;Q_HL_OK;Lampu hijau: tetap = kualitas normal, kedip = aliran sampel hilang / dosing pause
+%Q0.6;Q_ALM_REMOTE;Alarm umum ke SCADA/remote (ON = SEHAT, fail-safe)
 %IW1.0;AI_PH1;pH #1 dari D1Cb X6: skala 0-1400 = pH 0,00-14,00
 %IW1.1;AI_PH2;pH #2 dari D1Cb X6: skala 0-1400 = pH 0,00-14,00
 %IW1.2;AI_CL;Klorin bebas dari D1Cb X6: skala 0-500 = 0,00-5,00 mg/L (samakan range D1Cb)
@@ -46,8 +45,8 @@
 %MW108;TU_ERRW;TUC 5 error bit (reg 30012): 0x01 desiccant, 0x02 loop mA, 0x04 kalibrasi, 0x40 lampu, 0x80 ultrasonik
 %MW109;MB_STEP;Langkah polling Modbus TUC 5 (0 = baca, 1 = tunggu)
 %MW110;MB_ERR_TU;Counter error komunikasi TUC 5
-%MW120;IO_DI0;Cermin %I0.0-%I0.13 untuk HMI (bit n = %I0.n)
-%MW121;IO_DO0;Cermin %Q0.0-%Q0.9 untuk HMI (bit n = %Q0.n)
+%MW120;IO_DI0;Cermin %I0.0-%I0.8 untuk HMI (bit n = %I0.n)
+%MW121;IO_DO0;Cermin %Q0.0-%Q0.6 untuk HMI (bit n = %Q0.n)
 %MW200;ALMW0;Word alarm 0 (= %M200..%M215)
 %MW201;ALMW1;Word alarm 1 (= %M216..%M231)
 %MW204;ALMPREV0;Word alarm 0 scan sebelumnya
@@ -74,6 +73,7 @@
 %M15;CL_OOR;Klorin di luar batas (sebelum tunda)
 %M16;TU_OOR;Turbidity di atas batas (sebelum tunda)
 %M17;PHD_OOR;Selisih pH di atas batas (sebelum tunda)
+%M19;PAUSE_ANY;Ada dosing yang di-PAUSE (aliran hilang / manual)
 %M18;POLL_PULSE;Pulsa polling Modbus
 %M200;A_NOFLOW;Aliran sampel BAMa tidak ada - dosing pH/klorin di-PAUSE
 %M201;A_PH1_DEV;D1Cb pH #1 alarm (relai XR3)

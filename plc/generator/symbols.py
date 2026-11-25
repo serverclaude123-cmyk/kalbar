@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Symbol table - KALBAR PDAM panel monitoring kualitas air (M221).
 name -> (address, comment, hmi) ; hmi: None / 'R' / 'RW' / 'CMD' / 'TGL' / 'ALM'
-PLC: TM221CE24R + TM3AI4 (modul 1). HMI/SCADA lewat Modbus TCP.
+PLC: TM221CE16R + TM3AI4 (modul 1). HMI/SCADA lewat Modbus TCP.
 """
 SYM = {}
 ORDER = []
@@ -11,7 +11,7 @@ def d(name, addr, comment, hmi=None, default=None, unit=""):
     SYM[name] = dict(addr=addr, comment=comment, hmi=hmi, default=default, unit=unit)
     ORDER.append(name)
 
-# ---------------- DIGITAL INPUTS (TM221CE24R onboard, 14 DI, 24 VDC sink) ----------------
+# ---------------- DIGITAL INPUTS (TM221CE16R onboard, 9 DI %I0.0-0.8, 24 VDC sink) ----------------
 d("FS_SAMPLE", "%I0.0", "Reed switch BAMa (terminal 2-3): 1 = aliran sampel ada", "R")
 d("PH1_OK",    "%I0.1", "D1Cb pH #1 relai alarm XR3: 1 = normal (wiring fail-safe)", "R")
 d("PH2_OK",    "%I0.2", "D1Cb pH #2 relai alarm XR3: 1 = normal", "R")
@@ -20,15 +20,14 @@ d("TU_A1_OK",  "%I0.4", "TUC 5 Alarm 1 (turbidity tinggi): 1 = normal", "R")
 d("TU_A2_OK",  "%I0.5", "TUC 5 Alarm 2 (fault alat): 1 = normal", "R")
 d("PB_RESET",  "%I0.6", "Tombol ACK/RESET di pintu panel (NO)", "R")
 
-# ---------------- DIGITAL OUTPUTS (relay, kontak kering) ----------------
+# ---------------- DIGITAL OUTPUTS (CE16R: 7 relay %Q0.0-0.6, kontak kering) ----------------
 d("Q_PAUSE_PH1", "%Q0.0", "PAUSE dosing D1Cb pH #1 -> X6 pin 3/4 (tutup = pause)")
 d("Q_PAUSE_PH2", "%Q0.1", "PAUSE dosing D1Cb pH #2 -> X6 pin 3/4 (tutup = pause)")
 d("Q_PAUSE_CL",  "%Q0.2", "PAUSE dosing D1Cb klorin -> X6 pin 3/4 (tutup = pause)")
 d("Q_HL_ALM",    "%Q0.3", "Lampu ALARM merah (kedip = belum di-ACK)")
 d("Q_BUZZER",    "%Q0.4", "Buzzer alarm")
-d("Q_HL_OK",     "%Q0.5", "Lampu hijau: aliran OK dan kualitas air normal")
-d("Q_HL_NOFLOW", "%Q0.6", "Lampu kuning: aliran sampel tidak ada / dosing pause")
-d("Q_ALM_REMOTE","%Q0.7", "Alarm umum ke SCADA/remote (ON = SEHAT, fail-safe)")
+d("Q_HL_OK",     "%Q0.5", "Lampu hijau: tetap = kualitas normal, kedip = aliran sampel hilang / dosing pause")
+d("Q_ALM_REMOTE","%Q0.6", "Alarm umum ke SCADA/remote (ON = SEHAT, fail-safe)")
 
 # ---------------- ANALOG INPUTS (TM3AI4 modul 1, 4-20 mA, skala custom) ----------------
 d("AI_PH1", "%IW1.0", "pH #1 dari D1Cb X6: skala 0-1400 = pH 0,00-14,00")
@@ -73,8 +72,8 @@ d("TU_STATUS","%MW107", "TUC 5 reading status (reg 30010): 1 baik, 2 over, 3 und
 d("TU_ERRW",  "%MW108", "TUC 5 error bit (reg 30012): 0x01 desiccant, 0x02 loop mA, 0x04 kalibrasi, 0x40 lampu, 0x80 ultrasonik", "R")
 d("MB_STEP",  "%MW109", "Langkah polling Modbus TUC 5 (0 = baca, 1 = tunggu)")
 d("MB_ERR_TU","%MW110", "Counter error komunikasi TUC 5", "R")
-d("IO_DI0",   "%MW120", "Cermin %I0.0-%I0.13 untuk HMI (bit n = %I0.n)", "R")
-d("IO_DO0",   "%MW121", "Cermin %Q0.0-%Q0.9 untuk HMI (bit n = %Q0.n)", "R")
+d("IO_DI0",   "%MW120", "Cermin %I0.0-%I0.8 untuk HMI (bit n = %I0.n)", "R")
+d("IO_DO0",   "%MW121", "Cermin %Q0.0-%Q0.6 untuk HMI (bit n = %Q0.n)", "R")
 for k in range(2):
     d(f"ALMW{k}", f"%MW{200+k}", f"Word alarm {k} (= %M{200+16*k}..%M{215+16*k})", "R")
 for k in range(2):
@@ -104,6 +103,7 @@ d("PH2_OOR",     "%M14","pH #2 di luar batas (sebelum tunda)")
 d("CL_OOR",      "%M15","Klorin di luar batas (sebelum tunda)")
 d("TU_OOR",      "%M16","Turbidity di atas batas (sebelum tunda)")
 d("PHD_OOR",     "%M17","Selisih pH di atas batas (sebelum tunda)")
+d("PAUSE_ANY",   "%M19","Ada dosing yang di-PAUSE (aliran hilang / manual)", "R")
 d("POLL_PULSE",  "%M18","Pulsa polling Modbus")
 
 # ---------------- ALARMS %M200-%M231 ----------------

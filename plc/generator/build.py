@@ -10,7 +10,7 @@ os.makedirs(OUT, exist_ok=True)
 
 # ---------------------------------------------------------------- IL text
 lines = ["(* KALBAR PDAM - PANEL MONITORING KUALITAS AIR (pH, KLORIN, TURBIDITY) *)",
-         "(* PLC Schneider TM221CE24R + TM3AI4 - EcoStruxure Machine Expert Basic *)",
+         "(* PLC Schneider TM221CE16R + TM3AI4 - EcoStruxure Machine Expert Basic *)",
          "(* Program IL reversible: ketik/tempel per rung dalam mode IL, lalu ubah tampilan ke Ladder *)",
          "(* Ref: ProMinent BAMa, DULCOMETER D1Cb x3, DULCO turb C TUC 5 - lihat README *)", ""]
 nr = 0

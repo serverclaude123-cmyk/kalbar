@@ -1,5 +1,5 @@
 (* KALBAR PDAM - PANEL MONITORING KUALITAS AIR (pH, KLORIN, TURBIDITY) *)
-(* PLC Schneider TM221CE24R + TM3AI4 - EcoStruxure Machine Expert Basic *)
+(* PLC Schneider TM221CE16R + TM3AI4 - EcoStruxure Machine Expert Basic *)
 (* Program IL reversible: ketik/tempel per rung dalam mode IL, lalu ubah tampilan ke Ladder *)
 (* Ref: ProMinent BAMa, DULCOMETER D1Cb x3, DULCO turb C TUC 5 - lihat README *)
 
@@ -101,8 +101,8 @@
     ST %M217
 
 (* Rung 016: Cermin status I/O fisik untuk HMI *)
-    [%MW120 := %I0.0:14]
-    [%MW121 := %Q0.0:10]
+    [%MW120 := %I0.0:9]
+    [%MW121 := %Q0.0:7]
 
 
 (* ================= POU2  Aliran sampel & PAUSE dosing ================= *)
@@ -430,22 +430,27 @@
     )
     ST %Q0.3
 
-(* Rung 067: Lampu hijau kualitas normal *)
-    LD %M12
-    ANDN %M10
-    ST %Q0.5
-
-(* Rung 068: Lampu kuning aliran/pause *)
+(* Rung 067: Ada dosing di-PAUSE *)
     LDN %M2
     OR %M310
     OR %M311
     OR %M312
-    ST %Q0.6
+    ST %M19
+
+(* Rung 068: Lampu hijau (tetap = normal, kedip = pause) *)
+(*   CE16R hanya 7 relay, jadi lampu kuning digabung: lampu hijau berkedip saat dosing di-PAUSE. *)
+    LD %M19
+    AND %S6
+    OR( %M12
+    ANDN %M19
+    ANDN %M10
+    )
+    ST %Q0.5
 
 (* Rung 069: Alarm umum ke remote (fail-safe) *)
 (*   Relai ON = sehat. PLC mati / kabel putus terbaca sebagai alarm di SCADA. *)
     LDN %M10
-    ST %Q0.7
+    ST %Q0.6
 
 
 (* ================= POU7  Reset tombol HMI ================= *)
