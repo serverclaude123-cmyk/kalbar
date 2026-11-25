@@ -1,0 +1,5104 @@
+{
+ "version": "1.01",
+ "name": "KALBAR PDAM Kualitas Air",
+ "server": {
+  "id": "0",
+  "name": "FUXA Server",
+  "type": "FuxaServer",
+  "property": {},
+  "polling": 1000
+ },
+ "devices": {
+  "d_kalbar_m221": {
+   "id": "d_kalbar_m221",
+   "name": "PLC_M221",
+   "enabled": true,
+   "type": "ModbusTCP",
+   "polling": 1000,
+   "property": {
+    "address": "192.168.1.10",
+    "port": "502",
+    "slaveid": "1",
+    "connectionOption": "TcpPort",
+    "delay": 10,
+    "forceFC16": false
+   },
+   "tags": {
+    "t_e8ba5a8ab324": {
+     "id": "t_e8ba5a8ab324",
+     "name": "PH1_PV",
+     "label": "PH1_PV",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "101",
+     "divisor": 100,
+     "format": 2,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW100 - pH #1 (x0,01)"
+    },
+    "t_e10ddbe6f7b1": {
+     "id": "t_e10ddbe6f7b1",
+     "name": "PH2_PV",
+     "label": "PH2_PV",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "102",
+     "divisor": 100,
+     "format": 2,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW101 - pH #2 (x0,01)"
+    },
+    "t_bc06bc5f8902": {
+     "id": "t_bc06bc5f8902",
+     "name": "CL_PV",
+     "label": "CL_PV",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "103",
+     "divisor": 100,
+     "format": 2,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW102 - Sisa klor bebas (x0,01 mg/L)"
+    },
+    "t_084acf090ab0": {
+     "id": "t_084acf090ab0",
+     "name": "TU_PV",
+     "label": "TU_PV",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "104",
+     "divisor": 100,
+     "format": 2,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW103 - Turbidity terpakai (x0,01 NTU) - sesuai P_TU_SRC"
+    },
+    "t_f2d646d057c8": {
+     "id": "t_f2d646d057c8",
+     "name": "TU_MA_PV",
+     "label": "TU_MA_PV",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "105",
+     "divisor": 100,
+     "format": 2,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW104 - Turbidity dari 4-20 mA (x0,01 NTU)"
+    },
+    "t_f856fae571d9": {
+     "id": "t_f856fae571d9",
+     "name": "TU_MB_PV",
+     "label": "TU_MB_PV",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "106",
+     "divisor": 100,
+     "format": 2,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW105 - Turbidity dari Modbus (x0,01 NTU)"
+    },
+    "t_6ce98ee3424e": {
+     "id": "t_6ce98ee3424e",
+     "name": "PH_DIFF",
+     "label": "PH_DIFF",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "107",
+     "divisor": 100,
+     "format": 2,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW106 - Selisih absolut pH #1 - pH #2 (x0,01)"
+    },
+    "t_94f1b062b235": {
+     "id": "t_94f1b062b235",
+     "name": "TU_STATUS",
+     "label": "TU_STATUS",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "108",
+     "divisor": 1,
+     "format": 0,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW107 - TUC 5 reading status (reg 30010): 1 baik, 2 over, 3 under, 6 error"
+    },
+    "t_c676f8298b8e": {
+     "id": "t_c676f8298b8e",
+     "name": "TU_ERRW",
+     "label": "TU_ERRW",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "109",
+     "divisor": 1,
+     "format": 0,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW108 - TUC 5 error bit (reg 30012): 0x01 desiccant, 0x02 loop mA, 0x04 kalibrasi, 0x40 lampu, 0x80 ultrasonik"
+    },
+    "t_e8282ca78668": {
+     "id": "t_e8282ca78668",
+     "name": "MB_ERR_TU",
+     "label": "MB_ERR_TU",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "111",
+     "divisor": 1,
+     "format": 0,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW110 - Counter error komunikasi TUC 5"
+    },
+    "t_6fbd1e8ba98f": {
+     "id": "t_6fbd1e8ba98f",
+     "name": "P_T_FLOW_ON",
+     "label": "P_T_FLOW_ON",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "1",
+     "divisor": 1,
+     "format": 0,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW0 - Aliran sampel harus stabil selama ini sebelum pengukuran pH/Cl dianggap valid dan pause dilepas"
+    },
+    "t_31deeac7d004": {
+     "id": "t_31deeac7d004",
+     "name": "P_T_FLOW_OFF",
+     "label": "P_T_FLOW_OFF",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "2",
+     "divisor": 1,
+     "format": 0,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW1 - Tunda alarm aliran sampel hilang"
+    },
+    "t_23b4a8380111": {
+     "id": "t_23b4a8380111",
+     "name": "P_T_ALM",
+     "label": "P_T_ALM",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "3",
+     "divisor": 1,
+     "format": 0,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW2 - Tunda alarm kualitas air (hindari alarm sesaat)"
+    },
+    "t_e8178d499282": {
+     "id": "t_e8178d499282",
+     "name": "P_PH_L",
+     "label": "P_PH_L",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "4",
+     "divisor": 100,
+     "format": 2,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW3 - Batas pH rendah (Permenkes 2/2023: 6,5)"
+    },
+    "t_4ace859a99aa": {
+     "id": "t_4ace859a99aa",
+     "name": "P_PH_H",
+     "label": "P_PH_H",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "5",
+     "divisor": 100,
+     "format": 2,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW4 - Batas pH tinggi (Permenkes 2/2023: 8,5)"
+    },
+    "t_f52c2e6e8029": {
+     "id": "t_f52c2e6e8029",
+     "name": "P_CL_L",
+     "label": "P_CL_L",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "6",
+     "divisor": 100,
+     "format": 2,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW5 - Batas sisa klor rendah"
+    },
+    "t_d34d6b83f985": {
+     "id": "t_d34d6b83f985",
+     "name": "P_CL_H",
+     "label": "P_CL_H",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "7",
+     "divisor": 100,
+     "format": 2,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW6 - Batas sisa klor tinggi"
+    },
+    "t_34554a40a699": {
+     "id": "t_34554a40a699",
+     "name": "P_TU_H",
+     "label": "P_TU_H",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "8",
+     "divisor": 100,
+     "format": 2,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW7 - Batas turbidity tinggi (Permenkes 2/2023: < 3 NTU)"
+    },
+    "t_b52c971d7800": {
+     "id": "t_b52c971d7800",
+     "name": "P_PH_DIFF",
+     "label": "P_PH_DIFF",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "9",
+     "divisor": 100,
+     "format": 2,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW8 - Alarm selisih pH #1 vs pH #2 (0 = mati; pakai bila kedua sensor di titik yang sama)"
+    },
+    "t_317ad96041e7": {
+     "id": "t_317ad96041e7",
+     "name": "P_TU_SRC",
+     "label": "P_TU_SRC",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "10",
+     "divisor": 1,
+     "format": 0,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW9 - Sumber turbidity: 0 = 4-20 mA (%IW1.3), 1 = Modbus RTU SL1"
+    },
+    "t_e375de439f59": {
+     "id": "t_e375de439f59",
+     "name": "P_T_STARTUP",
+     "label": "P_T_STARTUP",
+     "type": "Int16",
+     "memaddress": "400000",
+     "address": "11",
+     "divisor": 1,
+     "format": 0,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%MW10 - Tunda setelah PLC RUN sebelum alarm kualitas aktif"
+    },
+    "t_1c97dfd7d6cf": {
+     "id": "t_1c97dfd7d6cf",
+     "name": "STARTUP_DONE",
+     "label": "STARTUP_DONE",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "2",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M1 - Tunda start-up selesai"
+    },
+    "t_3c664353c80e": {
+     "id": "t_3c664353c80e",
+     "name": "FLOW_STAB",
+     "label": "FLOW_STAB",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "3",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M2 - Aliran sampel stabil > P_T_FLOW_ON"
+    },
+    "t_6c9f9d9585a5": {
+     "id": "t_6c9f9d9585a5",
+     "name": "VALID_PH1",
+     "label": "VALID_PH1",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "4",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M3 - Nilai pH #1 valid (aliran stabil, sinyal OK, tidak pause manual)"
+    },
+    "t_c168f1649aa8": {
+     "id": "t_c168f1649aa8",
+     "name": "VALID_PH2",
+     "label": "VALID_PH2",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "5",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M4 - Nilai pH #2 valid"
+    },
+    "t_5804665b9588": {
+     "id": "t_5804665b9588",
+     "name": "VALID_CL",
+     "label": "VALID_CL",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "6",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M5 - Nilai klorin valid"
+    },
+    "t_8b031aff6c2e": {
+     "id": "t_8b031aff6c2e",
+     "name": "VALID_TU",
+     "label": "VALID_TU",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "7",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M6 - Nilai turbidity valid"
+    },
+    "t_0d895a0a05a7": {
+     "id": "t_0d895a0a05a7",
+     "name": "HEARTBEAT",
+     "label": "HEARTBEAT",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "10",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M9 - Heartbeat 1 s untuk HMI/SCADA"
+    },
+    "t_57f5885da2e4": {
+     "id": "t_57f5885da2e4",
+     "name": "ANY_ALARM",
+     "label": "ANY_ALARM",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "11",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M10 - Ada alarm aktif"
+    },
+    "t_af8056ff0a63": {
+     "id": "t_af8056ff0a63",
+     "name": "BUZZ_LATCH",
+     "label": "BUZZ_LATCH",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "12",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M11 - Alarm baru belum di-ACK"
+    },
+    "t_14fe094e5774": {
+     "id": "t_14fe094e5774",
+     "name": "QUALITY_OK",
+     "label": "QUALITY_OK",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "13",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M12 - Semua nilai valid dan di dalam batas"
+    },
+    "t_5c61bf493abd": {
+     "id": "t_5c61bf493abd",
+     "name": "PAUSE_ANY",
+     "label": "PAUSE_ANY",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "20",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M19 - Ada dosing yang di-PAUSE (aliran hilang / manual)"
+    },
+    "t_cd03d64a043c": {
+     "id": "t_cd03d64a043c",
+     "name": "X_FS_SAMPLE",
+     "label": "X_FS_SAMPLE",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "41",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M40 - Cermin %I0.0 FS_SAMPLE"
+    },
+    "t_35243d19544a": {
+     "id": "t_35243d19544a",
+     "name": "X_PH1_OK",
+     "label": "X_PH1_OK",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "42",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M41 - Cermin %I0.1 PH1_OK"
+    },
+    "t_7ac2a0893f29": {
+     "id": "t_7ac2a0893f29",
+     "name": "X_PH2_OK",
+     "label": "X_PH2_OK",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "43",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M42 - Cermin %I0.2 PH2_OK"
+    },
+    "t_16b20f2857d7": {
+     "id": "t_16b20f2857d7",
+     "name": "X_CL_OK",
+     "label": "X_CL_OK",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "44",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M43 - Cermin %I0.3 CL_OK"
+    },
+    "t_f75bea895808": {
+     "id": "t_f75bea895808",
+     "name": "X_TU_A1_OK",
+     "label": "X_TU_A1_OK",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "45",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M44 - Cermin %I0.4 TU_A1_OK"
+    },
+    "t_63fec3a9e432": {
+     "id": "t_63fec3a9e432",
+     "name": "X_TU_A2_OK",
+     "label": "X_TU_A2_OK",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "46",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M45 - Cermin %I0.5 TU_A2_OK"
+    },
+    "t_281333364725": {
+     "id": "t_281333364725",
+     "name": "X_PB_RESET",
+     "label": "X_PB_RESET",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "47",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M46 - Cermin %I0.6 PB_RESET"
+    },
+    "t_e436653aa746": {
+     "id": "t_e436653aa746",
+     "name": "X_Q_PAUSE_PH1",
+     "label": "X_Q_PAUSE_PH1",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "51",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M50 - Cermin %Q0.0 Q_PAUSE_PH1"
+    },
+    "t_0d54d2673d4c": {
+     "id": "t_0d54d2673d4c",
+     "name": "X_Q_PAUSE_PH2",
+     "label": "X_Q_PAUSE_PH2",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "52",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M51 - Cermin %Q0.1 Q_PAUSE_PH2"
+    },
+    "t_a7492a34756a": {
+     "id": "t_a7492a34756a",
+     "name": "X_Q_PAUSE_CL",
+     "label": "X_Q_PAUSE_CL",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "53",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M52 - Cermin %Q0.2 Q_PAUSE_CL"
+    },
+    "t_db896e9432ab": {
+     "id": "t_db896e9432ab",
+     "name": "X_Q_HL_ALM",
+     "label": "X_Q_HL_ALM",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "54",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M53 - Cermin %Q0.3 Q_HL_ALM"
+    },
+    "t_e30ff31d2fff": {
+     "id": "t_e30ff31d2fff",
+     "name": "X_Q_BUZZER",
+     "label": "X_Q_BUZZER",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "55",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M54 - Cermin %Q0.4 Q_BUZZER"
+    },
+    "t_b4170de3ba64": {
+     "id": "t_b4170de3ba64",
+     "name": "X_Q_HL_OK",
+     "label": "X_Q_HL_OK",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "56",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M55 - Cermin %Q0.5 Q_HL_OK"
+    },
+    "t_918926d7e648": {
+     "id": "t_918926d7e648",
+     "name": "X_Q_ALM_REMOTE",
+     "label": "X_Q_ALM_REMOTE",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "57",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M56 - Cermin %Q0.6 Q_ALM_REMOTE"
+    },
+    "t_16f085a6018c": {
+     "id": "t_16f085a6018c",
+     "name": "A_NOFLOW",
+     "label": "A_NOFLOW",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "201",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M200 - Aliran sampel BAMa tidak ada - dosing pH/klorin di-PAUSE"
+    },
+    "t_74b44e622f72": {
+     "id": "t_74b44e622f72",
+     "name": "A_PH1_DEV",
+     "label": "A_PH1_DEV",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "202",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M201 - D1Cb pH #1 alarm (relai XR3)"
+    },
+    "t_2b72f4d20563": {
+     "id": "t_2b72f4d20563",
+     "name": "A_PH2_DEV",
+     "label": "A_PH2_DEV",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "203",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M202 - D1Cb pH #2 alarm (relai XR3)"
+    },
+    "t_1fd70eee6cbc": {
+     "id": "t_1fd70eee6cbc",
+     "name": "A_CL_DEV",
+     "label": "A_CL_DEV",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "204",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M203 - D1Cb klorin alarm (relai XR3)"
+    },
+    "t_9c1f97e90ece": {
+     "id": "t_9c1f97e90ece",
+     "name": "A_TU_A1",
+     "label": "A_TU_A1",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "205",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M204 - TUC 5 alarm 1 - turbidity tinggi (relai alat)"
+    },
+    "t_694caf6b375d": {
+     "id": "t_694caf6b375d",
+     "name": "A_TU_A2",
+     "label": "A_TU_A2",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "206",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M205 - TUC 5 alarm 2 - fault alat"
+    },
+    "t_15000d7dcfff": {
+     "id": "t_15000d7dcfff",
+     "name": "A_PH1_L",
+     "label": "A_PH1_L",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "207",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M206 - pH #1 rendah"
+    },
+    "t_012e4031681d": {
+     "id": "t_012e4031681d",
+     "name": "A_PH1_H",
+     "label": "A_PH1_H",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "208",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M207 - pH #1 tinggi"
+    },
+    "t_2e0293ae55d0": {
+     "id": "t_2e0293ae55d0",
+     "name": "A_PH2_L",
+     "label": "A_PH2_L",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "209",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M208 - pH #2 rendah"
+    },
+    "t_c85a27256347": {
+     "id": "t_c85a27256347",
+     "name": "A_PH2_H",
+     "label": "A_PH2_H",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "210",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M209 - pH #2 tinggi"
+    },
+    "t_3b491bc26f4b": {
+     "id": "t_3b491bc26f4b",
+     "name": "A_CL_L",
+     "label": "A_CL_L",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "211",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M210 - Sisa klor rendah"
+    },
+    "t_2409ea10bc70": {
+     "id": "t_2409ea10bc70",
+     "name": "A_CL_H",
+     "label": "A_CL_H",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "212",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M211 - Sisa klor tinggi"
+    },
+    "t_2193ac318f4a": {
+     "id": "t_2193ac318f4a",
+     "name": "A_TU_H",
+     "label": "A_TU_H",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "213",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M212 - Turbidity tinggi"
+    },
+    "t_765a2318a30d": {
+     "id": "t_765a2318a30d",
+     "name": "A_PH_DIFF",
+     "label": "A_PH_DIFF",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "214",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M213 - Selisih pH #1 dan pH #2 terlalu besar - cek kalibrasi"
+    },
+    "t_c219e8c728a4": {
+     "id": "t_c219e8c728a4",
+     "name": "A_PH1_SIG",
+     "label": "A_PH1_SIG",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "215",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M214 - Sinyal 4-20 mA pH #1 putus / di luar range"
+    },
+    "t_cd9fd56cb944": {
+     "id": "t_cd9fd56cb944",
+     "name": "A_PH2_SIG",
+     "label": "A_PH2_SIG",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "216",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M215 - Sinyal 4-20 mA pH #2 putus / di luar range"
+    },
+    "t_7f29e2e81540": {
+     "id": "t_7f29e2e81540",
+     "name": "A_CL_SIG",
+     "label": "A_CL_SIG",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "217",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M216 - Sinyal 4-20 mA klorin putus / di luar range"
+    },
+    "t_b7ffd8b31d69": {
+     "id": "t_b7ffd8b31d69",
+     "name": "A_TU_SIG",
+     "label": "A_TU_SIG",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "218",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M217 - Sinyal 4-20 mA turbidity putus / fault (ERLV 2 mA)"
+    },
+    "t_07ef2713f2f8": {
+     "id": "t_07ef2713f2f8",
+     "name": "A_TU_COMM",
+     "label": "A_TU_COMM",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "219",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M218 - Komunikasi Modbus TUC 5 putus"
+    },
+    "t_bde18ed2b26a": {
+     "id": "t_bde18ed2b26a",
+     "name": "A_TU_MBERR",
+     "label": "A_TU_MBERR",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "220",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": true,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M219 - TUC 5 melaporkan error (lihat TU_ERRW)"
+    },
+    "t_9b3013bd5eae": {
+     "id": "t_9b3013bd5eae",
+     "name": "HMI_ACK",
+     "label": "HMI_ACK",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "301",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M300 - Tombol HMI: ACK / silence buzzer"
+    },
+    "t_96fec71d724c": {
+     "id": "t_96fec71d724c",
+     "name": "MAN_PAUSE_PH1",
+     "label": "MAN_PAUSE_PH1",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "311",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M310 - Toggle HMI: PAUSE dosing pH #1 (kalibrasi/perawatan)"
+    },
+    "t_6901fda1d9d5": {
+     "id": "t_6901fda1d9d5",
+     "name": "MAN_PAUSE_PH2",
+     "label": "MAN_PAUSE_PH2",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "312",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M311 - Toggle HMI: PAUSE dosing pH #2"
+    },
+    "t_e54a6a103235": {
+     "id": "t_e54a6a103235",
+     "name": "MAN_PAUSE_CL",
+     "label": "MAN_PAUSE_CL",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "313",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M312 - Toggle HMI: PAUSE dosing klorin"
+    },
+    "t_acb5445e3da3": {
+     "id": "t_acb5445e3da3",
+     "name": "MAINT_TU",
+     "label": "MAINT_TU",
+     "type": "Bool",
+     "memaddress": "000000",
+     "address": "314",
+     "divisor": 1,
+     "format": null,
+     "daq": {
+      "enabled": false,
+      "interval": 60,
+      "changed": true,
+      "restored": false
+     },
+     "init": "",
+     "description": "%M313 - Toggle HMI: TUC 5 MAINTENANCE (alarm turbidity dimatikan)"
+    }
+   }
+  }
+ },
+ "hmi": {
+  "views": [
+   {
+    "id": "v_kb_overview",
+    "name": "Overview",
+    "type": "svg",
+    "profile": {
+     "width": 1280,
+     "height": 760,
+     "bkcolor": "#eef2f4",
+     "margin": 10,
+     "align": "topCenter",
+     "gridType": "fixed",
+     "viewRenderDelay": 0
+    },
+    "items": {
+     "GSE_b30aee6eb92c": {
+      "id": "GSE_b30aee6eb92c",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Heartbeat PLC",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_0d895a0a05a7",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#2b5466"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#7be495"
+        }
+       ]
+      }
+     },
+     "GSE_07066484d59d": {
+      "id": "GSE_07066484d59d",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "pH #1 valid",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_6c9f9d9585a5",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "VAL_6cfd76565147": {
+      "id": "VAL_6cfd76565147",
+      "type": "svg-ext-value",
+      "name": "pH #1",
+      "label": "Value",
+      "property": {
+       "variableId": "t_e8ba5a8ab324",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "output",
+         "min": 0,
+         "max": 0,
+         "text": "",
+         "textId": null,
+         "fractionDigits": 2
+        }
+       ]
+      }
+     },
+     "GSE_6567d9221f2f": {
+      "id": "GSE_6567d9221f2f",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "pH #1 rendah",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_15000d7dcfff",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "GSE_8f31640aa081": {
+      "id": "GSE_8f31640aa081",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "pH #1 tinggi",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_012e4031681d",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "GSE_8e1fcccf079a": {
+      "id": "GSE_8e1fcccf079a",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "pH #1 sinyal",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_c219e8c728a4",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "VAL_d190190a5c8a": {
+      "id": "VAL_d190190a5c8a",
+      "type": "svg-ext-value",
+      "name": "P_PH_L",
+      "label": "Value",
+      "property": {
+       "variableId": "t_e8178d499282",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "output",
+         "min": 0,
+         "max": 0,
+         "text": "",
+         "textId": null,
+         "fractionDigits": 2
+        }
+       ]
+      }
+     },
+     "VAL_24ca3bb4d3fb": {
+      "id": "VAL_24ca3bb4d3fb",
+      "type": "svg-ext-value",
+      "name": "P_PH_H",
+      "label": "Value",
+      "property": {
+       "variableId": "t_4ace859a99aa",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "output",
+         "min": 0,
+         "max": 0,
+         "text": "",
+         "textId": null,
+         "fractionDigits": 2
+        }
+       ]
+      }
+     },
+     "GSE_41074fed93ff": {
+      "id": "GSE_41074fed93ff",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "pH #2 valid",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_c168f1649aa8",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "VAL_9b2eb84931d3": {
+      "id": "VAL_9b2eb84931d3",
+      "type": "svg-ext-value",
+      "name": "pH #2",
+      "label": "Value",
+      "property": {
+       "variableId": "t_e10ddbe6f7b1",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "output",
+         "min": 0,
+         "max": 0,
+         "text": "",
+         "textId": null,
+         "fractionDigits": 2
+        }
+       ]
+      }
+     },
+     "GSE_fa8390dca2e8": {
+      "id": "GSE_fa8390dca2e8",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "pH #2 rendah",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_2e0293ae55d0",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "GSE_3a630b726d4c": {
+      "id": "GSE_3a630b726d4c",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "pH #2 tinggi",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_c85a27256347",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "GSE_d1812a769cfa": {
+      "id": "GSE_d1812a769cfa",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "pH #2 sinyal",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_cd9fd56cb944",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "VAL_7669d413254c": {
+      "id": "VAL_7669d413254c",
+      "type": "svg-ext-value",
+      "name": "P_PH_L",
+      "label": "Value",
+      "property": {
+       "variableId": "t_e8178d499282",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "output",
+         "min": 0,
+         "max": 0,
+         "text": "",
+         "textId": null,
+         "fractionDigits": 2
+        }
+       ]
+      }
+     },
+     "VAL_4e7bb5cc3655": {
+      "id": "VAL_4e7bb5cc3655",
+      "type": "svg-ext-value",
+      "name": "P_PH_H",
+      "label": "Value",
+      "property": {
+       "variableId": "t_4ace859a99aa",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "output",
+         "min": 0,
+         "max": 0,
+         "text": "",
+         "textId": null,
+         "fractionDigits": 2
+        }
+       ]
+      }
+     },
+     "GSE_317c9b279393": {
+      "id": "GSE_317c9b279393",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Sisa klor bebas valid",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_5804665b9588",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "VAL_2c697ad0779d": {
+      "id": "VAL_2c697ad0779d",
+      "type": "svg-ext-value",
+      "name": "Sisa klor bebas",
+      "label": "Value",
+      "property": {
+       "variableId": "t_bc06bc5f8902",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "output",
+         "min": 0,
+         "max": 0,
+         "text": "",
+         "textId": null,
+         "fractionDigits": 2
+        }
+       ]
+      }
+     },
+     "GSE_cac886d446f5": {
+      "id": "GSE_cac886d446f5",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Sisa klor bebas rendah",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_3b491bc26f4b",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "GSE_532a71e2dced": {
+      "id": "GSE_532a71e2dced",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Sisa klor bebas tinggi",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_2409ea10bc70",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "GSE_1d741b3f1c4d": {
+      "id": "GSE_1d741b3f1c4d",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Sisa klor bebas sinyal",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_7f29e2e81540",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "VAL_135bf94f8bbd": {
+      "id": "VAL_135bf94f8bbd",
+      "type": "svg-ext-value",
+      "name": "P_CL_L",
+      "label": "Value",
+      "property": {
+       "variableId": "t_f52c2e6e8029",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "output",
+         "min": 0,
+         "max": 0,
+         "text": "",
+         "textId": null,
+         "fractionDigits": 2
+        }
+       ]
+      }
+     },
+     "VAL_6e74ea72ac37": {
+      "id": "VAL_6e74ea72ac37",
+      "type": "svg-ext-value",
+      "name": "P_CL_H",
+      "label": "Value",
+      "property": {
+       "variableId": "t_d34d6b83f985",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "output",
+         "min": 0,
+         "max": 0,
+         "text": "",
+         "textId": null,
+         "fractionDigits": 2
+        }
+       ]
+      }
+     },
+     "GSE_1aa0384e25b0": {
+      "id": "GSE_1aa0384e25b0",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Turbidity valid",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_8b031aff6c2e",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "VAL_6ec054e0253d": {
+      "id": "VAL_6ec054e0253d",
+      "type": "svg-ext-value",
+      "name": "Turbidity",
+      "label": "Value",
+      "property": {
+       "variableId": "t_084acf090ab0",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "output",
+         "min": 0,
+         "max": 0,
+         "text": "",
+         "textId": null,
+         "fractionDigits": 2
+        }
+       ]
+      }
+     },
+     "GSE_35ed185722a3": {
+      "id": "GSE_35ed185722a3",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Turbidity tinggi",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_2193ac318f4a",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "GSE_d0f2d8afd860": {
+      "id": "GSE_d0f2d8afd860",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Turbidity sinyal",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_b7ffd8b31d69",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "VAL_df0136de6b8c": {
+      "id": "VAL_df0136de6b8c",
+      "type": "svg-ext-value",
+      "name": "P_TU_H",
+      "label": "Value",
+      "property": {
+       "variableId": "t_34554a40a699",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "output",
+         "min": 0,
+         "max": 0,
+         "text": "",
+         "textId": null,
+         "fractionDigits": 2
+        }
+       ]
+      }
+     },
+     "GSE_71aaeea44163": {
+      "id": "GSE_71aaeea44163",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Reed switch",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_cd03d64a043c",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_03cc99c14e57": {
+      "id": "GSE_03cc99c14e57",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Aliran stabil",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_3c664353c80e",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_6d4705c39a9c": {
+      "id": "GSE_6d4705c39a9c",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Alarm aliran",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_16f085a6018c",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "GSE_5c57ea5b019c": {
+      "id": "GSE_5c57ea5b019c",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "D1Cb pH #1 pause",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_e436653aa746",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "GSE_18bad09e7b46": {
+      "id": "GSE_18bad09e7b46",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "D1Cb pH #1 manual",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_96fec71d724c",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "HXB_50c02afbc213": {
+      "id": "HXB_50c02afbc213",
+      "type": "svg-ext-html_button",
+      "name": "D1Cb pH #1 toggle",
+      "label": "HtmlButton",
+      "property": {
+       "events": [
+        {
+         "type": "click",
+         "action": "onToggleValue",
+         "actparam": "1",
+         "actoptions": {}
+        }
+       ],
+       "actions": [],
+       "text": "Toggle pause",
+       "variableId": "t_96fec71d724c",
+       "variableSrc": "PLC_M221"
+      }
+     },
+     "GSE_87c3c3305b1d": {
+      "id": "GSE_87c3c3305b1d",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "D1Cb pH #2 pause",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_0d54d2673d4c",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "GSE_a9d1f5f69779": {
+      "id": "GSE_a9d1f5f69779",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "D1Cb pH #2 manual",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_6901fda1d9d5",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "HXB_72bed9e68d40": {
+      "id": "HXB_72bed9e68d40",
+      "type": "svg-ext-html_button",
+      "name": "D1Cb pH #2 toggle",
+      "label": "HtmlButton",
+      "property": {
+       "events": [
+        {
+         "type": "click",
+         "action": "onToggleValue",
+         "actparam": "1",
+         "actoptions": {}
+        }
+       ],
+       "actions": [],
+       "text": "Toggle pause",
+       "variableId": "t_6901fda1d9d5",
+       "variableSrc": "PLC_M221"
+      }
+     },
+     "GSE_6cef2fb59a1f": {
+      "id": "GSE_6cef2fb59a1f",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "D1Cb klorin pause",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_a7492a34756a",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "GSE_c54556396141": {
+      "id": "GSE_c54556396141",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "D1Cb klorin manual",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_e54a6a103235",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "HXB_d89d391a9726": {
+      "id": "HXB_d89d391a9726",
+      "type": "svg-ext-html_button",
+      "name": "D1Cb klorin toggle",
+      "label": "HtmlButton",
+      "property": {
+       "events": [
+        {
+         "type": "click",
+         "action": "onToggleValue",
+         "actparam": "1",
+         "actoptions": {}
+        }
+       ],
+       "actions": [],
+       "text": "Toggle pause",
+       "variableId": "t_e54a6a103235",
+       "variableSrc": "PLC_M221"
+      }
+     },
+     "GSE_deb9df04ac3d": {
+      "id": "GSE_deb9df04ac3d",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Ada alarm",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_57f5885da2e4",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "GSE_32b5f06d2f9c": {
+      "id": "GSE_32b5f06d2f9c",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Belum ACK",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_af8056ff0a63",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "GSE_14fb8b51033e": {
+      "id": "GSE_14fb8b51033e",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Kualitas OK",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_14fe094e5774",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "HXB_f9ab68d95f71": {
+      "id": "HXB_f9ab68d95f71",
+      "type": "svg-ext-html_button",
+      "name": "ACK",
+      "label": "HtmlButton",
+      "property": {
+       "events": [
+        {
+         "type": "click",
+         "action": "onSetValue",
+         "actparam": "1",
+         "actoptions": {}
+        }
+       ],
+       "actions": [],
+       "text": "ACK / Silence",
+       "variableId": "t_9b3013bd5eae",
+       "variableSrc": "PLC_M221"
+      }
+     },
+     "GSE_96ad5927e1eb": {
+      "id": "GSE_96ad5927e1eb",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "D1Cb pH #1",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_74b44e622f72",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "GSE_f38e9659d085": {
+      "id": "GSE_f38e9659d085",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "D1Cb pH #2",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_2b72f4d20563",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "GSE_6a55bbffb24f": {
+      "id": "GSE_6a55bbffb24f",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "D1Cb klorin",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_1fd70eee6cbc",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "GSE_861baba6cf22": {
+      "id": "GSE_861baba6cf22",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "TUC 5 alarm 1",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_9c1f97e90ece",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "GSE_6115ed79b1ec": {
+      "id": "GSE_6115ed79b1ec",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "TUC 5 fault",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_694caf6b375d",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "GSE_5ea1e87cc6ab": {
+      "id": "GSE_5ea1e87cc6ab",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Selisih pH",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_765a2318a30d",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#d93a2b"
+        }
+       ]
+      }
+     },
+     "HXB_432c6ebf401a": {
+      "id": "HXB_432c6ebf401a",
+      "type": "svg-ext-html_button",
+      "name": "Ke Trend",
+      "label": "HtmlButton",
+      "property": {
+       "events": [
+        {
+         "type": "click",
+         "action": "onpage",
+         "actparam": "v_kb_trend",
+         "actoptions": {}
+        }
+       ],
+       "actions": [],
+       "text": "Trend"
+      }
+     },
+     "HXB_5359abbcb41d": {
+      "id": "HXB_5359abbcb41d",
+      "type": "svg-ext-html_button",
+      "name": "Ke Setpoint",
+      "label": "HtmlButton",
+      "property": {
+       "events": [
+        {
+         "type": "click",
+         "action": "onpage",
+         "actparam": "v_kb_setpoint",
+         "actoptions": {}
+        }
+       ],
+       "actions": [],
+       "text": "Setpoint"
+      }
+     },
+     "HXB_393d6ef47def": {
+      "id": "HXB_393d6ef47def",
+      "type": "svg-ext-html_button",
+      "name": "Ke I/O & status",
+      "label": "HtmlButton",
+      "property": {
+       "events": [
+        {
+         "type": "click",
+         "action": "onpage",
+         "actparam": "v_kb_io",
+         "actoptions": {}
+        }
+       ],
+       "actions": [],
+       "text": "I/O & status"
+      }
+     }
+    },
+    "variables": {},
+    "svgcontent": "<svg width=\"1280\" height=\"760\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g><title>Layer 1</title><rect id=\"svg_bg_v_kb_overview\" x=\"0\" y=\"0\" width=\"1280\" height=\"760\" fill=\"#eef2f4\" stroke-width=\"0\"/><rect id=\"svg_0e93ba1c49a1\" x=\"0\" y=\"0\" width=\"1280\" height=\"56\" rx=\"0\" fill=\"#123a4f\" stroke=\"#123a4f\" stroke-width=\"1\"/>\n<text id=\"svg_ecab1dd126ed\" x=\"24\" y=\"36\" font-family=\"sans-serif\" font-size=\"22\" font-weight=\"bold\" fill=\"#ffffff\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">PDAM KALBAR  ·  Monitoring Kualitas Air</text>\n<text id=\"svg_d99efc699eaa\" x=\"1256\" y=\"34\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#cfe3ec\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">M221 · BAMa · D1Cb ×3 · TUC 5</text>\n<g id=\"GSE_b30aee6eb92c\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_b8cec7fd63fd\" cx=\"860\" cy=\"28\" rx=\"8\" ry=\"8\" fill=\"#2b5466\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_0c5b715a7874\" x=\"876\" y=\"33\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#cfe3ec\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">PLC</text>\n<rect id=\"svg_2e954c21f9d6\" x=\"24\" y=\"76\" width=\"295\" height=\"250\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_2e05926219aa\" x=\"42\" y=\"108\" font-family=\"sans-serif\" font-size=\"17\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">pH #1</text>\n<g id=\"GSE_07066484d59d\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_06169351f5c7\" cx=\"293\" cy=\"102\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_e3f6521a89f9\" x=\"277\" y=\"107\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">valid</text>\n<g id=\"VAL_6cfd76565147\" type=\"svg-ext-value\" fill=\"#1b2a33\" stroke=\"#1b2a33\" font-size=\"52\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"middle\"><text id=\"VAL_714555aa69b6\" x=\"171.5\" y=\"194\" fill=\"#1b2a33\" stroke=\"#1b2a33\" stroke-width=\"0\" font-size=\"52\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_e0e790bc75ea\" x=\"171.5\" y=\"222\" font-family=\"sans-serif\" font-size=\"16\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"middle\" xml:space=\"preserve\">pH</text>\n<g id=\"GSE_6567d9221f2f\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_34d4cc67d403\" cx=\"52\" cy=\"258\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_3f5d448adb66\" x=\"70\" y=\"263\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Rendah</text>\n<g id=\"GSE_8f31640aa081\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_32ccc92132a2\" cx=\"154\" cy=\"258\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_26d2b3e58feb\" x=\"172\" y=\"263\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tinggi</text>\n<g id=\"GSE_8e1fcccf079a\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_c6a282ba2c47\" cx=\"52\" cy=\"292\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_c6563e4b4efe\" x=\"70\" y=\"297\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sinyal 4-20 mA</text>\n<text id=\"svg_fb31bb593ec8\" x=\"42\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas:</text>\n<g id=\"VAL_d190190a5c8a\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"12\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_6d0cd06f962f\" x=\"124\" y=\"316\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_c71ac9e3ca06\" x=\"130\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<g id=\"VAL_24ca3bb4d3fb\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"12\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_b5f28306defe\" x=\"184\" y=\"316\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_2794eac8948a\" x=\"190\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">pH</text>\n<rect id=\"svg_3467cb5d31ea\" x=\"339\" y=\"76\" width=\"295\" height=\"250\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_681a73734126\" x=\"357\" y=\"108\" font-family=\"sans-serif\" font-size=\"17\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">pH #2</text>\n<g id=\"GSE_41074fed93ff\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_21cb203f81ba\" cx=\"608\" cy=\"102\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_da6d6c7539b5\" x=\"592\" y=\"107\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">valid</text>\n<g id=\"VAL_9b2eb84931d3\" type=\"svg-ext-value\" fill=\"#1b2a33\" stroke=\"#1b2a33\" font-size=\"52\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"middle\"><text id=\"VAL_073e0d81d1bf\" x=\"486.5\" y=\"194\" fill=\"#1b2a33\" stroke=\"#1b2a33\" stroke-width=\"0\" font-size=\"52\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_1e4b25913c45\" x=\"486.5\" y=\"222\" font-family=\"sans-serif\" font-size=\"16\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"middle\" xml:space=\"preserve\">pH</text>\n<g id=\"GSE_fa8390dca2e8\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_a6e3f923de7c\" cx=\"367\" cy=\"258\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_4c1cf5faf512\" x=\"385\" y=\"263\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Rendah</text>\n<g id=\"GSE_3a630b726d4c\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_1857e54a296a\" cx=\"469\" cy=\"258\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_b9c73a16dde5\" x=\"487\" y=\"263\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tinggi</text>\n<g id=\"GSE_d1812a769cfa\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_2af4bbeaec47\" cx=\"367\" cy=\"292\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_3be22da3eb42\" x=\"385\" y=\"297\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sinyal 4-20 mA</text>\n<text id=\"svg_2275c6ce7e20\" x=\"357\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas:</text>\n<g id=\"VAL_7669d413254c\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"12\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_2c32785963b3\" x=\"439\" y=\"316\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_b9f15e6c9e2c\" x=\"445\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<g id=\"VAL_4e7bb5cc3655\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"12\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_259d299cd285\" x=\"499\" y=\"316\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_0f77f6e2ec12\" x=\"505\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">pH</text>\n<rect id=\"svg_fb914a255b08\" x=\"654\" y=\"76\" width=\"295\" height=\"250\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_51c33d9b9578\" x=\"672\" y=\"108\" font-family=\"sans-serif\" font-size=\"17\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sisa klor bebas</text>\n<g id=\"GSE_317c9b279393\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_9497ee3be0fa\" cx=\"923\" cy=\"102\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_4e08ef3efd44\" x=\"907\" y=\"107\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">valid</text>\n<g id=\"VAL_2c697ad0779d\" type=\"svg-ext-value\" fill=\"#1b2a33\" stroke=\"#1b2a33\" font-size=\"52\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"middle\"><text id=\"VAL_104aee0a6476\" x=\"801.5\" y=\"194\" fill=\"#1b2a33\" stroke=\"#1b2a33\" stroke-width=\"0\" font-size=\"52\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_4772b41e160d\" x=\"801.5\" y=\"222\" font-family=\"sans-serif\" font-size=\"16\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"middle\" xml:space=\"preserve\">mg/L</text>\n<g id=\"GSE_cac886d446f5\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_97b2c653aff0\" cx=\"682\" cy=\"258\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_6094b13ef842\" x=\"700\" y=\"263\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Rendah</text>\n<g id=\"GSE_532a71e2dced\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_52a8432d1549\" cx=\"784\" cy=\"258\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_a81c18ea3256\" x=\"802\" y=\"263\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tinggi</text>\n<g id=\"GSE_1d741b3f1c4d\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_9dabbedd2a4f\" cx=\"682\" cy=\"292\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_c0702f463bc2\" x=\"700\" y=\"297\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sinyal 4-20 mA</text>\n<text id=\"svg_8dddf5aa30df\" x=\"672\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas:</text>\n<g id=\"VAL_135bf94f8bbd\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"12\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_1b66ec7e8370\" x=\"754\" y=\"316\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_1c89185d47a9\" x=\"760\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<g id=\"VAL_6e74ea72ac37\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"12\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_63935664302b\" x=\"814\" y=\"316\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_8f701679bb59\" x=\"820\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">mg/L</text>\n<rect id=\"svg_6a7e6874598d\" x=\"969\" y=\"76\" width=\"295\" height=\"250\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_5527eddb53b7\" x=\"987\" y=\"108\" font-family=\"sans-serif\" font-size=\"17\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Turbidity</text>\n<g id=\"GSE_1aa0384e25b0\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_1d2b6367bbd3\" cx=\"1238\" cy=\"102\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_c0f340d25d35\" x=\"1222\" y=\"107\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">valid</text>\n<g id=\"VAL_6ec054e0253d\" type=\"svg-ext-value\" fill=\"#1b2a33\" stroke=\"#1b2a33\" font-size=\"52\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"middle\"><text id=\"VAL_3d4c118ad2d6\" x=\"1116.5\" y=\"194\" fill=\"#1b2a33\" stroke=\"#1b2a33\" stroke-width=\"0\" font-size=\"52\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"middle\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_1f7c0609c7fb\" x=\"1116.5\" y=\"222\" font-family=\"sans-serif\" font-size=\"16\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"middle\" xml:space=\"preserve\">NTU</text>\n<g id=\"GSE_35ed185722a3\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_9f3ef8ae9ccc\" cx=\"1099\" cy=\"258\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_b3215c61dd6c\" x=\"1117\" y=\"263\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tinggi</text>\n<g id=\"GSE_d0f2d8afd860\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_50972649dfb1\" cx=\"997\" cy=\"292\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_91c244455a66\" x=\"1015\" y=\"297\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sinyal 4-20 mA</text>\n<text id=\"svg_680e66ca8ddc\" x=\"987\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas:</text>\n<g id=\"VAL_df0136de6b8c\" type=\"svg-ext-value\" fill=\"#5d6d75\" stroke=\"#5d6d75\" font-size=\"12\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_e28401bac8ef\" x=\"1129\" y=\"316\" fill=\"#5d6d75\" stroke=\"#5d6d75\" stroke-width=\"0\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_b1400cc3aaea\" x=\"1135\" y=\"316\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">NTU</text>\n<rect id=\"svg_4a7f8bad85b0\" x=\"24\" y=\"350\" width=\"610\" height=\"270\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_7f1a4197fa41\" x=\"42\" y=\"382\" font-family=\"sans-serif\" font-size=\"17\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Aliran sampel BAMa &amp; dosing</text>\n<g id=\"GSE_71aaeea44163\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_38d0356d3b7d\" cx=\"56\" cy=\"420\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_3869427f6b83\" x=\"76\" y=\"425\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Reed switch aliran (%I0.0)</text>\n<g id=\"GSE_03cc99c14e57\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_69b5f6e7e4fd\" cx=\"56\" cy=\"454\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_4fb2d0768599\" x=\"76\" y=\"459\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Aliran stabil / pengukuran pH &amp; klor valid</text>\n<g id=\"GSE_6d4705c39a9c\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_84e007b9d4fc\" cx=\"56\" cy=\"488\" rx=\"11\" ry=\"11\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_dd7432242677\" x=\"76\" y=\"493\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Alarm aliran sampel hilang</text>\n<text id=\"svg_004045350577\" x=\"42\" y=\"532\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Controller</text>\n<text id=\"svg_89eb093099b0\" x=\"250\" y=\"532\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">PAUSE</text>\n<text id=\"svg_c3586dcecd7e\" x=\"330\" y=\"532\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Pause manual (kalibrasi)</text>\n<text id=\"svg_fce5936488ea\" x=\"42\" y=\"561\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb pH #1</text>\n<g id=\"GSE_5c57ea5b019c\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_9372c33f1125\" cx=\"268\" cy=\"556\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<g id=\"GSE_18bad09e7b46\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_c966691e6863\" cx=\"340\" cy=\"556\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<g id=\"HXB_50c02afbc213\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_610c05db3d55\" stroke-width=\"0\" x=\"360\" y=\"546\" width=\"120\" height=\"20\" fill=\"#7a8790ff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_11a1f26a5539\" x=\"360\" y=\"546\" height=\"20\" width=\"120\"><BUTTON id=\"B-HXB_7f482051279a\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(122, 135, 144); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Toggle pause</BUTTON></foreignObject></g>\n<text id=\"svg_e455322a6c77\" x=\"42\" y=\"583\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb pH #2</text>\n<g id=\"GSE_87c3c3305b1d\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_8b015981bd18\" cx=\"268\" cy=\"578\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<g id=\"GSE_a9d1f5f69779\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_03bca2da5008\" cx=\"340\" cy=\"578\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<g id=\"HXB_72bed9e68d40\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_1b7d50fc0a22\" stroke-width=\"0\" x=\"360\" y=\"568\" width=\"120\" height=\"20\" fill=\"#7a8790ff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_790ea2d2eb72\" x=\"360\" y=\"568\" height=\"20\" width=\"120\"><BUTTON id=\"B-HXB_cfb9b43d3525\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(122, 135, 144); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Toggle pause</BUTTON></foreignObject></g>\n<text id=\"svg_8ffa9bd7d83a\" x=\"42\" y=\"605\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb klorin</text>\n<g id=\"GSE_6cef2fb59a1f\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_bf11a0af7b15\" cx=\"268\" cy=\"600\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<g id=\"GSE_c54556396141\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_91d185707ca8\" cx=\"340\" cy=\"600\" rx=\"8\" ry=\"8\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<g id=\"HXB_d89d391a9726\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_9403be81b139\" stroke-width=\"0\" x=\"360\" y=\"590\" width=\"120\" height=\"20\" fill=\"#7a8790ff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_52a5bc2d4193\" x=\"360\" y=\"590\" height=\"20\" width=\"120\"><BUTTON id=\"B-HXB_85ae3a490821\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(122, 135, 144); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Toggle pause</BUTTON></foreignObject></g>\n<rect id=\"svg_1209b9516ca9\" x=\"654\" y=\"350\" width=\"602\" height=\"270\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_a623cf2bf63a\" x=\"672\" y=\"382\" font-family=\"sans-serif\" font-size=\"17\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Ringkasan alarm</text>\n<g id=\"GSE_deb9df04ac3d\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_1a02ddaafcc4\" cx=\"686\" cy=\"420\" rx=\"14\" ry=\"14\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_dc12be16e53a\" x=\"710\" y=\"425\" font-family=\"sans-serif\" font-size=\"15\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Ada alarm aktif</text>\n<g id=\"GSE_32b5f06d2f9c\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_b5477a9809ae\" cx=\"686\" cy=\"458\" rx=\"14\" ry=\"14\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_0677892ade47\" x=\"710\" y=\"463\" font-family=\"sans-serif\" font-size=\"15\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Alarm baru belum di-ACK (buzzer)</text>\n<g id=\"GSE_14fb8b51033e\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_004f198b4ff8\" cx=\"686\" cy=\"496\" rx=\"14\" ry=\"14\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_c7058440e0ef\" x=\"710\" y=\"501\" font-family=\"sans-serif\" font-size=\"15\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Kualitas air normal</text>\n<g id=\"HXB_f9ab68d95f71\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_007a4297a2bf\" stroke-width=\"0\" x=\"1050\" y=\"406\" width=\"180\" height=\"44\" fill=\"#d93a2bff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_8d7c13b02ec3\" x=\"1050\" y=\"406\" height=\"44\" width=\"180\"><BUTTON id=\"B-HXB_07ca3acbf306\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(217, 58, 43); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">ACK / Silence</BUTTON></foreignObject></g>\n<g id=\"GSE_96ad5927e1eb\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_f4f90da79c58\" cx=\"686\" cy=\"546\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_b737c070d422\" x=\"702\" y=\"551\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb pH #1</text>\n<g id=\"GSE_f38e9659d085\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_c03a6209f6a2\" cx=\"876\" cy=\"546\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_08b824ed2b0c\" x=\"892\" y=\"551\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb pH #2</text>\n<g id=\"GSE_6a55bbffb24f\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_3ef89d0f6493\" cx=\"1066\" cy=\"546\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_a9d446e9753b\" x=\"1082\" y=\"551\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb klorin</text>\n<g id=\"GSE_861baba6cf22\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_d2c51d1fa6ce\" cx=\"686\" cy=\"578\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_f746cb4104bb\" x=\"702\" y=\"583\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">TUC 5 alarm 1</text>\n<g id=\"GSE_6115ed79b1ec\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_ae61e0213c2a\" cx=\"876\" cy=\"578\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_aea8c5c96f0f\" x=\"892\" y=\"583\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">TUC 5 fault</text>\n<g id=\"GSE_5ea1e87cc6ab\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_728111f7b73a\" cx=\"1066\" cy=\"578\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_19b101a98281\" x=\"1082\" y=\"583\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Selisih pH</text>\n<text id=\"svg_159f77847f60\" x=\"24\" y=\"652\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Detail dan riwayat alarm: ikon lonceng di header. Nilai dibaca tiap 1 s dari PLC lewat Modbus TCP.</text>\n<g id=\"HXB_432c6ebf401a\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_87f7e404b120\" stroke-width=\"0\" x=\"24\" y=\"670\" width=\"136\" height=\"40\" fill=\"#1d6f9aff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_d21032d53472\" x=\"24\" y=\"670\" height=\"40\" width=\"136\"><BUTTON id=\"B-HXB_fe45ba4330b2\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(29, 111, 154); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Trend</BUTTON></foreignObject></g>\n<g id=\"HXB_5359abbcb41d\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_225cfb65d1b6\" stroke-width=\"0\" x=\"174\" y=\"670\" width=\"136\" height=\"40\" fill=\"#1d6f9aff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_89739ea14a14\" x=\"174\" y=\"670\" height=\"40\" width=\"136\"><BUTTON id=\"B-HXB_2eedfce842d5\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(29, 111, 154); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Setpoint</BUTTON></foreignObject></g>\n<g id=\"HXB_393d6ef47def\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_617fd59e50f7\" stroke-width=\"0\" x=\"324\" y=\"670\" width=\"136\" height=\"40\" fill=\"#1d6f9aff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_6d186efd0fd2\" x=\"324\" y=\"670\" height=\"40\" width=\"136\"><BUTTON id=\"B-HXB_1a10d715c193\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(29, 111, 154); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">I/O &amp; status</BUTTON></foreignObject></g></g></svg>",
+    "property": {
+     "events": []
+    }
+   },
+   {
+    "id": "v_kb_trend",
+    "name": "Trend",
+    "type": "svg",
+    "profile": {
+     "width": 1280,
+     "height": 760,
+     "bkcolor": "#eef2f4",
+     "margin": 10,
+     "align": "topCenter",
+     "gridType": "fixed",
+     "viewRenderDelay": 0
+    },
+    "items": {
+     "GSE_508d95cb561f": {
+      "id": "GSE_508d95cb561f",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Heartbeat PLC",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_0d895a0a05a7",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#2b5466"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#7be495"
+        }
+       ]
+      }
+     },
+     "HXC_57756023975e": {
+      "id": "HXC_57756023975e",
+      "type": "svg-ext-html_chart",
+      "name": "Trend pH",
+      "label": "HtmlChart",
+      "property": {
+       "id": "c_kb_ph",
+       "type": "realtime1",
+       "options": {
+        "realtime": 60,
+        "refreshInterval": 1,
+        "lastRange": "last8h",
+        "dateFormat": "dd/MM/yyyy",
+        "timeFormat": "hh:mm:ss",
+        "legendMode": "always",
+        "fontFamily": "sans-serif",
+        "titleHeight": 0,
+        "axisLabelFontSize": 12,
+        "colorBackground": "rgba(0,0,0,0)",
+        "axisLineColor": "rgba(0,0,0,1)",
+        "axisLabelColor": "rgba(0,0,0,1)",
+        "gridLineColor": "rgba(0,0,0,0.2)",
+        "yAxisLegend": true
+       }
+      }
+     },
+     "HXC_42187867f6d7": {
+      "id": "HXC_42187867f6d7",
+      "type": "svg-ext-html_chart",
+      "name": "Trend klor & turbidity",
+      "label": "HtmlChart",
+      "property": {
+       "id": "c_kb_kualitas",
+       "type": "realtime1",
+       "options": {
+        "realtime": 60,
+        "refreshInterval": 1,
+        "lastRange": "last8h",
+        "dateFormat": "dd/MM/yyyy",
+        "timeFormat": "hh:mm:ss",
+        "legendMode": "always",
+        "fontFamily": "sans-serif",
+        "titleHeight": 0,
+        "axisLabelFontSize": 12,
+        "colorBackground": "rgba(0,0,0,0)",
+        "axisLineColor": "rgba(0,0,0,1)",
+        "axisLabelColor": "rgba(0,0,0,1)",
+        "gridLineColor": "rgba(0,0,0,0.2)",
+        "yAxisLegend": true
+       }
+      }
+     },
+     "HXB_1c7977ea749f": {
+      "id": "HXB_1c7977ea749f",
+      "type": "svg-ext-html_button",
+      "name": "Ke Overview",
+      "label": "HtmlButton",
+      "property": {
+       "events": [
+        {
+         "type": "click",
+         "action": "onpage",
+         "actparam": "v_kb_overview",
+         "actoptions": {}
+        }
+       ],
+       "actions": [],
+       "text": "Overview"
+      }
+     }
+    },
+    "variables": {},
+    "svgcontent": "<svg width=\"1280\" height=\"760\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g><title>Layer 1</title><rect id=\"svg_bg_v_kb_trend\" x=\"0\" y=\"0\" width=\"1280\" height=\"760\" fill=\"#eef2f4\" stroke-width=\"0\"/><rect id=\"svg_93d5918f2ae8\" x=\"0\" y=\"0\" width=\"1280\" height=\"56\" rx=\"0\" fill=\"#123a4f\" stroke=\"#123a4f\" stroke-width=\"1\"/>\n<text id=\"svg_8a6484559904\" x=\"24\" y=\"36\" font-family=\"sans-serif\" font-size=\"22\" font-weight=\"bold\" fill=\"#ffffff\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Trend kualitas air</text>\n<text id=\"svg_6edfd7d992a2\" x=\"1256\" y=\"34\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#cfe3ec\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">Realtime 60 menit · riwayat dari DAQ</text>\n<g id=\"GSE_508d95cb561f\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_7148c58b2d70\" cx=\"860\" cy=\"28\" rx=\"8\" ry=\"8\" fill=\"#2b5466\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_89dbe685e9ed\" x=\"876\" y=\"33\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#cfe3ec\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">PLC</text>\n<rect id=\"svg_514a7cc526fd\" x=\"24\" y=\"76\" width=\"1232\" height=\"300\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_b93f4617b118\" x=\"42\" y=\"104\" font-family=\"sans-serif\" font-size=\"16\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">pH #1 / pH #2</text>\n<g id=\"HXC_57756023975e\" type=\"svg-ext-html_chart\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_939acf628b59\" stroke-width=\"0\" x=\"36\" y=\"116\" width=\"1208\" height=\"250\" fill=\"#ffffff\"/><foreignObject id=\"H-HXC_73607cd07f68\" x=\"36\" y=\"116\" height=\"250\" width=\"1208\"><DIV id=\"D-HXC_d3df3ffa3e9f\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke;\"></DIV></foreignObject></g>\n<rect id=\"svg_4080eaff2d01\" x=\"24\" y=\"392\" width=\"1232\" height=\"300\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_44707429d3f3\" x=\"42\" y=\"420\" font-family=\"sans-serif\" font-size=\"16\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sisa klor (mg/L) / Turbidity (NTU)</text>\n<g id=\"HXC_42187867f6d7\" type=\"svg-ext-html_chart\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_8b8b91b5dd79\" stroke-width=\"0\" x=\"36\" y=\"432\" width=\"1208\" height=\"250\" fill=\"#ffffff\"/><foreignObject id=\"H-HXC_73aea08c0bbe\" x=\"36\" y=\"432\" height=\"250\" width=\"1208\"><DIV id=\"D-HXC_497cd42063c6\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke;\"></DIV></foreignObject></g>\n<g id=\"HXB_1c7977ea749f\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_71035a28f0a9\" stroke-width=\"0\" x=\"24\" y=\"706\" width=\"136\" height=\"40\" fill=\"#1d6f9aff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_941e2629d5fe\" x=\"24\" y=\"706\" height=\"40\" width=\"136\"><BUTTON id=\"B-HXB_1d3517c35860\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(29, 111, 154); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Overview</BUTTON></foreignObject></g></g></svg>",
+    "property": {
+     "events": []
+    }
+   },
+   {
+    "id": "v_kb_setpoint",
+    "name": "Setpoint",
+    "type": "svg",
+    "profile": {
+     "width": 1280,
+     "height": 760,
+     "bkcolor": "#eef2f4",
+     "margin": 10,
+     "align": "topCenter",
+     "gridType": "fixed",
+     "viewRenderDelay": 0
+    },
+    "items": {
+     "GSE_07d9c2648197": {
+      "id": "GSE_07d9c2648197",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Heartbeat PLC",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_0d895a0a05a7",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#2b5466"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#7be495"
+        }
+       ]
+      }
+     },
+     "HXI_4f63049cc99d": {
+      "id": "HXI_4f63049cc99d",
+      "type": "svg-ext-html_input",
+      "name": "P_T_FLOW_ON",
+      "label": "HtmlInput",
+      "property": {
+       "variableId": "t_6fbd1e8ba98f",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "options": {
+        "updated": true,
+        "numeric": true,
+        "type": "number",
+        "updatedEsc": false,
+        "selectOnClick": true,
+        "actionOnEsc": "update",
+        "min": 0,
+        "max": 3600
+       }
+      }
+     },
+     "HXI_e37f46251766": {
+      "id": "HXI_e37f46251766",
+      "type": "svg-ext-html_input",
+      "name": "P_T_FLOW_OFF",
+      "label": "HtmlInput",
+      "property": {
+       "variableId": "t_31deeac7d004",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "options": {
+        "updated": true,
+        "numeric": true,
+        "type": "number",
+        "updatedEsc": false,
+        "selectOnClick": true,
+        "actionOnEsc": "update",
+        "min": 0,
+        "max": 3600
+       }
+      }
+     },
+     "HXI_00c2caef9142": {
+      "id": "HXI_00c2caef9142",
+      "type": "svg-ext-html_input",
+      "name": "P_T_ALM",
+      "label": "HtmlInput",
+      "property": {
+       "variableId": "t_23b4a8380111",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "options": {
+        "updated": true,
+        "numeric": true,
+        "type": "number",
+        "updatedEsc": false,
+        "selectOnClick": true,
+        "actionOnEsc": "update",
+        "min": 0,
+        "max": 3600
+       }
+      }
+     },
+     "HXI_c538093c06e6": {
+      "id": "HXI_c538093c06e6",
+      "type": "svg-ext-html_input",
+      "name": "P_PH_L",
+      "label": "HtmlInput",
+      "property": {
+       "variableId": "t_e8178d499282",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "options": {
+        "updated": true,
+        "numeric": true,
+        "type": "number",
+        "updatedEsc": false,
+        "selectOnClick": true,
+        "actionOnEsc": "update",
+        "min": 0,
+        "max": 14
+       }
+      }
+     },
+     "HXI_a5e2e3050afd": {
+      "id": "HXI_a5e2e3050afd",
+      "type": "svg-ext-html_input",
+      "name": "P_PH_H",
+      "label": "HtmlInput",
+      "property": {
+       "variableId": "t_4ace859a99aa",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "options": {
+        "updated": true,
+        "numeric": true,
+        "type": "number",
+        "updatedEsc": false,
+        "selectOnClick": true,
+        "actionOnEsc": "update",
+        "min": 0,
+        "max": 14
+       }
+      }
+     },
+     "HXI_095ee81871eb": {
+      "id": "HXI_095ee81871eb",
+      "type": "svg-ext-html_input",
+      "name": "P_CL_L",
+      "label": "HtmlInput",
+      "property": {
+       "variableId": "t_f52c2e6e8029",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "options": {
+        "updated": true,
+        "numeric": true,
+        "type": "number",
+        "updatedEsc": false,
+        "selectOnClick": true,
+        "actionOnEsc": "update",
+        "min": 0,
+        "max": 5
+       }
+      }
+     },
+     "HXI_4e10ccd6b37e": {
+      "id": "HXI_4e10ccd6b37e",
+      "type": "svg-ext-html_input",
+      "name": "P_CL_H",
+      "label": "HtmlInput",
+      "property": {
+       "variableId": "t_d34d6b83f985",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "options": {
+        "updated": true,
+        "numeric": true,
+        "type": "number",
+        "updatedEsc": false,
+        "selectOnClick": true,
+        "actionOnEsc": "update",
+        "min": 0,
+        "max": 5
+       }
+      }
+     },
+     "HXI_c6e95b110522": {
+      "id": "HXI_c6e95b110522",
+      "type": "svg-ext-html_input",
+      "name": "P_TU_H",
+      "label": "HtmlInput",
+      "property": {
+       "variableId": "t_34554a40a699",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "options": {
+        "updated": true,
+        "numeric": true,
+        "type": "number",
+        "updatedEsc": false,
+        "selectOnClick": true,
+        "actionOnEsc": "update",
+        "min": 0,
+        "max": 10
+       }
+      }
+     },
+     "HXI_27c99afa8ef3": {
+      "id": "HXI_27c99afa8ef3",
+      "type": "svg-ext-html_input",
+      "name": "P_PH_DIFF",
+      "label": "HtmlInput",
+      "property": {
+       "variableId": "t_b52c971d7800",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "options": {
+        "updated": true,
+        "numeric": true,
+        "type": "number",
+        "updatedEsc": false,
+        "selectOnClick": true,
+        "actionOnEsc": "update",
+        "min": 0,
+        "max": 14
+       }
+      }
+     },
+     "HXI_fd6997162788": {
+      "id": "HXI_fd6997162788",
+      "type": "svg-ext-html_input",
+      "name": "P_TU_SRC",
+      "label": "HtmlInput",
+      "property": {
+       "variableId": "t_317ad96041e7",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "options": {
+        "updated": true,
+        "numeric": true,
+        "type": "number",
+        "updatedEsc": false,
+        "selectOnClick": true,
+        "actionOnEsc": "update",
+        "min": 0,
+        "max": 1
+       }
+      }
+     },
+     "HXI_a37cc61ea214": {
+      "id": "HXI_a37cc61ea214",
+      "type": "svg-ext-html_input",
+      "name": "P_T_STARTUP",
+      "label": "HtmlInput",
+      "property": {
+       "variableId": "t_e375de439f59",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "options": {
+        "updated": true,
+        "numeric": true,
+        "type": "number",
+        "updatedEsc": false,
+        "selectOnClick": true,
+        "actionOnEsc": "update",
+        "min": 0,
+        "max": 3600
+       }
+      }
+     },
+     "HXB_01992ce0ca18": {
+      "id": "HXB_01992ce0ca18",
+      "type": "svg-ext-html_button",
+      "name": "Ke Overview",
+      "label": "HtmlButton",
+      "property": {
+       "events": [
+        {
+         "type": "click",
+         "action": "onpage",
+         "actparam": "v_kb_overview",
+         "actoptions": {}
+        }
+       ],
+       "actions": [],
+       "text": "Overview"
+      }
+     }
+    },
+    "variables": {},
+    "svgcontent": "<svg width=\"1280\" height=\"760\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g><title>Layer 1</title><rect id=\"svg_bg_v_kb_setpoint\" x=\"0\" y=\"0\" width=\"1280\" height=\"760\" fill=\"#eef2f4\" stroke-width=\"0\"/><rect id=\"svg_97722fbef58a\" x=\"0\" y=\"0\" width=\"1280\" height=\"56\" rx=\"0\" fill=\"#123a4f\" stroke=\"#123a4f\" stroke-width=\"1\"/>\n<text id=\"svg_80e467942b68\" x=\"24\" y=\"36\" font-family=\"sans-serif\" font-size=\"22\" font-weight=\"bold\" fill=\"#ffffff\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Setpoint &amp; parameter</text>\n<text id=\"svg_25bb87b65031\" x=\"1256\" y=\"34\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#cfe3ec\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">Ditulis langsung ke %MW0-%MW10 (retentive)</text>\n<g id=\"GSE_07d9c2648197\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_b181c606145a\" cx=\"860\" cy=\"28\" rx=\"8\" ry=\"8\" fill=\"#2b5466\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_accdcd56522d\" x=\"876\" y=\"33\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#cfe3ec\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">PLC</text>\n<rect id=\"svg_cbd7ad789950\" x=\"24\" y=\"76\" width=\"1232\" height=\"610\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_a1e8b378a010\" x=\"42\" y=\"108\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Parameter</text>\n<text id=\"svg_a05fc11ebff1\" x=\"420\" y=\"108\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Nilai</text>\n<text id=\"svg_3b862350f8dd\" x=\"560\" y=\"108\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Satuan</text>\n<text id=\"svg_9fd076ec422d\" x=\"680\" y=\"108\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Keterangan</text>\n<text id=\"svg_635f1e072601\" x=\"42\" y=\"150\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_T_FLOW_ON</text>\n<text id=\"svg_2d6c0d422c0d\" x=\"42\" y=\"166\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW0 · default 60</text>\n<g id=\"HXI_4f63049cc99d\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_f8c41c88afde\" x=\"420\" y=\"134\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_0434ac31398a\" x=\"420\" y=\"134\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_8febdde34a60\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_bdf066137c60\" x=\"560\" y=\"154\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">s</text>\n<text id=\"svg_d5e5d856198a\" x=\"680\" y=\"154\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Aliran sampel harus stabil selama ini sebelum pengukuran pH/Cl dianggap vali…</text>\n<text id=\"svg_7909d303dc52\" x=\"42\" y=\"198\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_T_FLOW_OFF</text>\n<text id=\"svg_601bda819bc6\" x=\"42\" y=\"214\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW1 · default 10</text>\n<g id=\"HXI_e37f46251766\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_b6d5fa48c1cc\" x=\"420\" y=\"182\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_119aa6cc30b5\" x=\"420\" y=\"182\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_0a37d9945ade\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_158f1da6395e\" x=\"560\" y=\"202\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">s</text>\n<text id=\"svg_5d4df6de5ef2\" x=\"680\" y=\"202\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tunda alarm aliran sampel hilang</text>\n<text id=\"svg_56e20281f0ed\" x=\"42\" y=\"246\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_T_ALM</text>\n<text id=\"svg_8c68989c9d3a\" x=\"42\" y=\"262\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW2 · default 60</text>\n<g id=\"HXI_00c2caef9142\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_2364434ce988\" x=\"420\" y=\"230\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_a1d1c30f151a\" x=\"420\" y=\"230\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_e9004d8886c2\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_f8f134002e43\" x=\"560\" y=\"250\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">s</text>\n<text id=\"svg_c4fa08e4de49\" x=\"680\" y=\"250\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tunda alarm kualitas air (hindari alarm sesaat)</text>\n<text id=\"svg_11dc5e05fe1f\" x=\"42\" y=\"294\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_PH_L</text>\n<text id=\"svg_74a5f9a33daa\" x=\"42\" y=\"310\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW3 · default 6.5</text>\n<g id=\"HXI_c538093c06e6\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_9979445eed9d\" x=\"420\" y=\"278\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_ba1a271e8614\" x=\"420\" y=\"278\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_437e61d687e2\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_1b6a07aeefa7\" x=\"560\" y=\"298\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<text id=\"svg_9f4742ab6f10\" x=\"680\" y=\"298\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas pH rendah (Permenkes 2/2023: 6,5)</text>\n<text id=\"svg_f69a4b6e0f6f\" x=\"42\" y=\"342\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_PH_H</text>\n<text id=\"svg_a18d8b61626e\" x=\"42\" y=\"358\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW4 · default 8.5</text>\n<g id=\"HXI_a5e2e3050afd\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_600a44d898a1\" x=\"420\" y=\"326\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_fd04bb5d944e\" x=\"420\" y=\"326\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_9f99b808b71b\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_4227c5306131\" x=\"560\" y=\"346\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<text id=\"svg_177d28e4fb14\" x=\"680\" y=\"346\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas pH tinggi (Permenkes 2/2023: 8,5)</text>\n<text id=\"svg_c93d1b6d6e47\" x=\"42\" y=\"390\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_CL_L</text>\n<text id=\"svg_a590839089c7\" x=\"42\" y=\"406\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW5 · default 0.2</text>\n<g id=\"HXI_095ee81871eb\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_90749fb4a364\" x=\"420\" y=\"374\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_e4a342c2ac21\" x=\"420\" y=\"374\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_cb901c3ed719\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_8a12372d1e18\" x=\"560\" y=\"394\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">mg/L</text>\n<text id=\"svg_380ac8c57f46\" x=\"680\" y=\"394\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas sisa klor rendah</text>\n<text id=\"svg_3697806137d5\" x=\"42\" y=\"438\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_CL_H</text>\n<text id=\"svg_95ed3481a075\" x=\"42\" y=\"454\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW6 · default 1</text>\n<g id=\"HXI_4e10ccd6b37e\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_251ea8d511bb\" x=\"420\" y=\"422\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_2a6d39863a83\" x=\"420\" y=\"422\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_6be5a8e0a457\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_df4ac1be500c\" x=\"560\" y=\"442\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">mg/L</text>\n<text id=\"svg_a7b5b6a69bfc\" x=\"680\" y=\"442\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas sisa klor tinggi</text>\n<text id=\"svg_e1b1d531b551\" x=\"42\" y=\"486\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_TU_H</text>\n<text id=\"svg_c34955fdca4a\" x=\"42\" y=\"502\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW7 · default 3</text>\n<g id=\"HXI_c6e95b110522\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_d5b56d019df6\" x=\"420\" y=\"470\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_6b79dc449045\" x=\"420\" y=\"470\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_ceb2d05da402\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_306f449366c4\" x=\"560\" y=\"490\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">NTU</text>\n<text id=\"svg_7fff290f558e\" x=\"680\" y=\"490\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Batas turbidity tinggi (Permenkes 2/2023: &lt; 3 NTU)</text>\n<text id=\"svg_4d5048335a44\" x=\"42\" y=\"534\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_PH_DIFF</text>\n<text id=\"svg_b04790ac2978\" x=\"42\" y=\"550\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW8 · default 0</text>\n<g id=\"HXI_27c99afa8ef3\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_8685fc7aba77\" x=\"420\" y=\"518\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_1265cb529f1f\" x=\"420\" y=\"518\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_ff203b97ee87\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_fc53cb7cf3c7\" x=\"560\" y=\"538\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<text id=\"svg_03429a71d798\" x=\"680\" y=\"538\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Alarm selisih pH #1 vs pH #2 (0 = mati; pakai bila kedua sensor di titik yan…</text>\n<text id=\"svg_678c2ebf6f8e\" x=\"42\" y=\"582\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_TU_SRC</text>\n<text id=\"svg_0f2b29439ac6\" x=\"42\" y=\"598\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW9 · default 0</text>\n<g id=\"HXI_fd6997162788\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_3bc2a8e61d6d\" x=\"420\" y=\"566\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_2d0da968500f\" x=\"420\" y=\"566\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_7d2e15d68970\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_e85addd56089\" x=\"560\" y=\"586\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">–</text>\n<text id=\"svg_2e9480173c7c\" x=\"680\" y=\"586\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sumber turbidity: 0 = 4-20 mA (%IW1.3), 1 = Modbus RTU SL1</text>\n<text id=\"svg_5a033e7769c9\" x=\"42\" y=\"630\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">P_T_STARTUP</text>\n<text id=\"svg_84888f9e8dbc\" x=\"42\" y=\"646\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%MW10 · default 30</text>\n<g id=\"HXI_a37cc61ea214\" type=\"svg-ext-html_input\" stroke=\"#000000\" text-anchor=\"right\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f1f1f1ff\"><rect id=\"svg_4ee7c16acf38\" x=\"420\" y=\"614\" width=\"120\" height=\"30\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/><foreignObject id=\"H-HXI_196121289af0\" x=\"420\" y=\"614\" width=\"120\" height=\"30\"><INPUT id=\"I-HXI_9dea0178b083\" type=\"text\" style=\"width: calc(100% - 7px); height: calc(100% - 7px); text-align: right; border: unset; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-size: 14px; vector-effect: non-scaling-stroke;\"/></foreignObject></g>\n<text id=\"svg_f9f93e2e4f59\" x=\"560\" y=\"634\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">s</text>\n<text id=\"svg_7bb4ba3de5f7\" x=\"680\" y=\"634\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tunda setelah PLC RUN sebelum alarm kualitas aktif</text>\n<g id=\"HXB_01992ce0ca18\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_447845644837\" stroke-width=\"0\" x=\"24\" y=\"700\" width=\"136\" height=\"40\" fill=\"#1d6f9aff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_8269dc1a5066\" x=\"24\" y=\"700\" height=\"40\" width=\"136\"><BUTTON id=\"B-HXB_dc9d2b3a5c03\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(29, 111, 154); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Overview</BUTTON></foreignObject></g></g></svg>",
+    "property": {
+     "events": []
+    }
+   },
+   {
+    "id": "v_kb_io",
+    "name": "I/O & status",
+    "type": "svg",
+    "profile": {
+     "width": 1280,
+     "height": 760,
+     "bkcolor": "#eef2f4",
+     "margin": 10,
+     "align": "topCenter",
+     "gridType": "fixed",
+     "viewRenderDelay": 0
+    },
+    "items": {
+     "GSE_cf7347e5a3d7": {
+      "id": "GSE_cf7347e5a3d7",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "Heartbeat PLC",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_0d895a0a05a7",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#2b5466"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#7be495"
+        }
+       ]
+      }
+     },
+     "GSE_450b63a1d308": {
+      "id": "GSE_450b63a1d308",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "X_FS_SAMPLE",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_cd03d64a043c",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_e92a219cdf34": {
+      "id": "GSE_e92a219cdf34",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "X_PH1_OK",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_35243d19544a",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_a9f60d2e5a01": {
+      "id": "GSE_a9f60d2e5a01",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "X_PH2_OK",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_7ac2a0893f29",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_fc86f3acb28a": {
+      "id": "GSE_fc86f3acb28a",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "X_CL_OK",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_16b20f2857d7",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_2007285b89b7": {
+      "id": "GSE_2007285b89b7",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "X_TU_A1_OK",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_f75bea895808",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_2046387480d4": {
+      "id": "GSE_2046387480d4",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "X_TU_A2_OK",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_63fec3a9e432",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_0fa9af008984": {
+      "id": "GSE_0fa9af008984",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "X_PB_RESET",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_281333364725",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_256ed6ea0b9a": {
+      "id": "GSE_256ed6ea0b9a",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "X_Q_PAUSE_PH1",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_e436653aa746",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "GSE_6e5a08aa448e": {
+      "id": "GSE_6e5a08aa448e",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "X_Q_PAUSE_PH2",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_0d54d2673d4c",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "GSE_b9486a8c4ce6": {
+      "id": "GSE_b9486a8c4ce6",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "X_Q_PAUSE_CL",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_a7492a34756a",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "GSE_5455c1773811": {
+      "id": "GSE_5455c1773811",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "X_Q_HL_ALM",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_db896e9432ab",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "GSE_645a113d2d9a": {
+      "id": "GSE_645a113d2d9a",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "X_Q_BUZZER",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_e30ff31d2fff",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "GSE_615a7a556665": {
+      "id": "GSE_615a7a556665",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "X_Q_HL_OK",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_b4170de3ba64",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "GSE_ec31ca969315": {
+      "id": "GSE_ec31ca969315",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "X_Q_ALM_REMOTE",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_918926d7e648",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#f0a500"
+        }
+       ]
+      }
+     },
+     "GSE_261e85d8ddd6": {
+      "id": "GSE_261e85d8ddd6",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "STARTUP_DONE",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_1c97dfd7d6cf",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_2f0ccbfb4f25": {
+      "id": "GSE_2f0ccbfb4f25",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "FLOW_STAB",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_3c664353c80e",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_bffa1883bc9b": {
+      "id": "GSE_bffa1883bc9b",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "VALID_PH1",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_6c9f9d9585a5",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_6ecd7f2ea428": {
+      "id": "GSE_6ecd7f2ea428",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "VALID_PH2",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_c168f1649aa8",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_a51151380dfc": {
+      "id": "GSE_a51151380dfc",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "VALID_CL",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_5804665b9588",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_bede49f3449e": {
+      "id": "GSE_bede49f3449e",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "VALID_TU",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_8b031aff6c2e",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_590513c53f17": {
+      "id": "GSE_590513c53f17",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "QUALITY_OK",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_14fe094e5774",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "GSE_b017abce16f7": {
+      "id": "GSE_b017abce16f7",
+      "type": "svg-ext-gauge_semaphore",
+      "name": "PAUSE_ANY",
+      "label": "HtmlSemaphore",
+      "property": {
+       "variableId": "t_5c61bf493abd",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "range",
+         "min": 0,
+         "max": 0,
+         "color": "#b7c0c4"
+        },
+        {
+         "type": "range",
+         "min": 1,
+         "max": 1,
+         "color": "#2e9e4f"
+        }
+       ]
+      }
+     },
+     "VAL_1477895ff2d6": {
+      "id": "VAL_1477895ff2d6",
+      "type": "svg-ext-value",
+      "name": "TU_MA_PV",
+      "label": "Value",
+      "property": {
+       "variableId": "t_f2d646d057c8",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "output",
+         "min": 0,
+         "max": 0,
+         "text": "NTU",
+         "textId": null,
+         "fractionDigits": 2
+        }
+       ]
+      }
+     },
+     "VAL_bfe6408ba548": {
+      "id": "VAL_bfe6408ba548",
+      "type": "svg-ext-value",
+      "name": "TU_MB_PV",
+      "label": "Value",
+      "property": {
+       "variableId": "t_f856fae571d9",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "output",
+         "min": 0,
+         "max": 0,
+         "text": "NTU",
+         "textId": null,
+         "fractionDigits": 2
+        }
+       ]
+      }
+     },
+     "VAL_feced2115fb1": {
+      "id": "VAL_feced2115fb1",
+      "type": "svg-ext-value",
+      "name": "TU_STATUS",
+      "label": "Value",
+      "property": {
+       "variableId": "t_94f1b062b235",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "output",
+         "min": 0,
+         "max": 0,
+         "text": "",
+         "textId": null,
+         "fractionDigits": 0
+        }
+       ]
+      }
+     },
+     "VAL_3a3c43db58c6": {
+      "id": "VAL_3a3c43db58c6",
+      "type": "svg-ext-value",
+      "name": "TU_ERRW",
+      "label": "Value",
+      "property": {
+       "variableId": "t_c676f8298b8e",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "output",
+         "min": 0,
+         "max": 0,
+         "text": "",
+         "textId": null,
+         "fractionDigits": 0
+        }
+       ]
+      }
+     },
+     "VAL_5d657504f4d0": {
+      "id": "VAL_5d657504f4d0",
+      "type": "svg-ext-value",
+      "name": "MB_ERR_TU",
+      "label": "Value",
+      "property": {
+       "variableId": "t_e8282ca78668",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "output",
+         "min": 0,
+         "max": 0,
+         "text": "",
+         "textId": null,
+         "fractionDigits": 0
+        }
+       ]
+      }
+     },
+     "VAL_b077ace66ff9": {
+      "id": "VAL_b077ace66ff9",
+      "type": "svg-ext-value",
+      "name": "P_TU_SRC",
+      "label": "Value",
+      "property": {
+       "variableId": "t_317ad96041e7",
+       "variableSrc": "PLC_M221",
+       "events": [],
+       "actions": [],
+       "ranges": [
+        {
+         "type": "output",
+         "min": 0,
+         "max": 0,
+         "text": "",
+         "textId": null,
+         "fractionDigits": 0
+        }
+       ]
+      }
+     },
+     "HXB_9a983b77ad13": {
+      "id": "HXB_9a983b77ad13",
+      "type": "svg-ext-html_button",
+      "name": "Ke Overview",
+      "label": "HtmlButton",
+      "property": {
+       "events": [
+        {
+         "type": "click",
+         "action": "onpage",
+         "actparam": "v_kb_overview",
+         "actoptions": {}
+        }
+       ],
+       "actions": [],
+       "text": "Overview"
+      }
+     }
+    },
+    "variables": {},
+    "svgcontent": "<svg width=\"1280\" height=\"760\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g><title>Layer 1</title><rect id=\"svg_bg_v_kb_io\" x=\"0\" y=\"0\" width=\"1280\" height=\"760\" fill=\"#eef2f4\" stroke-width=\"0\"/><rect id=\"svg_46f99c5ae1ba\" x=\"0\" y=\"0\" width=\"1280\" height=\"56\" rx=\"0\" fill=\"#123a4f\" stroke=\"#123a4f\" stroke-width=\"1\"/>\n<text id=\"svg_a6dbe60c60fd\" x=\"24\" y=\"36\" font-family=\"sans-serif\" font-size=\"22\" font-weight=\"bold\" fill=\"#ffffff\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">I/O PLC &amp; status</text>\n<text id=\"svg_3ad50da23948\" x=\"1256\" y=\"34\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#cfe3ec\" stroke-width=\"0\" text-anchor=\"end\" xml:space=\"preserve\">Cermin %I/%Q di %M40-56 · status internal</text>\n<g id=\"GSE_cf7347e5a3d7\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_91da3ffa6165\" cx=\"860\" cy=\"28\" rx=\"8\" ry=\"8\" fill=\"#2b5466\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_6d2b77dc2b8c\" x=\"876\" y=\"33\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"normal\" fill=\"#cfe3ec\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">PLC</text>\n<rect id=\"svg_574eaee29e77\" x=\"24\" y=\"76\" width=\"400\" height=\"304\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_3400ad7fc7bb\" x=\"42\" y=\"104\" font-family=\"sans-serif\" font-size=\"16\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Digital input (TM221CE16R)</text>\n<g id=\"GSE_450b63a1d308\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_76bc5e4e2308\" cx=\"54\" cy=\"132\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_3a73e94c742a\" x=\"74\" y=\"137\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%I0.0  FS_SAMPLE</text>\n<text id=\"svg_be5049ccade5\" x=\"74\" y=\"151\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Reed switch BAMa (terminal 2-3): 1 = aliran sampel ada</text>\n<g id=\"GSE_e92a219cdf34\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_23501d95a804\" cx=\"54\" cy=\"168\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_4ac8891d4626\" x=\"74\" y=\"173\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%I0.1  PH1_OK</text>\n<text id=\"svg_89b6bc76e0c6\" x=\"74\" y=\"187\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb pH #1 relai alarm XR3: 1 = normal (wiring fail-safe)</text>\n<g id=\"GSE_a9f60d2e5a01\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_ec8aeec0c344\" cx=\"54\" cy=\"204\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_ffd7749dabce\" x=\"74\" y=\"209\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%I0.2  PH2_OK</text>\n<text id=\"svg_bbd523146201\" x=\"74\" y=\"223\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb pH #2 relai alarm XR3: 1 = normal</text>\n<g id=\"GSE_fc86f3acb28a\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_3721f64ee7be\" cx=\"54\" cy=\"240\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_a1e235d0b04a\" x=\"74\" y=\"245\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%I0.3  CL_OK</text>\n<text id=\"svg_1da57286644f\" x=\"74\" y=\"259\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">D1Cb klorin relai alarm XR3: 1 = normal</text>\n<g id=\"GSE_2007285b89b7\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_2444b8fd710f\" cx=\"54\" cy=\"276\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_1158e01ee618\" x=\"74\" y=\"281\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%I0.4  TU_A1_OK</text>\n<text id=\"svg_250df4b37081\" x=\"74\" y=\"295\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">TUC 5 Alarm 1 (turbidity tinggi): 1 = normal</text>\n<g id=\"GSE_2046387480d4\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_5d37fbe25734\" cx=\"54\" cy=\"312\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_7a9bb10ac207\" x=\"74\" y=\"317\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%I0.5  TU_A2_OK</text>\n<text id=\"svg_d6d15da63fcf\" x=\"74\" y=\"331\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">TUC 5 Alarm 2 (fault alat): 1 = normal</text>\n<g id=\"GSE_0fa9af008984\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_107a63add8a2\" cx=\"54\" cy=\"348\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_4ad4932a1fd7\" x=\"74\" y=\"353\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%I0.6  PB_RESET</text>\n<text id=\"svg_45723540b184\" x=\"74\" y=\"367\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tombol ACK/RESET di pintu panel (NO)</text>\n<rect id=\"svg_a7e5e0660e0f\" x=\"440\" y=\"76\" width=\"400\" height=\"304\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_bfb0627423c8\" x=\"458\" y=\"104\" font-family=\"sans-serif\" font-size=\"16\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Digital output (relay)</text>\n<g id=\"GSE_256ed6ea0b9a\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_c2f0480e7a5e\" cx=\"470\" cy=\"132\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_c98078c750b0\" x=\"490\" y=\"137\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%Q0.0  Q_PAUSE_PH1</text>\n<text id=\"svg_c23d057e4887\" x=\"490\" y=\"151\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">PAUSE dosing D1Cb pH #1 -&gt; X6 pin 3/4 (tutup = pause)</text>\n<g id=\"GSE_6e5a08aa448e\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_412f680e9da8\" cx=\"470\" cy=\"168\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_cb0b0498e87e\" x=\"490\" y=\"173\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%Q0.1  Q_PAUSE_PH2</text>\n<text id=\"svg_4d73d696d95a\" x=\"490\" y=\"187\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">PAUSE dosing D1Cb pH #2 -&gt; X6 pin 3/4 (tutup = pause)</text>\n<g id=\"GSE_b9486a8c4ce6\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_f917acfa5c52\" cx=\"470\" cy=\"204\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_2f7344709eaf\" x=\"490\" y=\"209\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%Q0.2  Q_PAUSE_CL</text>\n<text id=\"svg_4722b4575499\" x=\"490\" y=\"223\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">PAUSE dosing D1Cb klorin -&gt; X6 pin 3/4 (tutup = pause)</text>\n<g id=\"GSE_5455c1773811\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_c47748070aa3\" cx=\"470\" cy=\"240\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_1aef6b4b2abc\" x=\"490\" y=\"245\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%Q0.3  Q_HL_ALM</text>\n<text id=\"svg_a33851175e04\" x=\"490\" y=\"259\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Lampu ALARM merah (kedip = belum di-ACK)</text>\n<g id=\"GSE_645a113d2d9a\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_d7abd6e4fba6\" cx=\"470\" cy=\"276\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_8ba2caa8f77c\" x=\"490\" y=\"281\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%Q0.4  Q_BUZZER</text>\n<text id=\"svg_40f890d4c6a1\" x=\"490\" y=\"295\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Buzzer alarm</text>\n<g id=\"GSE_615a7a556665\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_39107585242c\" cx=\"470\" cy=\"312\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_9761f516a52b\" x=\"490\" y=\"317\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%Q0.5  Q_HL_OK</text>\n<text id=\"svg_e899d65a6d69\" x=\"490\" y=\"331\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Lampu hijau: tetap = kualitas normal, kedip = aliran sampel …</text>\n<g id=\"GSE_ec31ca969315\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_9a9a71df8f8e\" cx=\"470\" cy=\"348\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_b7842d90397b\" x=\"490\" y=\"353\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%Q0.6  Q_ALM_REMOTE</text>\n<text id=\"svg_3a6e0bd0e4f5\" x=\"490\" y=\"367\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Alarm umum ke SCADA/remote (ON = SEHAT, fail-safe)</text>\n<rect id=\"svg_a78ce603a77b\" x=\"856\" y=\"76\" width=\"400\" height=\"340\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_aafb2c2c83c6\" x=\"874\" y=\"104\" font-family=\"sans-serif\" font-size=\"16\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Status internal</text>\n<g id=\"GSE_261e85d8ddd6\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_dd5b94d61e37\" cx=\"886\" cy=\"132\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_06098ee8806f\" x=\"906\" y=\"137\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%M1  STARTUP_DONE</text>\n<text id=\"svg_9e6944df1601\" x=\"906\" y=\"151\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Tunda start-up selesai</text>\n<g id=\"GSE_2f0ccbfb4f25\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_c84477c163d3\" cx=\"886\" cy=\"168\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_a98a5f511e34\" x=\"906\" y=\"173\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%M2  FLOW_STAB</text>\n<text id=\"svg_3e6449dd617f\" x=\"906\" y=\"187\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Aliran sampel stabil &gt; P_T_FLOW_ON</text>\n<g id=\"GSE_bffa1883bc9b\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_cd3246782376\" cx=\"886\" cy=\"204\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_1b2758afd06f\" x=\"906\" y=\"209\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%M3  VALID_PH1</text>\n<text id=\"svg_5af0d35ce1e1\" x=\"906\" y=\"223\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Nilai pH #1 valid (aliran stabil, sinyal OK, tidak pause man…</text>\n<g id=\"GSE_6ecd7f2ea428\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_d8247dc517d7\" cx=\"886\" cy=\"240\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_4add1b24b778\" x=\"906\" y=\"245\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%M4  VALID_PH2</text>\n<text id=\"svg_f477531922fa\" x=\"906\" y=\"259\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Nilai pH #2 valid</text>\n<g id=\"GSE_a51151380dfc\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_e2b36ad44b1a\" cx=\"886\" cy=\"276\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_afe0b6e7892d\" x=\"906\" y=\"281\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%M5  VALID_CL</text>\n<text id=\"svg_631ed84954d6\" x=\"906\" y=\"295\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Nilai klorin valid</text>\n<g id=\"GSE_bede49f3449e\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_89371a8187db\" cx=\"886\" cy=\"312\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_44d187f9a866\" x=\"906\" y=\"317\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%M6  VALID_TU</text>\n<text id=\"svg_a7df78db68ec\" x=\"906\" y=\"331\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Nilai turbidity valid</text>\n<g id=\"GSE_590513c53f17\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_84a6ea536caa\" cx=\"886\" cy=\"348\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_e33f0a57d4a5\" x=\"906\" y=\"353\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%M12  QUALITY_OK</text>\n<text id=\"svg_55561bd269ad\" x=\"906\" y=\"367\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Semua nilai valid dan di dalam batas</text>\n<g id=\"GSE_b017abce16f7\" type=\"svg-ext-gauge_semaphore\" fill=\"#000000\" font-size=\"14\" stroke=\"#000000\" font-family=\"sans-serif\"><ellipse id=\"GSE_7a8264ee8fe2\" cx=\"886\" cy=\"384\" rx=\"9\" ry=\"9\" fill=\"#b7c0c4\" stroke=\"#4a5a62\" stroke-width=\"1\"/></g>\n<text id=\"svg_dcbbe56b0597\" x=\"906\" y=\"389\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">%M19  PAUSE_ANY</text>\n<text id=\"svg_35f6ea6b1875\" x=\"906\" y=\"403\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"normal\" fill=\"#5d6d75\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Ada dosing yang di-PAUSE (aliran hilang / manual)</text>\n<rect id=\"svg_ae09458e52b3\" x=\"856\" y=\"420\" width=\"400\" height=\"230\" rx=\"6\" fill=\"#ffffff\" stroke=\"#c9d3d8\" stroke-width=\"1\"/>\n<text id=\"svg_192be808d0d6\" x=\"874\" y=\"448\" font-family=\"sans-serif\" font-size=\"16\" font-weight=\"bold\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Turbidity TUC 5</text>\n<text id=\"svg_3b7301cc18b0\" x=\"874\" y=\"482\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Turbidity dari 4-20 mA</text>\n<g id=\"VAL_1477895ff2d6\" type=\"svg-ext-value\" fill=\"#1b2a33\" stroke=\"#1b2a33\" font-size=\"14\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_af7aa4c02e0e\" x=\"1236\" y=\"482\" fill=\"#1b2a33\" stroke=\"#1b2a33\" stroke-width=\"0\" font-size=\"14\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_ddad510e747a\" x=\"874\" y=\"510\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Turbidity dari Modbus</text>\n<g id=\"VAL_bfe6408ba548\" type=\"svg-ext-value\" fill=\"#1b2a33\" stroke=\"#1b2a33\" font-size=\"14\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_28a283476273\" x=\"1236\" y=\"510\" fill=\"#1b2a33\" stroke=\"#1b2a33\" stroke-width=\"0\" font-size=\"14\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_5476cf831bfb\" x=\"874\" y=\"538\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Status reg 30010 (1 = baik)</text>\n<g id=\"VAL_feced2115fb1\" type=\"svg-ext-value\" fill=\"#1b2a33\" stroke=\"#1b2a33\" font-size=\"14\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_fd3c2f4241c6\" x=\"1236\" y=\"538\" fill=\"#1b2a33\" stroke=\"#1b2a33\" stroke-width=\"0\" font-size=\"14\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_802ac7f77f7a\" x=\"874\" y=\"566\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Error bit reg 30012</text>\n<g id=\"VAL_3a3c43db58c6\" type=\"svg-ext-value\" fill=\"#1b2a33\" stroke=\"#1b2a33\" font-size=\"14\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_c889a5bd75c0\" x=\"1236\" y=\"566\" fill=\"#1b2a33\" stroke=\"#1b2a33\" stroke-width=\"0\" font-size=\"14\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_782a411b050e\" x=\"874\" y=\"594\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Counter error komunikasi</text>\n<g id=\"VAL_5d657504f4d0\" type=\"svg-ext-value\" fill=\"#1b2a33\" stroke=\"#1b2a33\" font-size=\"14\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_53c9ebf2ef6c\" x=\"1236\" y=\"594\" fill=\"#1b2a33\" stroke=\"#1b2a33\" stroke-width=\"0\" font-size=\"14\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<text id=\"svg_d0f322fd0fa3\" x=\"874\" y=\"622\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"normal\" fill=\"#1b2a33\" stroke-width=\"0\" text-anchor=\"start\" xml:space=\"preserve\">Sumber (0 = mA, 1 = Modbus)</text>\n<g id=\"VAL_b077ace66ff9\" type=\"svg-ext-value\" fill=\"#1b2a33\" stroke=\"#1b2a33\" font-size=\"14\" stroke-width=\"0\" font-family=\"sans-serif\" text-anchor=\"end\"><text id=\"VAL_03d0c9ce6f44\" x=\"1236\" y=\"622\" fill=\"#1b2a33\" stroke=\"#1b2a33\" stroke-width=\"0\" font-size=\"14\" font-family=\"sans-serif\" font-weight=\"bold\" text-anchor=\"end\" xml:space=\"preserve\">##.##</text></g>\n<g id=\"HXB_9a983b77ad13\" type=\"svg-ext-html_button\" fill=\"#FFFFFF\" font-size=\"14\" font-family=\"sans-serif\" text-anchor=\"right\" stroke=\"#000000\"><rect id=\"svg_1181121904d4\" stroke-width=\"0\" x=\"24\" y=\"700\" width=\"136\" height=\"40\" fill=\"#1d6f9aff\" stroke=\"#ffffff\"/><foreignObject id=\"H-HXB_a0b582dc765b\" x=\"24\" y=\"700\" height=\"40\" width=\"136\"><BUTTON id=\"B-HXB_01d53cf9fa0b\" style=\"width: 100%; height: 100%; vector-effect: non-scaling-stroke; background-color: rgb(29, 111, 154); color: rgb(255, 255, 255); font-size: 14px;\" class=\"md-btn  md-btn-raised\">Overview</BUTTON></foreignObject></g></g></svg>",
+    "property": {
+     "events": []
+    }
+   }
+  ],
+  "layout": {
+   "autoresize": true,
+   "start": "v_kb_overview",
+   "showdev": true,
+   "zoom": "disabled",
+   "inputdialog": "false",
+   "hidenavigation": false,
+   "theme": "",
+   "loginonstart": false,
+   "show_connection_error": true,
+   "customStyles": "",
+   "navigation": {
+    "mode": "push",
+    "type": "block",
+    "bkcolor": "#123a4f",
+    "fgcolor": "#ffffff",
+    "logo": false,
+    "items": [
+     {
+      "id": "n_d4c728a41eb8",
+      "text": "Overview",
+      "link": "",
+      "view": "v_kb_overview",
+      "icon": "dashboard",
+      "image": "",
+      "permission": null
+     },
+     {
+      "id": "n_d730c5fbac5a",
+      "text": "Trend",
+      "link": "",
+      "view": "v_kb_trend",
+      "icon": "show_chart",
+      "image": "",
+      "permission": null
+     },
+     {
+      "id": "n_e238ec156fce",
+      "text": "Setpoint",
+      "link": "",
+      "view": "v_kb_setpoint",
+      "icon": "tune",
+      "image": "",
+      "permission": null
+     },
+     {
+      "id": "n_8454e9ed5fb3",
+      "text": "I/O & status",
+      "link": "",
+      "view": "v_kb_io",
+      "icon": "settings_input_component",
+      "image": "",
+      "permission": null
+     }
+    ]
+   },
+   "header": {
+    "title": "PDAM KALBAR",
+    "alarms": "fix",
+    "infos": "fix",
+    "bkcolor": "#0d2c3c",
+    "fgcolor": "#ffffff",
+    "height": 46,
+    "buttonHeight": 36,
+    "fontSize": 13,
+    "items": [],
+    "itemsAnchor": "left",
+    "dateTimeDisplay": "dd/MM/yyyy HH:mm:ss",
+    "language": "nothing",
+    "loginInfo": "nothing"
+   }
+  }
+ },
+ "alarms": [
+  {
+   "name": "A_NOFLOW",
+   "property": {
+    "variableId": "t_16f085a6018c",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "Aliran sampel BAMa tidak ada - dosing pH/klorin di-PAUSE",
+    "group": "Aliran sampel",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_PH1_DEV",
+   "property": {
+    "variableId": "t_74b44e622f72",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "D1Cb pH #1 alarm (relai XR3)",
+    "group": "Instrumen",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_PH2_DEV",
+   "property": {
+    "variableId": "t_2b72f4d20563",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "D1Cb pH #2 alarm (relai XR3)",
+    "group": "Instrumen",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_CL_DEV",
+   "property": {
+    "variableId": "t_1fd70eee6cbc",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "D1Cb klorin alarm (relai XR3)",
+    "group": "Instrumen",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_TU_A1",
+   "property": {
+    "variableId": "t_9c1f97e90ece",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "TUC 5 alarm 1 - turbidity tinggi (relai alat)",
+    "group": "Instrumen",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_TU_A2",
+   "property": {
+    "variableId": "t_694caf6b375d",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "TUC 5 alarm 2 - fault alat",
+    "group": "Instrumen",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_PH1_L",
+   "property": {
+    "variableId": "t_15000d7dcfff",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "pH #1 rendah",
+    "group": "Kualitas air",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_PH1_H",
+   "property": {
+    "variableId": "t_012e4031681d",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "pH #1 tinggi",
+    "group": "Kualitas air",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_PH2_L",
+   "property": {
+    "variableId": "t_2e0293ae55d0",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "pH #2 rendah",
+    "group": "Kualitas air",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_PH2_H",
+   "property": {
+    "variableId": "t_c85a27256347",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "pH #2 tinggi",
+    "group": "Kualitas air",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_CL_L",
+   "property": {
+    "variableId": "t_3b491bc26f4b",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "Sisa klor rendah",
+    "group": "Kualitas air",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_CL_H",
+   "property": {
+    "variableId": "t_2409ea10bc70",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "Sisa klor tinggi",
+    "group": "Kualitas air",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_TU_H",
+   "property": {
+    "variableId": "t_2193ac318f4a",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "Turbidity tinggi",
+    "group": "Kualitas air",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_PH_DIFF",
+   "property": {
+    "variableId": "t_765a2318a30d",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "Selisih pH #1 dan pH #2 terlalu besar - cek kalibrasi",
+    "group": "Kualitas air",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_PH1_SIG",
+   "property": {
+    "variableId": "t_c219e8c728a4",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "Sinyal 4-20 mA pH #1 putus / di luar range",
+    "group": "Instrumen",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_PH2_SIG",
+   "property": {
+    "variableId": "t_cd9fd56cb944",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "Sinyal 4-20 mA pH #2 putus / di luar range",
+    "group": "Instrumen",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_CL_SIG",
+   "property": {
+    "variableId": "t_7f29e2e81540",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "Sinyal 4-20 mA klorin putus / di luar range",
+    "group": "Instrumen",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_TU_SIG",
+   "property": {
+    "variableId": "t_b7ffd8b31d69",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "Sinyal 4-20 mA turbidity putus / fault (ERLV 2 mA)",
+    "group": "Instrumen",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_TU_COMM",
+   "property": {
+    "variableId": "t_07ef2713f2f8",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "Komunikasi Modbus TUC 5 putus",
+    "group": "Instrumen",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  },
+  {
+   "name": "A_TU_MBERR",
+   "property": {
+    "variableId": "t_bde18ed2b26a",
+    "permission": null
+   },
+   "highhigh": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "high": {
+    "enabled": true,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "TUC 5 melaporkan error (lihat TU_ERRW)",
+    "group": "Instrumen",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "low": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "info": {
+    "enabled": false,
+    "checkdelay": 1,
+    "min": 1,
+    "max": 1,
+    "timedelay": 1,
+    "text": "",
+    "group": "",
+    "ackmode": "ackactive",
+    "bkcolor": "#ff5252",
+    "color": "#ffffff"
+   },
+   "actions": {
+    "enabled": false,
+    "values": []
+   }
+  }
+ ],
+ "charts": [
+  {
+   "id": "c_kb_ph",
+   "name": "Trend pH",
+   "lines": [
+    {
+     "device": "PLC_M221",
+     "id": "t_e8ba5a8ab324",
+     "name": "PH1_PV",
+     "label": "pH #1",
+     "color": "#1d6f9a",
+     "yaxis": 1,
+     "lineInterpolation": 0,
+     "lineWidth": 2,
+     "spanGaps": true
+    },
+    {
+     "device": "PLC_M221",
+     "id": "t_e10ddbe6f7b1",
+     "name": "PH2_PV",
+     "label": "pH #2",
+     "color": "#e07b00",
+     "yaxis": 1,
+     "lineInterpolation": 0,
+     "lineWidth": 2,
+     "spanGaps": true
+    }
+   ]
+  },
+  {
+   "id": "c_kb_kualitas",
+   "name": "Trend klor & turbidity",
+   "lines": [
+    {
+     "device": "PLC_M221",
+     "id": "t_bc06bc5f8902",
+     "name": "CL_PV",
+     "label": "Klor mg/L",
+     "color": "#2e9e4f",
+     "yaxis": 1,
+     "lineInterpolation": 0,
+     "lineWidth": 2,
+     "spanGaps": true
+    },
+    {
+     "device": "PLC_M221",
+     "id": "t_084acf090ab0",
+     "name": "TU_PV",
+     "label": "Turbidity NTU",
+     "color": "#8a5a2b",
+     "yaxis": 2,
+     "lineInterpolation": 0,
+     "lineWidth": 2,
+     "spanGaps": true
+    }
+   ]
+  }
+ ],
+ "notifications": [],
+ "scripts": [],
+ "reports": [],
+ "texts": [],
+ "graphs": [],
+ "recipes": []
+}

@@ -1,0 +1,72 @@
+﻿Tag;PLC;Modbus;Alamat FUXA (1-based);Tipe;Divisor;Keterangan
+PH1_PV;%MW100;Holding register;101;Int16;100;pH #1 (x0,01)
+PH2_PV;%MW101;Holding register;102;Int16;100;pH #2 (x0,01)
+CL_PV;%MW102;Holding register;103;Int16;100;Sisa klor bebas (x0,01 mg/L)
+TU_PV;%MW103;Holding register;104;Int16;100;Turbidity terpakai (x0,01 NTU) - sesuai P_TU_SRC
+TU_MA_PV;%MW104;Holding register;105;Int16;100;Turbidity dari 4-20 mA (x0,01 NTU)
+TU_MB_PV;%MW105;Holding register;106;Int16;100;Turbidity dari Modbus (x0,01 NTU)
+PH_DIFF;%MW106;Holding register;107;Int16;100;Selisih absolut pH #1 - pH #2 (x0,01)
+TU_STATUS;%MW107;Holding register;108;Int16;1;TUC 5 reading status (reg 30010): 1 baik, 2 over, 3 under, 6 error
+TU_ERRW;%MW108;Holding register;109;Int16;1;TUC 5 error bit (reg 30012): 0x01 desiccant, 0x02 loop mA, 0x04 kalibrasi, 0x40 lampu, 0x80 ultrasonik
+MB_ERR_TU;%MW110;Holding register;111;Int16;1;Counter error komunikasi TUC 5
+P_T_FLOW_ON;%MW0;Holding register;1;Int16;1;Aliran sampel harus stabil selama ini sebelum pengukuran pH/Cl dianggap valid dan pause dilepas
+P_T_FLOW_OFF;%MW1;Holding register;2;Int16;1;Tunda alarm aliran sampel hilang
+P_T_ALM;%MW2;Holding register;3;Int16;1;Tunda alarm kualitas air (hindari alarm sesaat)
+P_PH_L;%MW3;Holding register;4;Int16;100;Batas pH rendah (Permenkes 2/2023: 6,5)
+P_PH_H;%MW4;Holding register;5;Int16;100;Batas pH tinggi (Permenkes 2/2023: 8,5)
+P_CL_L;%MW5;Holding register;6;Int16;100;Batas sisa klor rendah
+P_CL_H;%MW6;Holding register;7;Int16;100;Batas sisa klor tinggi
+P_TU_H;%MW7;Holding register;8;Int16;100;Batas turbidity tinggi (Permenkes 2/2023: < 3 NTU)
+P_PH_DIFF;%MW8;Holding register;9;Int16;100;Alarm selisih pH #1 vs pH #2 (0 = mati; pakai bila kedua sensor di titik yang sama)
+P_TU_SRC;%MW9;Holding register;10;Int16;1;Sumber turbidity: 0 = 4-20 mA (%IW1.3), 1 = Modbus RTU SL1
+P_T_STARTUP;%MW10;Holding register;11;Int16;1;Tunda setelah PLC RUN sebelum alarm kualitas aktif
+STARTUP_DONE;%M1;Coil;2;Bool;1;Tunda start-up selesai
+FLOW_STAB;%M2;Coil;3;Bool;1;Aliran sampel stabil > P_T_FLOW_ON
+VALID_PH1;%M3;Coil;4;Bool;1;Nilai pH #1 valid (aliran stabil, sinyal OK, tidak pause manual)
+VALID_PH2;%M4;Coil;5;Bool;1;Nilai pH #2 valid
+VALID_CL;%M5;Coil;6;Bool;1;Nilai klorin valid
+VALID_TU;%M6;Coil;7;Bool;1;Nilai turbidity valid
+HEARTBEAT;%M9;Coil;10;Bool;1;Heartbeat 1 s untuk HMI/SCADA
+ANY_ALARM;%M10;Coil;11;Bool;1;Ada alarm aktif
+BUZZ_LATCH;%M11;Coil;12;Bool;1;Alarm baru belum di-ACK
+QUALITY_OK;%M12;Coil;13;Bool;1;Semua nilai valid dan di dalam batas
+PAUSE_ANY;%M19;Coil;20;Bool;1;Ada dosing yang di-PAUSE (aliran hilang / manual)
+X_FS_SAMPLE;%M40;Coil;41;Bool;1;Cermin %I0.0 FS_SAMPLE
+X_PH1_OK;%M41;Coil;42;Bool;1;Cermin %I0.1 PH1_OK
+X_PH2_OK;%M42;Coil;43;Bool;1;Cermin %I0.2 PH2_OK
+X_CL_OK;%M43;Coil;44;Bool;1;Cermin %I0.3 CL_OK
+X_TU_A1_OK;%M44;Coil;45;Bool;1;Cermin %I0.4 TU_A1_OK
+X_TU_A2_OK;%M45;Coil;46;Bool;1;Cermin %I0.5 TU_A2_OK
+X_PB_RESET;%M46;Coil;47;Bool;1;Cermin %I0.6 PB_RESET
+X_Q_PAUSE_PH1;%M50;Coil;51;Bool;1;Cermin %Q0.0 Q_PAUSE_PH1
+X_Q_PAUSE_PH2;%M51;Coil;52;Bool;1;Cermin %Q0.1 Q_PAUSE_PH2
+X_Q_PAUSE_CL;%M52;Coil;53;Bool;1;Cermin %Q0.2 Q_PAUSE_CL
+X_Q_HL_ALM;%M53;Coil;54;Bool;1;Cermin %Q0.3 Q_HL_ALM
+X_Q_BUZZER;%M54;Coil;55;Bool;1;Cermin %Q0.4 Q_BUZZER
+X_Q_HL_OK;%M55;Coil;56;Bool;1;Cermin %Q0.5 Q_HL_OK
+X_Q_ALM_REMOTE;%M56;Coil;57;Bool;1;Cermin %Q0.6 Q_ALM_REMOTE
+A_NOFLOW;%M200;Coil;201;Bool;1;Aliran sampel BAMa tidak ada - dosing pH/klorin di-PAUSE
+A_PH1_DEV;%M201;Coil;202;Bool;1;D1Cb pH #1 alarm (relai XR3)
+A_PH2_DEV;%M202;Coil;203;Bool;1;D1Cb pH #2 alarm (relai XR3)
+A_CL_DEV;%M203;Coil;204;Bool;1;D1Cb klorin alarm (relai XR3)
+A_TU_A1;%M204;Coil;205;Bool;1;TUC 5 alarm 1 - turbidity tinggi (relai alat)
+A_TU_A2;%M205;Coil;206;Bool;1;TUC 5 alarm 2 - fault alat
+A_PH1_L;%M206;Coil;207;Bool;1;pH #1 rendah
+A_PH1_H;%M207;Coil;208;Bool;1;pH #1 tinggi
+A_PH2_L;%M208;Coil;209;Bool;1;pH #2 rendah
+A_PH2_H;%M209;Coil;210;Bool;1;pH #2 tinggi
+A_CL_L;%M210;Coil;211;Bool;1;Sisa klor rendah
+A_CL_H;%M211;Coil;212;Bool;1;Sisa klor tinggi
+A_TU_H;%M212;Coil;213;Bool;1;Turbidity tinggi
+A_PH_DIFF;%M213;Coil;214;Bool;1;Selisih pH #1 dan pH #2 terlalu besar - cek kalibrasi
+A_PH1_SIG;%M214;Coil;215;Bool;1;Sinyal 4-20 mA pH #1 putus / di luar range
+A_PH2_SIG;%M215;Coil;216;Bool;1;Sinyal 4-20 mA pH #2 putus / di luar range
+A_CL_SIG;%M216;Coil;217;Bool;1;Sinyal 4-20 mA klorin putus / di luar range
+A_TU_SIG;%M217;Coil;218;Bool;1;Sinyal 4-20 mA turbidity putus / fault (ERLV 2 mA)
+A_TU_COMM;%M218;Coil;219;Bool;1;Komunikasi Modbus TUC 5 putus
+A_TU_MBERR;%M219;Coil;220;Bool;1;TUC 5 melaporkan error (lihat TU_ERRW)
+HMI_ACK;%M300;Coil;301;Bool;1;Tombol HMI: ACK / silence buzzer
+MAN_PAUSE_PH1;%M310;Coil;311;Bool;1;Toggle HMI: PAUSE dosing pH #1 (kalibrasi/perawatan)
+MAN_PAUSE_PH2;%M311;Coil;312;Bool;1;Toggle HMI: PAUSE dosing pH #2
+MAN_PAUSE_CL;%M312;Coil;313;Bool;1;Toggle HMI: PAUSE dosing klorin
+MAINT_TU;%M313;Coil;314;Bool;1;Toggle HMI: TUC 5 MAINTENANCE (alarm turbidity dimatikan)

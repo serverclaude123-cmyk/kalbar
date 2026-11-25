@@ -104,9 +104,38 @@
     [%MW120 := %I0.0:9]
     [%MW121 := %Q0.0:7]
 
+(* Rung 017:   cermin bit FS_SAMPLE *)
+(*   Bit cermin dibaca SCADA sebagai coil (%M40-46 = DI). *)
+    LD %I0.0
+    ST %M40
+
+(* Rung 018:   cermin bit PH1_OK *)
+    LD %I0.1
+    ST %M41
+
+(* Rung 019:   cermin bit PH2_OK *)
+    LD %I0.2
+    ST %M42
+
+(* Rung 020:   cermin bit CL_OK *)
+    LD %I0.3
+    ST %M43
+
+(* Rung 021:   cermin bit TU_A1_OK *)
+    LD %I0.4
+    ST %M44
+
+(* Rung 022:   cermin bit TU_A2_OK *)
+    LD %I0.5
+    ST %M45
+
+(* Rung 023:   cermin bit PB_RESET *)
+    LD %I0.6
+    ST %M46
+
 
 (* ================= POU2  Aliran sampel & PAUSE dosing ================= *)
-(* Rung 017: Aliran sampel stabil *)
+(* Rung 024: Aliran sampel stabil *)
     BLK %TM1
     LD %I0.0
     IN
@@ -115,7 +144,7 @@
     ST %M2
     END_BLK
 
-(* Rung 018: Alarm aliran sampel hilang *)
+(* Rung 025: Alarm aliran sampel hilang *)
     BLK %TM2
     LDN %I0.0
     AND %M1
@@ -125,44 +154,44 @@
     ST %M200
     END_BLK
 
-(* Rung 019: PAUSE dosing pH #1 *)
+(* Rung 026: PAUSE dosing pH #1 *)
 (*   Relai ON = pause. Set input pause D1Cb ke 'aktif saat kontak tertutup'. Bila PLC mati, dosing tetap jalan (tidak berhenti mendadak). *)
     LDN %M2
     OR %M310
     ST %Q0.0
 
-(* Rung 020: Nilai pH #1 valid *)
+(* Rung 027: Nilai pH #1 valid *)
     LD %M2
     AND %M1
     ANDN %M214
     ANDN %M310
     ST %M3
 
-(* Rung 021: PAUSE dosing pH #2 *)
+(* Rung 028: PAUSE dosing pH #2 *)
     LDN %M2
     OR %M311
     ST %Q0.1
 
-(* Rung 022: Nilai pH #2 valid *)
+(* Rung 029: Nilai pH #2 valid *)
     LD %M2
     AND %M1
     ANDN %M215
     ANDN %M311
     ST %M4
 
-(* Rung 023: PAUSE dosing klorin *)
+(* Rung 030: PAUSE dosing klorin *)
     LDN %M2
     OR %M312
     ST %Q0.2
 
-(* Rung 024: Nilai klorin valid *)
+(* Rung 031: Nilai klorin valid *)
     LD %M2
     AND %M1
     ANDN %M216
     ANDN %M312
     ST %M5
 
-(* Rung 025: Nilai turbidity valid *)
+(* Rung 032: Nilai turbidity valid *)
 (*   TUC 5 punya flow cell sendiri, tidak tergantung aliran BAMa. *)
     LD %M1
     ANDN %M313
@@ -177,81 +206,81 @@
 
 
 (* ================= POU3  Alarm kualitas air ================= *)
-(* Rung 026: pH #1 di luar batas *)
+(* Rung 033: pH #1 di luar batas *)
     LD %M3
     AND( [%MW100 < %MW3]
     OR [%MW100 > %MW4]
     )
     ST %M13
 
-(* Rung 027:   tunda alarm pH #1 *)
+(* Rung 034:   tunda alarm pH #1 *)
     BLK %TM3
     LD %M13
     IN
     END_BLK
 
-(* Rung 028:   pH #1 rendah *)
+(* Rung 035:   pH #1 rendah *)
     LD %TM3.Q
     AND [%MW100 < %MW3]
     ST %M206
 
-(* Rung 029:   pH #1 tinggi *)
+(* Rung 036:   pH #1 tinggi *)
     LD %TM3.Q
     AND [%MW100 > %MW4]
     ST %M207
 
-(* Rung 030: pH #2 di luar batas *)
+(* Rung 037: pH #2 di luar batas *)
     LD %M4
     AND( [%MW101 < %MW3]
     OR [%MW101 > %MW4]
     )
     ST %M14
 
-(* Rung 031:   tunda alarm pH #2 *)
+(* Rung 038:   tunda alarm pH #2 *)
     BLK %TM4
     LD %M14
     IN
     END_BLK
 
-(* Rung 032:   pH #2 rendah *)
+(* Rung 039:   pH #2 rendah *)
     LD %TM4.Q
     AND [%MW101 < %MW3]
     ST %M208
 
-(* Rung 033:   pH #2 tinggi *)
+(* Rung 040:   pH #2 tinggi *)
     LD %TM4.Q
     AND [%MW101 > %MW4]
     ST %M209
 
-(* Rung 034: klorin di luar batas *)
+(* Rung 041: klorin di luar batas *)
     LD %M5
     AND( [%MW102 < %MW5]
     OR [%MW102 > %MW6]
     )
     ST %M15
 
-(* Rung 035:   tunda alarm klorin *)
+(* Rung 042:   tunda alarm klorin *)
     BLK %TM5
     LD %M15
     IN
     END_BLK
 
-(* Rung 036:   klorin rendah *)
+(* Rung 043:   klorin rendah *)
     LD %TM5.Q
     AND [%MW102 < %MW5]
     ST %M210
 
-(* Rung 037:   klorin tinggi *)
+(* Rung 044:   klorin tinggi *)
     LD %TM5.Q
     AND [%MW102 > %MW6]
     ST %M211
 
-(* Rung 038: Turbidity di atas batas *)
+(* Rung 045: Turbidity di atas batas *)
     LD %M6
     AND [%MW103 > %MW7]
     ST %M16
 
-(* Rung 039:   tunda alarm turbidity *)
+(* Rung 046:   tunda alarm turbidity *)
     BLK %TM6
     LD %M16
     IN
@@ -260,7 +289,7 @@
     ST %M212
     END_BLK
 
-(* Rung 040: Selisih pH di atas batas *)
+(* Rung 047: Selisih pH di atas batas *)
 (*   Aktifkan (P_PH_DIFF > 0) hanya bila kedua elektroda mengukur air yang sama. *)
     LD [%MW8 > 0]
     AND %M3
@@ -268,7 +297,7 @@
     AND [%MW106 > %MW8]
     ST %M17
 
-(* Rung 041:   tunda alarm selisih pH *)
+(* Rung 048:   tunda alarm selisih pH *)
     BLK %TM7
     LD %M17
     IN
@@ -277,7 +306,7 @@
     ST %M213
     END_BLK
 
-(* Rung 042: Kualitas air normal *)
+(* Rung 049: Kualitas air normal *)
     LD %M3
     AND %M4
     AND %M5
@@ -290,28 +319,28 @@
 
 
 (* ================= POU4  Alarm dari instrumen ================= *)
-(* Rung 043: D1Cb pH #1 alarm *)
+(* Rung 050: D1Cb pH #1 alarm *)
     LDN %I0.1
     AND %M1
     ST %M201
 
-(* Rung 044: D1Cb pH #2 alarm *)
+(* Rung 051: D1Cb pH #2 alarm *)
     LDN %I0.2
     AND %M1
     ST %M202
 
-(* Rung 045: D1Cb klorin alarm *)
+(* Rung 052: D1Cb klorin alarm *)
     LDN %I0.3
     AND %M1
     ST %M203
 
-(* Rung 046: TUC 5 alarm 1 (turbidity tinggi) *)
+(* Rung 053: TUC 5 alarm 1 (turbidity tinggi) *)
     LDN %I0.4
     AND %M1
     ANDN %M313
     ST %M204
 
-(* Rung 047: TUC 5 alarm 2 (fault) *)
+(* Rung 054: TUC 5 alarm 2 (fault) *)
     LDN %I0.5
     AND %M1
     ANDN %M313
@@ -319,7 +348,7 @@
 
 
 (* ================= POU5  Modbus RTU SL1 - TUC 5 (opsional) ================= *)
-(* Rung 048: Pulsa polling 1 s *)
+(* Rung 055: Pulsa polling 1 s *)
     BLK %TM8
     LD [%MW9 = 1]
     ANDN %M18
@@ -329,19 +358,19 @@
     ST %M18
     END_BLK
 
-(* Rung 049: Eksekusi READ_VAR TUC 5 *)
+(* Rung 056: Eksekusi READ_VAR TUC 5 *)
     BLK %READ_VAR0
     LD [%MW109 = 0]
     AND %M18
     EXEC
     END_BLK
 
-(* Rung 050:   mulai tunggu jawaban *)
+(* Rung 057:   mulai tunggu jawaban *)
     LD [%MW109 = 0]
     AND %M18
     [%MW109 := 1]
 
-(* Rung 051:   selesai OK: ambil data *)
+(* Rung 058:   selesai OK: ambil data *)
 (*   Bila nilai tidak masuk akal (mis. 1E-38), word order terbalik: tukar %MW300/%MW301 sebelum konversi. *)
     LD [%MW109 = 1]
     AND %READ_VAR0.D
@@ -352,28 +381,28 @@
     [%MW110 := 0]
     [%MW109 := 0]
 
-(* Rung 052:   error komunikasi *)
+(* Rung 059:   error komunikasi *)
     LD [%MW109 = 1]
     AND %READ_VAR0.E
     [%MW110 := %MW110 + 1]
     [%MW109 := 0]
 
-(* Rung 053: Batasi langkah polling *)
+(* Rung 060: Batasi langkah polling *)
     LD [%MW109 > 1]
     OR [%MW9 <> 1]
     [%MW109 := 0]
 
-(* Rung 054: Batasi counter error *)
+(* Rung 061: Batasi counter error *)
     LD [%MW110 > 100]
     [%MW110 := 100]
 
-(* Rung 055: Komunikasi TUC 5 putus *)
+(* Rung 062: Komunikasi TUC 5 putus *)
     LD [%MW9 = 1]
     ANDN %M313
     AND [%MW110 >= 3]
     ST %M218
 
-(* Rung 056: TUC 5 melaporkan error *)
+(* Rung 063: TUC 5 melaporkan error *)
 (*   Reg 30010 = 6 (error) atau bit error reg 30012 (desiccant, lampu, ultrasonik, kalibrasi). *)
     LD [%MW9 = 1]
     ANDN %M313
@@ -385,44 +414,44 @@
 
 
 (* ================= POU6  Alarm, buzzer & lampu ================= *)
-(* Rung 057: Pak bit alarm ke word *)
+(* Rung 064: Pak bit alarm ke word *)
     [%MW200 := %M200:16]
     [%MW201 := %M216:16]
 
-(* Rung 058: Deteksi alarm baru word 0 *)
+(* Rung 065: Deteksi alarm baru word 0 *)
     [%MW208 := NOT %MW204]
     [%MW208 := %MW200 AND %MW208]
 
-(* Rung 059:   alarm baru word 0 -> buzzer *)
+(* Rung 066:   alarm baru word 0 -> buzzer *)
     LD [%MW208 <> 0]
     S %M11
 
-(* Rung 060: Deteksi alarm baru word 1 *)
+(* Rung 067: Deteksi alarm baru word 1 *)
     [%MW208 := NOT %MW205]
     [%MW208 := %MW201 AND %MW208]
 
-(* Rung 061:   alarm baru word 1 -> buzzer *)
+(* Rung 068:   alarm baru word 1 -> buzzer *)
     LD [%MW208 <> 0]
     S %M11
 
-(* Rung 062: Simpan word alarm *)
+(* Rung 069: Simpan word alarm *)
     [%MW204 := %MW200]
     [%MW205 := %MW201]
 
-(* Rung 063: Ada alarm aktif *)
+(* Rung 070: Ada alarm aktif *)
     LD [%MW200 <> 0]
     OR [%MW201 <> 0]
     ST %M10
 
-(* Rung 064: ACK: matikan buzzer *)
+(* Rung 071: ACK: matikan buzzer *)
     LD %M7
     R %M11
 
-(* Rung 065: Buzzer *)
+(* Rung 072: Buzzer *)
     LD %M11
     ST %Q0.4
 
-(* Rung 066: Lampu alarm (kedip bila belum ACK) *)
+(* Rung 073: Lampu alarm (kedip bila belum ACK) *)
     LD %M11
     AND %S6
     OR( %M10
@@ -430,14 +459,14 @@
     )
     ST %Q0.3
 
-(* Rung 067: Ada dosing di-PAUSE *)
+(* Rung 074: Ada dosing di-PAUSE *)
     LDN %M2
     OR %M310
     OR %M311
     OR %M312
     ST %M19
 
-(* Rung 068: Lampu hijau (tetap = normal, kedip = pause) *)
+(* Rung 075: Lampu hijau (tetap = normal, kedip = pause) *)
 (*   CE16R hanya 7 relay, jadi lampu kuning digabung: lampu hijau berkedip saat dosing di-PAUSE. *)
     LD %M19
     AND %S6
@@ -447,13 +476,42 @@
     )
     ST %Q0.5
 
-(* Rung 069: Alarm umum ke remote (fail-safe) *)
+(* Rung 076: Alarm umum ke remote (fail-safe) *)
 (*   Relai ON = sehat. PLC mati / kabel putus terbaca sebagai alarm di SCADA. *)
     LDN %M10
     ST %Q0.6
 
+(* Rung 077:   cermin bit Q_PAUSE_PH1 *)
+(*   Cermin output (%M50-56 = DO) setelah semua output ditulis. *)
+    LD %Q0.0
+    ST %M50
+
+(* Rung 078:   cermin bit Q_PAUSE_PH2 *)
+    LD %Q0.1
+    ST %M51
+
+(* Rung 079:   cermin bit Q_PAUSE_CL *)
+    LD %Q0.2
+    ST %M52
+
+(* Rung 080:   cermin bit Q_HL_ALM *)
+    LD %Q0.3
+    ST %M53
+
+(* Rung 081:   cermin bit Q_BUZZER *)
+    LD %Q0.4
+    ST %M54
+
+(* Rung 082:   cermin bit Q_HL_OK *)
+    LD %Q0.5
+    ST %M55
+
+(* Rung 083:   cermin bit Q_ALM_REMOTE *)
+    LD %Q0.6
+    ST %M56
+
 
 (* ================= POU7  Reset tombol HMI ================= *)
-(* Rung 070: Reset HMI_ACK *)
+(* Rung 084: Reset HMI_ACK *)
     LD %M300
     R %M300

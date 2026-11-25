@@ -35,6 +35,20 @@ ANY_ALARM;%M10;0x;10;Baca;;;Ada alarm aktif
 BUZZ_LATCH;%M11;0x;11;Baca;;;Alarm baru belum di-ACK
 QUALITY_OK;%M12;0x;12;Baca;;;Semua nilai valid dan di dalam batas
 PAUSE_ANY;%M19;0x;19;Baca;;;Ada dosing yang di-PAUSE (aliran hilang / manual)
+X_FS_SAMPLE;%M40;0x;40;Baca;;;Cermin %I0.0 FS_SAMPLE
+X_PH1_OK;%M41;0x;41;Baca;;;Cermin %I0.1 PH1_OK
+X_PH2_OK;%M42;0x;42;Baca;;;Cermin %I0.2 PH2_OK
+X_CL_OK;%M43;0x;43;Baca;;;Cermin %I0.3 CL_OK
+X_TU_A1_OK;%M44;0x;44;Baca;;;Cermin %I0.4 TU_A1_OK
+X_TU_A2_OK;%M45;0x;45;Baca;;;Cermin %I0.5 TU_A2_OK
+X_PB_RESET;%M46;0x;46;Baca;;;Cermin %I0.6 PB_RESET
+X_Q_PAUSE_PH1;%M50;0x;50;Baca;;;Cermin %Q0.0 Q_PAUSE_PH1
+X_Q_PAUSE_PH2;%M51;0x;51;Baca;;;Cermin %Q0.1 Q_PAUSE_PH2
+X_Q_PAUSE_CL;%M52;0x;52;Baca;;;Cermin %Q0.2 Q_PAUSE_CL
+X_Q_HL_ALM;%M53;0x;53;Baca;;;Cermin %Q0.3 Q_HL_ALM
+X_Q_BUZZER;%M54;0x;54;Baca;;;Cermin %Q0.4 Q_BUZZER
+X_Q_HL_OK;%M55;0x;55;Baca;;;Cermin %Q0.5 Q_HL_OK
+X_Q_ALM_REMOTE;%M56;0x;56;Baca;;;Cermin %Q0.6 Q_ALM_REMOTE
 A_NOFLOW;%M200;0x;200;Alarm (baca);;;Aliran sampel BAMa tidak ada - dosing pH/klorin di-PAUSE
 A_PH1_DEV;%M201;0x;201;Alarm (baca);;;D1Cb pH #1 alarm (relai XR3)
 A_PH2_DEV;%M202;0x;202;Alarm (baca);;;D1Cb pH #2 alarm (relai XR3)

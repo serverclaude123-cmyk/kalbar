@@ -50,6 +50,9 @@ for tag, pv, ai, st, valid, oor, tm, al, ah, asig, pl, ph, mp, q in MEAS:
 R("Gangguan sinyal turbidity", Ser(Cmp("{P_TU_SRC} = 0"), N("MAINT_TU"), Cmp("{ST_TU} <> 0")), [ST("A_TU_SIG")],
   "Set ERLV TUC 5 = 2 mA: fault alat muncul sebagai under-range.")
 R("Cermin status I/O fisik untuk HMI", None, [OP("{IO_DI0} := %I0.0:9"), OP("{IO_DO0} := %Q0.0:7")])
+from symbols import DI_NAMES, DO_NAMES
+for n in DI_NAMES:
+    R(f"  cermin bit {n}", C(n), [ST("X_" + n)], "Bit cermin dibaca SCADA sebagai coil (%M40-46 = DI)." if n == DI_NAMES[0] else "")
 
 # =====================================================================
 sec("POU2", "Aliran sampel & PAUSE dosing",
@@ -133,6 +136,9 @@ R("Alarm umum ke remote (fail-safe)", N("ANY_ALARM"), [ST("Q_ALM_REMOTE")],
   "Relai ON = sehat. PLC mati / kabel putus terbaca sebagai alarm di SCADA.")
 
 # =====================================================================
+for n in DO_NAMES:
+    R(f"  cermin bit {n}", C(n), [ST("X_" + n)], "Cermin output (%M50-56 = DO) setelah semua output ditulis." if n == DO_NAMES[0] else "")
+
 sec("POU7", "Reset tombol HMI",
     "Tombol HMI memakai mode 'Set ON'. PLC mengembalikan bit ke 0 setelah diproses.")
 for n, m, c in CMDS:

@@ -105,6 +105,13 @@ d("TU_OOR",      "%M16","Turbidity di atas batas (sebelum tunda)")
 d("PHD_OOR",     "%M17","Selisih pH di atas batas (sebelum tunda)")
 d("PAUSE_ANY",   "%M19","Ada dosing yang di-PAUSE (aliran hilang / manual)", "R")
 d("POLL_PULSE",  "%M18","Pulsa polling Modbus")
+# Cermin bit I/O fisik untuk SCADA (Modbus TCP coil): DI -> %M40.., DO -> %M50..
+DI_NAMES = [n for n in ORDER if SYM[n]["addr"].startswith("%I0.")]
+DO_NAMES = [n for n in ORDER if SYM[n]["addr"].startswith("%Q0.")]
+for i, n in enumerate(DI_NAMES):
+    d("X_" + n, f"%M{40+i}", f"Cermin {SYM[n]['addr']} {n}", "R")
+for i, n in enumerate(DO_NAMES):
+    d("X_" + n, f"%M{50+i}", f"Cermin {SYM[n]['addr']} {n}", "R")
 
 # ---------------- ALARMS %M200-%M231 ----------------
 ALARMS = [

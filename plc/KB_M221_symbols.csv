@@ -75,6 +75,20 @@
 %M17;PHD_OOR;Selisih pH di atas batas (sebelum tunda)
 %M19;PAUSE_ANY;Ada dosing yang di-PAUSE (aliran hilang / manual)
 %M18;POLL_PULSE;Pulsa polling Modbus
+%M40;X_FS_SAMPLE;Cermin %I0.0 FS_SAMPLE
+%M41;X_PH1_OK;Cermin %I0.1 PH1_OK
+%M42;X_PH2_OK;Cermin %I0.2 PH2_OK
+%M43;X_CL_OK;Cermin %I0.3 CL_OK
+%M44;X_TU_A1_OK;Cermin %I0.4 TU_A1_OK
+%M45;X_TU_A2_OK;Cermin %I0.5 TU_A2_OK
+%M46;X_PB_RESET;Cermin %I0.6 PB_RESET
+%M50;X_Q_PAUSE_PH1;Cermin %Q0.0 Q_PAUSE_PH1
+%M51;X_Q_PAUSE_PH2;Cermin %Q0.1 Q_PAUSE_PH2
+%M52;X_Q_PAUSE_CL;Cermin %Q0.2 Q_PAUSE_CL
+%M53;X_Q_HL_ALM;Cermin %Q0.3 Q_HL_ALM
+%M54;X_Q_BUZZER;Cermin %Q0.4 Q_BUZZER
+%M55;X_Q_HL_OK;Cermin %Q0.5 Q_HL_OK
+%M56;X_Q_ALM_REMOTE;Cermin %Q0.6 Q_ALM_REMOTE
 %M200;A_NOFLOW;Aliran sampel BAMa tidak ada - dosing pH/klorin di-PAUSE
 %M201;A_PH1_DEV;D1Cb pH #1 alarm (relai XR3)
 %M202;A_PH2_DEV;D1Cb pH #2 alarm (relai XR3)
