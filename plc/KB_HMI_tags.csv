@@ -1,0 +1,61 @@
+﻿Tag;Alamat PLC;Device type Weintek;Alamat (zero-based);Akses;Satuan;Default;Keterangan
+P_T_FLOW_ON;%MW0;4x;0;Baca/Tulis;s;60;Aliran sampel harus stabil selama ini sebelum pengukuran pH/Cl dianggap valid dan pause dilepas
+P_T_FLOW_OFF;%MW1;4x;1;Baca/Tulis;s;10;Tunda alarm aliran sampel hilang
+P_T_ALM;%MW2;4x;2;Baca/Tulis;s;60;Tunda alarm kualitas air (hindari alarm sesaat)
+P_PH_L;%MW3;4x;3;Baca/Tulis;x0,01;650;Batas pH rendah (Permenkes 2/2023: 6,5)
+P_PH_H;%MW4;4x;4;Baca/Tulis;x0,01;850;Batas pH tinggi (Permenkes 2/2023: 8,5)
+P_CL_L;%MW5;4x;5;Baca/Tulis;x0,01 mg/L;20;Batas sisa klor rendah
+P_CL_H;%MW6;4x;6;Baca/Tulis;x0,01 mg/L;100;Batas sisa klor tinggi
+P_TU_H;%MW7;4x;7;Baca/Tulis;x0,01 NTU;300;Batas turbidity tinggi (Permenkes 2/2023: < 3 NTU)
+P_PH_DIFF;%MW8;4x;8;Baca/Tulis;x0,01;0;"Alarm selisih pH #1 vs pH #2 (0 = mati; pakai bila kedua sensor di titik yang sama)"
+P_TU_SRC;%MW9;4x;9;Baca/Tulis;;0;Sumber turbidity: 0 = 4-20 mA (%IW1.3), 1 = Modbus RTU SL1
+P_T_STARTUP;%MW10;4x;10;Baca/Tulis;s;30;Tunda setelah PLC RUN sebelum alarm kualitas aktif
+PH1_PV;%MW100;4x;100;Baca;x0,01;;pH #1 (x0,01)
+PH2_PV;%MW101;4x;101;Baca;x0,01;;pH #2 (x0,01)
+CL_PV;%MW102;4x;102;Baca;x0,01 mg/L;;Sisa klor bebas (x0,01 mg/L)
+TU_PV;%MW103;4x;103;Baca;x0,01 NTU;;Turbidity terpakai (x0,01 NTU) - sesuai P_TU_SRC
+TU_MA_PV;%MW104;4x;104;Baca;x0,01 NTU;;Turbidity dari 4-20 mA (x0,01 NTU)
+TU_MB_PV;%MW105;4x;105;Baca;x0,01 NTU;;Turbidity dari Modbus (x0,01 NTU)
+PH_DIFF;%MW106;4x;106;Baca;;;Selisih absolut pH #1 - pH #2 (x0,01)
+TU_STATUS;%MW107;4x;107;Baca;;;TUC 5 reading status (reg 30010): 1 baik, 2 over, 3 under, 6 error
+TU_ERRW;%MW108;4x;108;Baca;;;TUC 5 error bit (reg 30012): 0x01 desiccant, 0x02 loop mA, 0x04 kalibrasi, 0x40 lampu, 0x80 ultrasonik
+MB_ERR_TU;%MW110;4x;110;Baca;;;Counter error komunikasi TUC 5
+IO_DI0;%MW120;4x;120;Baca;;;Cermin %I0.0-%I0.13 untuk HMI (bit n = %I0.n)
+IO_DO0;%MW121;4x;121;Baca;;;Cermin %Q0.0-%Q0.9 untuk HMI (bit n = %Q0.n)
+ALMW0;%MW200;4x;200;Baca;;;Word alarm 0 (= %M200..%M215)
+ALMW1;%MW201;4x;201;Baca;;;Word alarm 1 (= %M216..%M231)
+STARTUP_DONE;%M1;0x;1;Baca;;;Tunda start-up selesai
+FLOW_STAB;%M2;0x;2;Baca;;;Aliran sampel stabil > P_T_FLOW_ON
+VALID_PH1;%M3;0x;3;Baca;;;Nilai pH #1 valid (aliran stabil, sinyal OK, tidak pause manual)
+VALID_PH2;%M4;0x;4;Baca;;;Nilai pH #2 valid
+VALID_CL;%M5;0x;5;Baca;;;Nilai klorin valid
+VALID_TU;%M6;0x;6;Baca;;;Nilai turbidity valid
+HEARTBEAT;%M9;0x;9;Baca;;;Heartbeat 1 s untuk HMI/SCADA
+ANY_ALARM;%M10;0x;10;Baca;;;Ada alarm aktif
+BUZZ_LATCH;%M11;0x;11;Baca;;;Alarm baru belum di-ACK
+QUALITY_OK;%M12;0x;12;Baca;;;Semua nilai valid dan di dalam batas
+A_NOFLOW;%M200;0x;200;Alarm (baca);;;Aliran sampel BAMa tidak ada - dosing pH/klorin di-PAUSE
+A_PH1_DEV;%M201;0x;201;Alarm (baca);;;D1Cb pH #1 alarm (relai XR3)
+A_PH2_DEV;%M202;0x;202;Alarm (baca);;;D1Cb pH #2 alarm (relai XR3)
+A_CL_DEV;%M203;0x;203;Alarm (baca);;;D1Cb klorin alarm (relai XR3)
+A_TU_A1;%M204;0x;204;Alarm (baca);;;TUC 5 alarm 1 - turbidity tinggi (relai alat)
+A_TU_A2;%M205;0x;205;Alarm (baca);;;TUC 5 alarm 2 - fault alat
+A_PH1_L;%M206;0x;206;Alarm (baca);;;pH #1 rendah
+A_PH1_H;%M207;0x;207;Alarm (baca);;;pH #1 tinggi
+A_PH2_L;%M208;0x;208;Alarm (baca);;;pH #2 rendah
+A_PH2_H;%M209;0x;209;Alarm (baca);;;pH #2 tinggi
+A_CL_L;%M210;0x;210;Alarm (baca);;;Sisa klor rendah
+A_CL_H;%M211;0x;211;Alarm (baca);;;Sisa klor tinggi
+A_TU_H;%M212;0x;212;Alarm (baca);;;Turbidity tinggi
+A_PH_DIFF;%M213;0x;213;Alarm (baca);;;Selisih pH #1 dan pH #2 terlalu besar - cek kalibrasi
+A_PH1_SIG;%M214;0x;214;Alarm (baca);;;Sinyal 4-20 mA pH #1 putus / di luar range
+A_PH2_SIG;%M215;0x;215;Alarm (baca);;;Sinyal 4-20 mA pH #2 putus / di luar range
+A_CL_SIG;%M216;0x;216;Alarm (baca);;;Sinyal 4-20 mA klorin putus / di luar range
+A_TU_SIG;%M217;0x;217;Alarm (baca);;;Sinyal 4-20 mA turbidity putus / fault (ERLV 2 mA)
+A_TU_COMM;%M218;0x;218;Alarm (baca);;;Komunikasi Modbus TUC 5 putus
+A_TU_MBERR;%M219;0x;219;Alarm (baca);;;TUC 5 melaporkan error (lihat TU_ERRW)
+HMI_ACK;%M300;0x;300;Tulis (Set ON);;;Tombol HMI: ACK / silence buzzer
+MAN_PAUSE_PH1;%M310;0x;310;Toggle;;;Toggle HMI: PAUSE dosing pH #1 (kalibrasi/perawatan)
+MAN_PAUSE_PH2;%M311;0x;311;Toggle;;;Toggle HMI: PAUSE dosing pH #2
+MAN_PAUSE_CL;%M312;0x;312;Toggle;;;Toggle HMI: PAUSE dosing klorin
+MAINT_TU;%M313;0x;313;Toggle;;;Toggle HMI: TUC 5 MAINTENANCE (alarm turbidity dimatikan)

@@ -1,0 +1,112 @@
+﻿Address;Symbol;Comment
+%I0.0;FS_SAMPLE;Reed switch BAMa (terminal 2-3): 1 = aliran sampel ada
+%I0.1;PH1_OK;D1Cb pH #1 relai alarm XR3: 1 = normal (wiring fail-safe)
+%I0.2;PH2_OK;D1Cb pH #2 relai alarm XR3: 1 = normal
+%I0.3;CL_OK;D1Cb klorin relai alarm XR3: 1 = normal
+%I0.4;TU_A1_OK;TUC 5 Alarm 1 (turbidity tinggi): 1 = normal
+%I0.5;TU_A2_OK;TUC 5 Alarm 2 (fault alat): 1 = normal
+%I0.6;PB_RESET;Tombol ACK/RESET di pintu panel (NO)
+%Q0.0;Q_PAUSE_PH1;PAUSE dosing D1Cb pH #1 -> X6 pin 3/4 (tutup = pause)
+%Q0.1;Q_PAUSE_PH2;PAUSE dosing D1Cb pH #2 -> X6 pin 3/4 (tutup = pause)
+%Q0.2;Q_PAUSE_CL;PAUSE dosing D1Cb klorin -> X6 pin 3/4 (tutup = pause)
+%Q0.3;Q_HL_ALM;Lampu ALARM merah (kedip = belum di-ACK)
+%Q0.4;Q_BUZZER;Buzzer alarm
+%Q0.5;Q_HL_OK;Lampu hijau: aliran OK dan kualitas air normal
+%Q0.6;Q_HL_NOFLOW;Lampu kuning: aliran sampel tidak ada / dosing pause
+%Q0.7;Q_ALM_REMOTE;Alarm umum ke SCADA/remote (ON = SEHAT, fail-safe)
+%IW1.0;AI_PH1;pH #1 dari D1Cb X6: skala 0-1400 = pH 0,00-14,00
+%IW1.1;AI_PH2;pH #2 dari D1Cb X6: skala 0-1400 = pH 0,00-14,00
+%IW1.2;AI_CL;Klorin bebas dari D1Cb X6: skala 0-500 = 0,00-5,00 mg/L (samakan range D1Cb)
+%IW1.3;AI_TU;Turbidity TUC 5: skala 0-1000 = 0,00-10,00 NTU (samakan 4/20 mA TUC)
+%IWS1.0;ST_PH1;Status kanal pH #1 (0 = OK)
+%IWS1.1;ST_PH2;Status kanal pH #2
+%IWS1.2;ST_CL;Status kanal klorin
+%IWS1.3;ST_TU;Status kanal turbidity
+%S6;S_1S;Basis waktu 1 detik (kedip)
+%MW0;P_T_FLOW_ON;Aliran sampel harus stabil selama ini sebelum pengukuran pH/Cl dianggap valid dan pause dilepas
+%MW1;P_T_FLOW_OFF;Tunda alarm aliran sampel hilang
+%MW2;P_T_ALM;Tunda alarm kualitas air (hindari alarm sesaat)
+%MW3;P_PH_L;Batas pH rendah (Permenkes 2/2023: 6,5)
+%MW4;P_PH_H;Batas pH tinggi (Permenkes 2/2023: 8,5)
+%MW5;P_CL_L;Batas sisa klor rendah
+%MW6;P_CL_H;Batas sisa klor tinggi
+%MW7;P_TU_H;Batas turbidity tinggi (Permenkes 2/2023: < 3 NTU)
+%MW8;P_PH_DIFF;"Alarm selisih pH #1 vs pH #2 (0 = mati; pakai bila kedua sensor di titik yang sama)"
+%MW9;P_TU_SRC;Sumber turbidity: 0 = 4-20 mA (%IW1.3), 1 = Modbus RTU SL1
+%MW10;P_T_STARTUP;Tunda setelah PLC RUN sebelum alarm kualitas aktif
+%MW60;SIGNATURE;Tanda data parameter sudah diinisialisasi (12345)
+%MW100;PH1_PV;pH #1 (x0,01)
+%MW101;PH2_PV;pH #2 (x0,01)
+%MW102;CL_PV;Sisa klor bebas (x0,01 mg/L)
+%MW103;TU_PV;Turbidity terpakai (x0,01 NTU) - sesuai P_TU_SRC
+%MW104;TU_MA_PV;Turbidity dari 4-20 mA (x0,01 NTU)
+%MW105;TU_MB_PV;Turbidity dari Modbus (x0,01 NTU)
+%MW106;PH_DIFF;Selisih absolut pH #1 - pH #2 (x0,01)
+%MW107;TU_STATUS;TUC 5 reading status (reg 30010): 1 baik, 2 over, 3 under, 6 error
+%MW108;TU_ERRW;TUC 5 error bit (reg 30012): 0x01 desiccant, 0x02 loop mA, 0x04 kalibrasi, 0x40 lampu, 0x80 ultrasonik
+%MW109;MB_STEP;Langkah polling Modbus TUC 5 (0 = baca, 1 = tunggu)
+%MW110;MB_ERR_TU;Counter error komunikasi TUC 5
+%MW120;IO_DI0;Cermin %I0.0-%I0.13 untuk HMI (bit n = %I0.n)
+%MW121;IO_DO0;Cermin %Q0.0-%Q0.9 untuk HMI (bit n = %Q0.n)
+%MW200;ALMW0;Word alarm 0 (= %M200..%M215)
+%MW201;ALMW1;Word alarm 1 (= %M216..%M231)
+%MW204;ALMPREV0;Word alarm 0 scan sebelumnya
+%MW205;ALMPREV1;Word alarm 1 scan sebelumnya
+%MW208;ALMTMP;Word bantu deteksi alarm baru
+%MF300;TU_MB_F;TUC 5 reg 30001-30002 float NTU (word rendah dulu = urutan %MF M221)
+%MW309;TU_MB_STAT;TUC 5 reg 30010 reading status (buffer)
+%MW311;TU_MB_ERR;TUC 5 reg 30012 error bit (buffer)
+%MF320;TU_MB_X100;Bantu: NTU x 100 (float)
+%M1;STARTUP_DONE;Tunda start-up selesai
+%M2;FLOW_STAB;Aliran sampel stabil > P_T_FLOW_ON
+%M3;VALID_PH1;Nilai pH #1 valid (aliran stabil, sinyal OK, tidak pause manual)
+%M4;VALID_PH2;Nilai pH #2 valid
+%M5;VALID_CL;Nilai klorin valid
+%M6;VALID_TU;Nilai turbidity valid
+%M7;RESET_CMD;Perintah ACK/reset (tombol panel tepi naik / HMI), 1 scan
+%M8;PB_RST_PREV;Memori tepi tombol reset
+%M9;HEARTBEAT;Heartbeat 1 s untuk HMI/SCADA
+%M10;ANY_ALARM;Ada alarm aktif
+%M11;BUZZ_LATCH;Alarm baru belum di-ACK
+%M12;QUALITY_OK;Semua nilai valid dan di dalam batas
+%M13;PH1_OOR;pH #1 di luar batas (sebelum tunda)
+%M14;PH2_OOR;pH #2 di luar batas (sebelum tunda)
+%M15;CL_OOR;Klorin di luar batas (sebelum tunda)
+%M16;TU_OOR;Turbidity di atas batas (sebelum tunda)
+%M17;PHD_OOR;Selisih pH di atas batas (sebelum tunda)
+%M18;POLL_PULSE;Pulsa polling Modbus
+%M200;A_NOFLOW;Aliran sampel BAMa tidak ada - dosing pH/klorin di-PAUSE
+%M201;A_PH1_DEV;D1Cb pH #1 alarm (relai XR3)
+%M202;A_PH2_DEV;D1Cb pH #2 alarm (relai XR3)
+%M203;A_CL_DEV;D1Cb klorin alarm (relai XR3)
+%M204;A_TU_A1;TUC 5 alarm 1 - turbidity tinggi (relai alat)
+%M205;A_TU_A2;TUC 5 alarm 2 - fault alat
+%M206;A_PH1_L;pH #1 rendah
+%M207;A_PH1_H;pH #1 tinggi
+%M208;A_PH2_L;pH #2 rendah
+%M209;A_PH2_H;pH #2 tinggi
+%M210;A_CL_L;Sisa klor rendah
+%M211;A_CL_H;Sisa klor tinggi
+%M212;A_TU_H;Turbidity tinggi
+%M213;A_PH_DIFF;Selisih pH #1 dan pH #2 terlalu besar - cek kalibrasi
+%M214;A_PH1_SIG;Sinyal 4-20 mA pH #1 putus / di luar range
+%M215;A_PH2_SIG;Sinyal 4-20 mA pH #2 putus / di luar range
+%M216;A_CL_SIG;Sinyal 4-20 mA klorin putus / di luar range
+%M217;A_TU_SIG;Sinyal 4-20 mA turbidity putus / fault (ERLV 2 mA)
+%M218;A_TU_COMM;Komunikasi Modbus TUC 5 putus
+%M219;A_TU_MBERR;TUC 5 melaporkan error (lihat TU_ERRW)
+%M300;HMI_ACK;Tombol HMI: ACK / silence buzzer
+%M310;MAN_PAUSE_PH1;Toggle HMI: PAUSE dosing pH #1 (kalibrasi/perawatan)
+%M311;MAN_PAUSE_PH2;Toggle HMI: PAUSE dosing pH #2
+%M312;MAN_PAUSE_CL;Toggle HMI: PAUSE dosing klorin
+%M313;MAINT_TU;Toggle HMI: TUC 5 MAINTENANCE (alarm turbidity dimatikan)
+%TM0;TM_STARTUP;Tunda start-up
+%TM1;TM_FLOW_ON;Aliran sampel stabil
+%TM2;TM_FLOW_OFF;Tunda alarm aliran hilang
+%TM3;TM_PH1;Tunda alarm pH #1
+%TM4;TM_PH2;Tunda alarm pH #2
+%TM5;TM_CL;Tunda alarm klorin
+%TM6;TM_TU;Tunda alarm turbidity
+%TM7;TM_PHD;Tunda alarm selisih pH
+%TM8;TM_POLL;Interval polling Modbus TUC 5 (1 s)
+%READ_VAR0;RV_TU;Baca TUC 5: SL1, ID 1, %IW (FC04), reg 0, qty 12 -> %MW300

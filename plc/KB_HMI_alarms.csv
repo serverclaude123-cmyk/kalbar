@@ -1,0 +1,21 @@
+﻿No;Device type;Alamat;Kondisi;Teks alarm;Latch (perlu RESET)
+1;0x;200;ON;Aliran sampel BAMa tidak ada - dosing pH/klorin di-PAUSE;Tidak
+2;0x;201;ON;D1Cb pH #1 alarm (relai XR3);Tidak
+3;0x;202;ON;D1Cb pH #2 alarm (relai XR3);Tidak
+4;0x;203;ON;D1Cb klorin alarm (relai XR3);Tidak
+5;0x;204;ON;TUC 5 alarm 1 - turbidity tinggi (relai alat);Tidak
+6;0x;205;ON;TUC 5 alarm 2 - fault alat;Tidak
+7;0x;206;ON;pH #1 rendah;Tidak
+8;0x;207;ON;pH #1 tinggi;Tidak
+9;0x;208;ON;pH #2 rendah;Tidak
+10;0x;209;ON;pH #2 tinggi;Tidak
+11;0x;210;ON;Sisa klor rendah;Tidak
+12;0x;211;ON;Sisa klor tinggi;Tidak
+13;0x;212;ON;Turbidity tinggi;Tidak
+14;0x;213;ON;Selisih pH #1 dan pH #2 terlalu besar - cek kalibrasi;Tidak
+15;0x;214;ON;Sinyal 4-20 mA pH #1 putus / di luar range;Tidak
+16;0x;215;ON;Sinyal 4-20 mA pH #2 putus / di luar range;Tidak
+17;0x;216;ON;Sinyal 4-20 mA klorin putus / di luar range;Tidak
+18;0x;217;ON;Sinyal 4-20 mA turbidity putus / fault (ERLV 2 mA);Tidak
+19;0x;218;ON;Komunikasi Modbus TUC 5 putus;Tidak
+20;0x;219;ON;TUC 5 melaporkan error (lihat TU_ERRW);Tidak

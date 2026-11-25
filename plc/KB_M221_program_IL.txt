@@ -1,0 +1,454 @@
+(* KALBAR PDAM - PANEL MONITORING KUALITAS AIR (pH, KLORIN, TURBIDITY) *)
+(* PLC Schneider TM221CE24R + TM3AI4 - EcoStruxure Machine Expert Basic *)
+(* Program IL reversible: ketik/tempel per rung dalam mode IL, lalu ubah tampilan ke Ladder *)
+(* Ref: ProMinent BAMa, DULCOMETER D1Cb x3, DULCO turb C TUC 5 - lihat README *)
+
+
+(* ================= POU0  Inisialisasi & perintah ================= *)
+(* Rung 001: Default parameter (sekali saat memori kosong) *)
+(*   Bila %MW60 belum 12345 (PLC baru / memori hilang) semua setpoint diisi nilai contoh. Setelah itu nilai hanya diubah dari HMI. *)
+    LD [%MW60 <> 12345]
+    [%MW0 := 60]
+    [%MW1 := 10]
+    [%MW2 := 60]
+    [%MW3 := 650]
+    [%MW4 := 850]
+    [%MW5 := 20]
+    [%MW6 := 100]
+    [%MW7 := 300]
+    [%MW8 := 0]
+    [%MW9 := 0]
+    [%MW10 := 30]
+    [%MW60 := 12345]
+
+(* Rung 002: Muat preset timer dari parameter *)
+(*   Preset timer diambil dari %MW parameter tiap scan. Timer dengan preset tetap diisi di konfigurasi. *)
+    [%TM0.P := %MW10]
+    [%TM1.P := %MW0]
+    [%TM2.P := %MW1]
+    [%TM3.P := %MW2]
+    [%TM4.P := %MW2]
+    [%TM5.P := %MW2]
+    [%TM6.P := %MW2]
+    [%TM7.P := %MW2]
+
+(* Rung 003: Tunda start-up *)
+(*   Setelah PLC RUN, alarm kualitas menunggu P_T_STARTUP agar sinyal analog dan instrumen stabil. *)
+    BLK %TM0
+    LD [%MW60 = 12345]
+    IN
+    OUT_BLK
+    LD Q
+    ST %M1
+    END_BLK
+
+(* Rung 004: Perintah ACK (tombol panel tepi naik / HMI) *)
+    LD %I0.6
+    ANDN %M8
+    OR %M300
+    ST %M7
+
+(* Rung 005: Memori tepi tombol reset *)
+    LD %I0.6
+    ST %M8
+
+(* Rung 006: Heartbeat untuk HMI/SCADA *)
+    LD %S6
+    ST %M9
+
+
+(* ================= POU1  Nilai analog ================= *)
+(* Rung 007: Salin nilai analog *)
+    [%MW100 := %IW1.0]
+    [%MW101 := %IW1.1]
+    [%MW102 := %IW1.2]
+    [%MW104 := %IW1.3]
+
+(* Rung 008: Selisih pH #1 - pH #2 *)
+    [%MW106 := %MW100 - %MW101]
+
+(* Rung 009:   nilai absolut *)
+    LD [%MW106 < 0]
+    [%MW106 := 0 - %MW106]
+
+(* Rung 010: Turbidity dari 4-20 mA *)
+    LD [%MW9 = 0]
+    [%MW103 := %MW104]
+
+(* Rung 011: Turbidity dari Modbus *)
+(*   TUC 5 hanya bisa memilih SATU output: 4-20 mA atau RS-485 (menu output). Samakan dengan P_TU_SRC. *)
+    LD [%MW9 = 1]
+    [%MW103 := %MW105]
+
+(* Rung 012: Gangguan sinyal pH #1 *)
+(*   Status kanal TM3 bukan 0 = under/over range atau kabel putus (D1Cb fault = 3,6 mA). *)
+    LD [%IWS1.0 <> 0]
+    ST %M214
+
+(* Rung 013: Gangguan sinyal pH #2 *)
+    LD [%IWS1.1 <> 0]
+    ST %M215
+
+(* Rung 014: Gangguan sinyal klorin *)
+    LD [%IWS1.2 <> 0]
+    ST %M216
+
+(* Rung 015: Gangguan sinyal turbidity *)
+(*   Set ERLV TUC 5 = 2 mA: fault alat muncul sebagai under-range. *)
+    LD [%MW9 = 0]
+    ANDN %M313
+    AND [%IWS1.3 <> 0]
+    ST %M217
+
+(* Rung 016: Cermin status I/O fisik untuk HMI *)
+    [%MW120 := %I0.0:14]
+    [%MW121 := %Q0.0:10]
+
+
+(* ================= POU2  Aliran sampel & PAUSE dosing ================= *)
+(* Rung 017: Aliran sampel stabil *)
+    BLK %TM1
+    LD %I0.0
+    IN
+    OUT_BLK
+    LD Q
+    ST %M2
+    END_BLK
+
+(* Rung 018: Alarm aliran sampel hilang *)
+    BLK %TM2
+    LDN %I0.0
+    AND %M1
+    IN
+    OUT_BLK
+    LD Q
+    ST %M200
+    END_BLK
+
+(* Rung 019: PAUSE dosing pH #1 *)
+(*   Relai ON = pause. Set input pause D1Cb ke 'aktif saat kontak tertutup'. Bila PLC mati, dosing tetap jalan (tidak berhenti mendadak). *)
+    LDN %M2
+    OR %M310
+    ST %Q0.0
+
+(* Rung 020: Nilai pH #1 valid *)
+    LD %M2
+    AND %M1
+    ANDN %M214
+    ANDN %M310
+    ST %M3
+
+(* Rung 021: PAUSE dosing pH #2 *)
+    LDN %M2
+    OR %M311
+    ST %Q0.1
+
+(* Rung 022: Nilai pH #2 valid *)
+    LD %M2
+    AND %M1
+    ANDN %M215
+    ANDN %M311
+    ST %M4
+
+(* Rung 023: PAUSE dosing klorin *)
+    LDN %M2
+    OR %M312
+    ST %Q0.2
+
+(* Rung 024: Nilai klorin valid *)
+    LD %M2
+    AND %M1
+    ANDN %M216
+    ANDN %M312
+    ST %M5
+
+(* Rung 025: Nilai turbidity valid *)
+(*   TUC 5 punya flow cell sendiri, tidak tergantung aliran BAMa. *)
+    LD %M1
+    ANDN %M313
+    AND( [%MW9 = 0]
+    ANDN %M217
+    OR( [%MW9 = 1]
+    ANDN %M218
+    ANDN %M219
+    )
+    )
+    ST %M6
+
+
+(* ================= POU3  Alarm kualitas air ================= *)
+(* Rung 026: pH #1 di luar batas *)
+    LD %M3
+    AND( [%MW100 < %MW3]
+    OR [%MW100 > %MW4]
+    )
+    ST %M13
+
+(* Rung 027:   tunda alarm pH #1 *)
+    BLK %TM3
+    LD %M13
+    IN
+    END_BLK
+
+(* Rung 028:   pH #1 rendah *)
+    LD %TM3.Q
+    AND [%MW100 < %MW3]
+    ST %M206
+
+(* Rung 029:   pH #1 tinggi *)
+    LD %TM3.Q
+    AND [%MW100 > %MW4]
+    ST %M207
+
+(* Rung 030: pH #2 di luar batas *)
+    LD %M4
+    AND( [%MW101 < %MW3]
+    OR [%MW101 > %MW4]
+    )
+    ST %M14
+
+(* Rung 031:   tunda alarm pH #2 *)
+    BLK %TM4
+    LD %M14
+    IN
+    END_BLK
+
+(* Rung 032:   pH #2 rendah *)
+    LD %TM4.Q
+    AND [%MW101 < %MW3]
+    ST %M208
+
+(* Rung 033:   pH #2 tinggi *)
+    LD %TM4.Q
+    AND [%MW101 > %MW4]
+    ST %M209
+
+(* Rung 034: klorin di luar batas *)
+    LD %M5
+    AND( [%MW102 < %MW5]
+    OR [%MW102 > %MW6]
+    )
+    ST %M15
+
+(* Rung 035:   tunda alarm klorin *)
+    BLK %TM5
+    LD %M15
+    IN
+    END_BLK
+
+(* Rung 036:   klorin rendah *)
+    LD %TM5.Q
+    AND [%MW102 < %MW5]
+    ST %M210
+
+(* Rung 037:   klorin tinggi *)
+    LD %TM5.Q
+    AND [%MW102 > %MW6]
+    ST %M211
+
+(* Rung 038: Turbidity di atas batas *)
+    LD %M6
+    AND [%MW103 > %MW7]
+    ST %M16
+
+(* Rung 039:   tunda alarm turbidity *)
+    BLK %TM6
+    LD %M16
+    IN
+    OUT_BLK
+    LD Q
+    ST %M212
+    END_BLK
+
+(* Rung 040: Selisih pH di atas batas *)
+(*   Aktifkan (P_PH_DIFF > 0) hanya bila kedua elektroda mengukur air yang sama. *)
+    LD [%MW8 > 0]
+    AND %M3
+    AND %M4
+    AND [%MW106 > %MW8]
+    ST %M17
+
+(* Rung 041:   tunda alarm selisih pH *)
+    BLK %TM7
+    LD %M17
+    IN
+    OUT_BLK
+    LD Q
+    ST %M213
+    END_BLK
+
+(* Rung 042: Kualitas air normal *)
+    LD %M3
+    AND %M4
+    AND %M5
+    AND %M6
+    ANDN %M13
+    ANDN %M14
+    ANDN %M15
+    ANDN %M16
+    ST %M12
+
+
+(* ================= POU4  Alarm dari instrumen ================= *)
+(* Rung 043: D1Cb pH #1 alarm *)
+    LDN %I0.1
+    AND %M1
+    ST %M201
+
+(* Rung 044: D1Cb pH #2 alarm *)
+    LDN %I0.2
+    AND %M1
+    ST %M202
+
+(* Rung 045: D1Cb klorin alarm *)
+    LDN %I0.3
+    AND %M1
+    ST %M203
+
+(* Rung 046: TUC 5 alarm 1 (turbidity tinggi) *)
+    LDN %I0.4
+    AND %M1
+    ANDN %M313
+    ST %M204
+
+(* Rung 047: TUC 5 alarm 2 (fault) *)
+    LDN %I0.5
+    AND %M1
+    ANDN %M313
+    ST %M205
+
+
+(* ================= POU5  Modbus RTU SL1 - TUC 5 (opsional) ================= *)
+(* Rung 048: Pulsa polling 1 s *)
+    BLK %TM8
+    LD [%MW9 = 1]
+    ANDN %M18
+    IN
+    OUT_BLK
+    LD Q
+    ST %M18
+    END_BLK
+
+(* Rung 049: Eksekusi READ_VAR TUC 5 *)
+    BLK %READ_VAR0
+    LD [%MW109 = 0]
+    AND %M18
+    EXEC
+    END_BLK
+
+(* Rung 050:   mulai tunggu jawaban *)
+    LD [%MW109 = 0]
+    AND %M18
+    [%MW109 := 1]
+
+(* Rung 051:   selesai OK: ambil data *)
+(*   Bila nilai tidak masuk akal (mis. 1E-38), word order terbalik: tukar %MW300/%MW301 sebelum konversi. *)
+    LD [%MW109 = 1]
+    AND %READ_VAR0.D
+    [%MF320 := %MF300 * 100.0]
+    [%MW105 := REAL_TO_INT(%MF320)]
+    [%MW107 := %MW309]
+    [%MW108 := %MW311]
+    [%MW110 := 0]
+    [%MW109 := 0]
+
+(* Rung 052:   error komunikasi *)
+    LD [%MW109 = 1]
+    AND %READ_VAR0.E
+    [%MW110 := %MW110 + 1]
+    [%MW109 := 0]
+
+(* Rung 053: Batasi langkah polling *)
+    LD [%MW109 > 1]
+    OR [%MW9 <> 1]
+    [%MW109 := 0]
+
+(* Rung 054: Batasi counter error *)
+    LD [%MW110 > 100]
+    [%MW110 := 100]
+
+(* Rung 055: Komunikasi TUC 5 putus *)
+    LD [%MW9 = 1]
+    ANDN %M313
+    AND [%MW110 >= 3]
+    ST %M218
+
+(* Rung 056: TUC 5 melaporkan error *)
+(*   Reg 30010 = 6 (error) atau bit error reg 30012 (desiccant, lampu, ultrasonik, kalibrasi). *)
+    LD [%MW9 = 1]
+    ANDN %M313
+    ANDN %M218
+    AND( [%MW107 = 6]
+    OR [%MW108 <> 0]
+    )
+    ST %M219
+
+
+(* ================= POU6  Alarm, buzzer & lampu ================= *)
+(* Rung 057: Pak bit alarm ke word *)
+    [%MW200 := %M200:16]
+    [%MW201 := %M216:16]
+
+(* Rung 058: Deteksi alarm baru word 0 *)
+    [%MW208 := NOT %MW204]
+    [%MW208 := %MW200 AND %MW208]
+
+(* Rung 059:   alarm baru word 0 -> buzzer *)
+    LD [%MW208 <> 0]
+    S %M11
+
+(* Rung 060: Deteksi alarm baru word 1 *)
+    [%MW208 := NOT %MW205]
+    [%MW208 := %MW201 AND %MW208]
+
+(* Rung 061:   alarm baru word 1 -> buzzer *)
+    LD [%MW208 <> 0]
+    S %M11
+
+(* Rung 062: Simpan word alarm *)
+    [%MW204 := %MW200]
+    [%MW205 := %MW201]
+
+(* Rung 063: Ada alarm aktif *)
+    LD [%MW200 <> 0]
+    OR [%MW201 <> 0]
+    ST %M10
+
+(* Rung 064: ACK: matikan buzzer *)
+    LD %M7
+    R %M11
+
+(* Rung 065: Buzzer *)
+    LD %M11
+    ST %Q0.4
+
+(* Rung 066: Lampu alarm (kedip bila belum ACK) *)
+    LD %M11
+    AND %S6
+    OR( %M10
+    ANDN %M11
+    )
+    ST %Q0.3
+
+(* Rung 067: Lampu hijau kualitas normal *)
+    LD %M12
+    ANDN %M10
+    ST %Q0.5
+
+(* Rung 068: Lampu kuning aliran/pause *)
+    LDN %M2
+    OR %M310
+    OR %M311
+    OR %M312
+    ST %Q0.6
+
+(* Rung 069: Alarm umum ke remote (fail-safe) *)
+(*   Relai ON = sehat. PLC mati / kabel putus terbaca sebagai alarm di SCADA. *)
+    LDN %M10
+    ST %Q0.7
+
+
+(* ================= POU7  Reset tombol HMI ================= *)
+(* Rung 070: Reset HMI_ACK *)
+    LD %M300
+    R %M300

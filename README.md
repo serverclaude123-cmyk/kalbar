@@ -126,6 +126,20 @@ Holding 40031–40043 duplicate 30001–30013 (FC 03).
 
 **All 4 analog sources are active (self-powered) – do not loop-power from PLC.**
 
+## PLC program (Schneider M221)
+
+Folder [`plc/`](plc/) – draft program for **TM221CE24R + TM3AI4** (70 rungs, Indonesian comments):
+
+| File | Content |
+|---|---|
+| `KB_M221_Ladder.html` | Full documentation: I/O, parameters, timers, every rung as ladder + IL, HMI/SCADA map, commissioning checklist (open in browser) |
+| `KB_M221_program_IL.txt` | IL program, type/paste per rung in Machine Expert Basic then switch view to Ladder |
+| `KB_M221_symbols.csv` | Symbol table (import into Machine Expert Basic) |
+| `KB_HMI_tags.csv`, `KB_HMI_alarms.csv` | Modbus TCP tags and alarm list for HMI/SCADA |
+| `generator/` | Python source – edit `symbols.py` / `rungs.py`, run `python build.py ..` from `plc/generator` |
+
+Functions: sample-flow detection (BAMa reed) → pause D1Cb dosing via X6 3/4, pH/Cl/turbidity limit alarms with delay, 4-20 mA signal-fault alarms, instrument relay alarms, optional TUC 5 Modbus RTU (P_TU_SRC = 1), alarm lamp/buzzer/ACK, fail-safe remote alarm relay.
+
 ## Open items
 - [ ] Photos/ident codes of the 2 pH D1Cb (confirm mV version `P 5`)
 - [ ] Chlorine sensor type and where it mounts (BAMa has no G1" slot)
