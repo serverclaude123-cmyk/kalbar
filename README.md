@@ -140,7 +140,11 @@ Folder [`plc/`](plc/) – draft program for **TM221CE16R (relay version) + TM3AI
 
 Functions: sample-flow detection (BAMa reed) → pause D1Cb dosing via X6 3/4, pH/Cl/turbidity limit alarms with delay, 4-20 mA signal-fault alarms, instrument relay alarms, optional TUC 5 Modbus RTU (P_TU_SRC = 1), alarm lamp/buzzer/ACK, fail-safe remote alarm relay.
 
-## SCADA (FUXA)
+## SCADA (WinCC RT Professional)
+
+The main SCADA is **WinCC RT Professional V19** (TIA Portal `Project2`, runtime PC SCADAPC). Folder [`wincc/`](wincc/) holds the tag and alarm import generators (80 tags, 20 discrete alarms), the generated xlsx files, and notes on the Overview screen and runtime. See [wincc/README.md](wincc/README.md).
+
+## SCADA (FUXA, test/backup)
 
 Folder [`scada/`](scada/) – FUXA project generated from the PLC symbol table: Overview, Trend, Setpoint, I/O & status screens, 20 alarms, DAQ history. Import `scada/KB_FUXA_project.json`, install the **modbus-serial** plugin, set the PLC IP. See [scada/README.md](scada/README.md). `scada/sim_m221.js` simulates the M221 for testing without hardware.
 

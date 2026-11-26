@@ -44,6 +44,9 @@ setInterval(() => {
   coils[10] = anyAlm;
   if (coils[300]) { coils[11] = false; coils[300] = false; }  // HMI_ACK
   coils[53] = coils[10]; coils[54] = coils[11]; coils[55] = coils[12]; coils[56] = !coils[10];
+  // word cermin seperti PLC: ALMW0/1 = %M200..231, IO_DI0 = %I0.x, IO_DO0 = %Q0.x (untuk WinCC)
+  const pack = (from, n) => { let w = 0; for (let b = 0; b < n; b++) if (coils[from + b]) w |= (1 << b); return w; };
+  hreg[200] = pack(200, 16); hreg[201] = pack(216, 16); hreg[120] = pack(40, 7); hreg[121] = pack(50, 7);
 }, 1000);
 
 const vector = {
@@ -54,5 +57,5 @@ const vector = {
   setRegister: (a, v) => { hreg[a] = v; },
   getInputRegister: (a) => 0,
 };
-new ModbusRTU.ServerTCP(vector, { host: "0.0.0.0", port, unitID: 1, debug: false });
+new ModbusRTU.ServerTCP(vector, { host: "0.0.0.0", port, unitID: 255, debug: false }); // 255 = jawab semua unit ID (FUXA pakai 1, WinCC pakai 255)
 console.log("Simulator M221 Modbus TCP di port", port);
